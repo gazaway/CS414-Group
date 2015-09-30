@@ -1,15 +1,11 @@
 package model;
 
-public class Cashier {
+public class Cook {
 	
 	private ContactInfo contactInfo;
 	
-	public Cashier(String name, String address, String phone){
-		this.contactInfo = new ContactInfo(name, address, phone);
-	}
-
-	public Cashier(ContactInfo contact) {
-		this.contactInfo = contact;
+	public Cook(String name, String address, String phone){
+		this.setContactInfo(new ContactInfo(name, address, phone));
 	}
 
 	public ContactInfo getContactInfo() {
@@ -19,4 +15,5 @@ public class Cashier {
 	public void setContactInfo(ContactInfo contactInfo) {
 		this.contactInfo = contactInfo;
 	}
+
 }
