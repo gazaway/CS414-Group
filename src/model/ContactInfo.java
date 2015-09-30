@@ -1,8 +1,9 @@
+package model;
 
 public class ContactInfo {
-	String name;
-	String address;
-	String phone;
+	private String name;
+	private String address;
+	private String phone;
 	
 	public ContactInfo(String name, String address, String phone){
 		this.name = name;
