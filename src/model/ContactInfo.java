@@ -11,6 +11,12 @@ public class ContactInfo {
 		this.phone = phone;
 	}
 	
+	public ContactInfo() {
+		this.name = "";
+		this.address = "";
+		this.phone = "";
+	}
+
 	public String getName(){ return name; }
 	public String getAddress(){ return address;}
 	public String getPhone(){ return phone; }
