@@ -5,12 +5,18 @@ public class ContactInfo {
 	private String address;
 	private String phone;
 	
+	/*
+	 * Constructor for creating contact info when info is known.
+	 */
 	public ContactInfo(String name, String address, String phone){
 		this.name = name;
 		this.address = address;
 		this.phone = phone;
 	}
 	
+	/*
+	 * Default constructor for use with non-logged in customers.
+	 */
 	public ContactInfo() {
 		this.name = "";
 		this.address = "";

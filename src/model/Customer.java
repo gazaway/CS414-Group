@@ -4,10 +4,17 @@ public class Customer {
 	
 	private ContactInfo contactInfo;
 	
+	/*
+	 * Create customer with known information. Probably not used much
+	 */
 	public Customer(String name, String address, String phone){
 		this.contactInfo = new ContactInfo(name, address, phone);
 	}
 	
+	/*
+	 * Default constructor for customer creation with no information.
+	 * Will be used often for order creation.
+	 */
 	public Customer(){
 		this.contactInfo = new ContactInfo();
 	}
