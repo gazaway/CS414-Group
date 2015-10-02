@@ -4,20 +4,16 @@ import java.util.LinkedList;
 
 import model.*;
 
-public class OrderQueue {
+public class OrderInterface {
 	
-	private LinkedList<Order> currentOrders;
-	private LinkedList<Order> ordersBeingMade;
-	private LinkedList<Order> pastOrders;
+	private System parentSystem;
 	
-	public OrderQueue(){
-		currentOrders = new LinkedList<Order>();
-		pastOrders = new LinkedList<Order>();
-		ordersBeingMade = new LinkedList<Order>();
+	public OrderInterface(System system) {
+		parentSystem = system;
 	}
-	
+
 	public void addNewOrder(Order order){
-		currentOrders.add(order);
+		parentSystem.getOrderQueue().getCurrentOrders().add(order);
 		//TODO GUI CALLS
 	}
 	
@@ -26,8 +22,8 @@ public class OrderQueue {
 	 * If successful, adds the order to the past orders.
 	 */
 	public void completeOrder(Order order){
-		if (currentOrders.remove(order)){
-			pastOrders.add(order);
+		if (parentSystem.getOrderQueue().getCurrentOrders().remove(order)){
+			parentSystem.getOrderQueue().getPastOrders().add(order);
 			//TODO GUI CALLS
 		}
 	}
@@ -36,7 +32,7 @@ public class OrderQueue {
 	 * Cancels an order currently being worked on.
 	 */
 	public void cancelCurrentOrder(Order order){
-		if (currentOrders.remove(order)){
+		if (parentSystem.getOrderQueue().getCurrentOrders().remove(order)){
 			order.setStatus(OrderStatus.canceled);
 			//TODO GUI CALLS
 		}
@@ -48,9 +44,9 @@ public class OrderQueue {
 	 */
 	public Order grabNextOrder(){
 		Order temp = new Order();
-		if (!currentOrders.isEmpty()){
-			temp = currentOrders.poll();
-			ordersBeingMade.add(temp);
+		if (!parentSystem.getOrderQueue().getCurrentOrders().isEmpty()){
+			temp = parentSystem.getOrderQueue().getCurrentOrders().poll();
+			parentSystem.getOrderQueue().getOrdersBeingMade().add(temp);
 			//TODO GUI CALLS
 		}
 		return temp;
