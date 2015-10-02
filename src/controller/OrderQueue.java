@@ -35,13 +35,11 @@ public class OrderQueue {
 	/*
 	 * Cancels an order currently being worked on.
 	 */
-	public Order cancelCurrentOrder(Order order){
-		Order temp = new Order();
+	public void cancelCurrentOrder(Order order){
 		if (currentOrders.remove(order)){
 			order.setStatus(OrderStatus.canceled);
 			//TODO GUI CALLS
 		}
-		return null;
 	}
 	
 	/*
