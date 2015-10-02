@@ -30,4 +30,8 @@ public class Customer {
 	public void setPhone(String phone){
 		contactInfo = new ContactInfo(contactInfo.getName(), contactInfo.getAddress(), phone);
 	}
+
+	public String getName() {
+		return this.contactInfo.getName();
+	}
 }
