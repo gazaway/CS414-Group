@@ -1,6 +1,8 @@
 package model;
 
 
+
+
 public class ContactInfo {
 	private String name;
 	private String address;
