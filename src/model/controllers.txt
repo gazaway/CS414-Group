@@ -1,5 +1,7 @@
 Order interface  		JG
+	edit, create, cancel, prepOrder (begin cooking)
 menu interface			BB
+	create, edit, pricing?
 queue interface
 system administrator
 customer interface; for editing profile
