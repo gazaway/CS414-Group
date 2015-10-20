@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.LinkedList;
-
 import model.*;
 
 public class OrderInterface {
@@ -9,7 +7,15 @@ public class OrderInterface {
 	private System parentSystem;
 	
 	public OrderInterface(System system) {
-		parentSystem = system;
+		this.parentSystem = system;
+	}
+	
+	public Order createNewOrder(){
+		return new Order();
+	}
+	
+	public Order createNewOrder(Customer customer){
+		return new Order(customer);
 	}
 
 	public void addNewOrder(Order order){
@@ -29,12 +35,13 @@ public class OrderInterface {
 	}
 	
 	/*
-	 * Cancels an order currently being worked on.
+	 * Cancels an order currently being worked on. Moves it to complete
 	 */
 	public void cancelCurrentOrder(Order order){
 		if (parentSystem.getOrderQueue().getCurrentOrders().remove(order)){
 			order.setStatus(OrderStatus.canceled);
-			//TODO GUI CALLS
+			parentSystem.getOrderQueue().getPastOrders().add(order);
+			//TODO GUI CALLS FOR REFRESH, ETC.
 		}
 	}
 	
@@ -50,5 +57,16 @@ public class OrderInterface {
 			//TODO GUI CALLS
 		}
 		return temp;
+	}
+	
+	/*
+	 * USED WHEN COOK STARTS WORKING ON AN ORDER. TAKES ORDER OUT OF
+	 * THE currentOrder queue and places it in ordersBeingMade
+	 */
+	public void prepOrder(Order order){
+		//if order is in the current order queue
+		if (parentSystem.getOrderQueue().getCurrentOrders().remove(order)){
+			parentSystem.getOrderQueue().getOrdersBeingMade().add(order);
+		}
 	}
 }

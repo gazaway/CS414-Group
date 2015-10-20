@@ -1,14 +1,15 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Order {
 	
 	private Customer customer;	
-	private ArrayList<MenuItem> items;
+	private LinkedList<MenuItem> items;
+	private LinkedList<Pizza> pizzas;
 	private OrderStatus status;
 
-	public ArrayList<MenuItem> getItems() {
+	public LinkedList<MenuItem> getItems() {
 		return items;
 	}
 
@@ -22,7 +23,7 @@ public class Order {
 	 */
 	public Order(Customer customer){
 		this.customer = customer;
-		items = new ArrayList<MenuItem>();
+		items = new LinkedList<MenuItem>();
 		status = OrderStatus.pending;
 	}
 	
@@ -32,7 +33,7 @@ public class Order {
 	 */
 	public Order(){
 		this.customer = new Customer();
-		items = new ArrayList<MenuItem>();
+		items = new LinkedList<MenuItem>();
 	}
 
 	public void setStatus(OrderStatus status) {
@@ -44,5 +45,17 @@ public class Order {
 	 */
 	public boolean isEmpty(){
 		return items.isEmpty();
+	}
+
+	public OrderStatus getOrderStatus(){
+		return this.status;
+	}
+	
+	public void setOrderStatus(OrderStatus status){
+		this.status = status;
+	}
+	
+	public LinkedList<Pizza> getPizzas() {
+		return pizzas;
 	}
 }
