@@ -6,8 +6,9 @@ import controller.System;
 
 public class OrderQueue {
 	
-	private LinkedList<Order> currentOrders;
-	private LinkedList<Order> ordersBeingMade;
+	private LinkedList<Order> currentOrders; // order that's been placed
+	private LinkedList<Order> ordersBeingMade; //orders being made by cooks at the moment
+	private LinkedList<Order> completedUnpaidOrders; // online orders for cash pick-up
 	private LinkedList<Order> pastOrders;
 	private System parentSystem;
 	
