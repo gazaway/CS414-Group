@@ -21,11 +21,11 @@ public class ManagerInterface {
 	 */
 	public void addItemToMenu(Long price, String name, String desc){
 		MenuItem temp = new MenuItem(price, name, desc);
-		parentSystem.getPizzaStore().getMenu().getMenuItems().put(temp, price);
+		parentSystem.getPizzaStore().getMenu().getMenuItems().add(temp);
 	}
 	
 	public void removeitemFromMenu(MenuItem item){
-		if(parentSystem.getPizzaStore().getMenu().getMenuItems().containsKey(item)){
+		if(parentSystem.getPizzaStore().getMenu().getMenuItems().contains(item)){
 			parentSystem.getPizzaStore().getMenu().getMenuItems().remove(item);
 		}
 	}
