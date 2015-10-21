@@ -68,4 +68,13 @@ public class Customer {
 		Customer c = (Customer)o;
 		return (this.getContactInfo() == c.getContactInfo());
 	}
+	
+	@Override
+	public String toString(){
+		String temp = "";
+		temp += this.getName() + '\n';
+		temp += this.getAddress() + '\n';
+		temp += this.getPhone();
+		return temp;
+	}
 }
