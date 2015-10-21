@@ -54,6 +54,10 @@ public class PizzaSystem {
 		return managerInterface;
 	}
 	
+	/*
+	 * This is a test run main. In reality, we should be creating an instance of our GUI and making it run.
+	 * But this will work for now.
+	 */
 	public static void main(String[]args){
 		PizzaSystem test = new PizzaSystem();
 		System.out.println(test);
@@ -63,6 +67,10 @@ public class PizzaSystem {
 		PizzaTopping[] pt = { new PizzaTopping("Ham", "") , new PizzaTopping("Bacon", "") , new PizzaTopping("Pineapple", "") };
 		test.getOrderInterface().addPizzaToOrder(testOrder, new Pizza(pt, PizzaSize.SMALL));
 		test.getOrderInterface().addItemToOrder(testOrder, new MenuItem((long)5.00, "6 pc Buffalo Wings", ""));
+		System.out.println(test);
+		System.out.println("~!~!~!~!~!~!~!~!~!~!~!~!~! ORDER HAS BEEN MOVED NOW ~!~!~!~!~!~!~!~!~!~!~!~!~!" + '\n');
+		//THIS SHOULD TAKE THE ORDER OUT OF THE PENDING QUEUE AND PLACE IT IN THE BEING WORKED ON QUEUE
+		test.getOrderInterface().grabNextOrder();
 		System.out.println(test);
 		
 	}

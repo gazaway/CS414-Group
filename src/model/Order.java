@@ -91,12 +91,12 @@ public class Order {
 	public String toString(){
 		String temp = "";
 		temp += "Customer: " + this.getCustomer().getName() + '\n';
-		temp += "---------ITEMS--------" + '\n';
+		temp += "ITEMS:" + '\n';
 		for (MenuItem mi : this.getItems()){
 			temp += "    " + mi.toString();
 		}
 		temp += '\n';
-		temp += "---------PIZZAS-------" + '\n';
+		temp += "PIZZAS:" + '\n';
 		for (Pizza pi : this.getPizzas()){
 			temp += "    " + pi.toString() + '\n';
 		}

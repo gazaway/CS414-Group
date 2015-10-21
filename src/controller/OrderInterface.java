@@ -52,7 +52,7 @@ public class OrderInterface {
 	public Order grabNextOrder(){
 		Order temp = new Order();
 		if (!parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().isEmpty()){
-			temp = parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().get(0);
+			temp = parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(0);
 			parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().add(temp);
 			//TODO GUI CALLS
 		}
