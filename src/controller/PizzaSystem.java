@@ -59,12 +59,16 @@ public class PizzaSystem {
 	 * But this will work for now.
 	 */
 	public static void main(String[]args){
+		//PRINT SYSTEM IN DEFAULT (makes sure all constructors work, etc)
 		PizzaSystem test = new PizzaSystem();
 		System.out.println(test);
+		//CREATE A NEW ORDER, ADD IT INTO QUEUE, PRINT SYSTEM
 		Order testOrder = test.getOrderInterface().createNewOrder();
 		test.getOrderInterface().addNewOrder(testOrder);
 		System.out.println("~!~!~!~!~!~!~!~!~!~!~!~!~! ORDER HAS BEEN CREATED NOW ~!~!~!~!~!~!~!~!~!~!~!~!~!" + '\n');
+		//This would normally be made by grabbing the "checked options" of a combo box. 
 		PizzaTopping[] pt = { new PizzaTopping("Ham", "") , new PizzaTopping("Bacon", "") , new PizzaTopping("Pineapple", "") };
+		//The size would also be part of a drop down/combo box
 		test.getOrderInterface().addPizzaToOrder(testOrder, new Pizza(pt, PizzaSize.SMALL));
 		test.getOrderInterface().addItemToOrder(testOrder, new MenuItem((long)5.00, "6 pc Buffalo Wings", ""));
 		System.out.println(test);
