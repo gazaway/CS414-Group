@@ -19,7 +19,7 @@ public class OrderInterface {
 	}
 
 	public void addNewOrder(Order order){
-		parentSystem.getOrderQueue().getCurrentOrders().add(order);
+		parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().add(order);
 		//TODO GUI CALLS
 	}
 	
@@ -28,8 +28,8 @@ public class OrderInterface {
 	 * If successful, adds the order to the past orders.
 	 */
 	public void completeOrder(Order order){
-		if (parentSystem.getOrderQueue().getCurrentOrders().remove(order)){
-			parentSystem.getOrderQueue().getPastOrders().add(order);
+		if (parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(order)){
+			parentSystem.getPizzaStore().getOrderQueue().getPastOrders().add(order);
 			//TODO GUI CALLS
 		}
 	}
@@ -38,9 +38,9 @@ public class OrderInterface {
 	 * Cancels an order currently being worked on. Moves it to complete
 	 */
 	public void cancelCurrentOrder(Order order){
-		if (parentSystem.getOrderQueue().getCurrentOrders().remove(order)){
+		if (parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(order)){
 			order.setStatus(OrderStatus.canceled);
-			parentSystem.getOrderQueue().getPastOrders().add(order);
+			parentSystem.getPizzaStore().getOrderQueue().getPastOrders().add(order);
 			//TODO GUI CALLS FOR REFRESH, ETC.
 		}
 	}
@@ -51,9 +51,9 @@ public class OrderInterface {
 	 */
 	public Order grabNextOrder(){
 		Order temp = new Order();
-		if (!parentSystem.getOrderQueue().getCurrentOrders().isEmpty()){
-			temp = parentSystem.getOrderQueue().getCurrentOrders().poll();
-			parentSystem.getOrderQueue().getOrdersBeingMade().add(temp);
+		if (!parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().isEmpty()){
+			temp = parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().poll();
+			parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().add(temp);
 			//TODO GUI CALLS
 		}
 		return temp;
@@ -65,8 +65,8 @@ public class OrderInterface {
 	 */
 	public void prepOrder(Order order){
 		//if order is in the current order queue
-		if (parentSystem.getOrderQueue().getCurrentOrders().remove(order)){
-			parentSystem.getOrderQueue().getOrdersBeingMade().add(order);
+		if (parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(order)){
+			parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().add(order);
 		}
 	}
 }
