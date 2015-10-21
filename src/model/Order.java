@@ -36,6 +36,7 @@ public class Order {
 		this.customer = new Customer();
 		items = new ArrayList<MenuItem>();
 		pizzas = new ArrayList<Pizza>();
+		status = OrderStatus.pending;
 	}
 
 	public void setStatus(OrderStatus status) {
