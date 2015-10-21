@@ -15,6 +15,11 @@ public class Menu {
 		this.pizzaToppings = new ArrayList<PizzaTopping>();
 	}
 	
+	public Menu loadMenuFromFile(){
+		Menu temp = new Menu();
+		return temp;
+	}
+	
 	public Map<MenuItem, Long> getMenuItems(){
 		return this.items;
 	}
