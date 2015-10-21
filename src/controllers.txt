@@ -1,7 +1,5 @@
 Order interface  		(JG)
 	- edit, create, cancel, prepOrder (begin cooking)
-queue interface was for moving orders from current queue to beingMade queue, etc
-	- move...
 system administrator
 	- hire, promote, fire (can you change from an employee to a cook?)
 customer interface; for editing profile
