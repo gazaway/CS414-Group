@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import controller.*;
-import controller.System;
+import controller.PizzaSystem;
 
 public class PizzaStore {
 
@@ -11,10 +11,10 @@ public class PizzaStore {
 	private ArrayList<Manager> managers;
 	private ArrayList<Cook> cooks;
 	private ArrayList<Customer> customers;
-	private System parentSystem;
+	private PizzaSystem parentSystem;
 	private Menu menu;
 	
-	public PizzaStore(System system){
+	public PizzaStore(PizzaSystem system){
 		cashiers = new ArrayList<Cashier>();
 		managers = new ArrayList<Manager>();
 		cooks = new ArrayList<Cook>();

@@ -4,10 +4,14 @@ import model.*;
 
 public class ManagerInterface {
 	
-	private System parentSystem;
+	private PizzaSystem parentSystem;
 	
-	public Menu createNewMenu(System system){
+	public ManagerInterface(PizzaSystem system) {
 		this.parentSystem = system;
+	}
+
+
+	public Menu createNewMenu(){
 		return new Menu();
 	}
 	

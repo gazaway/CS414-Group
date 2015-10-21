@@ -1,15 +1,15 @@
 package model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Order {
 	
 	private Customer customer;	
-	private LinkedList<MenuItem> items;
-	private LinkedList<Pizza> pizzas;
+	private ArrayList<MenuItem> items;
+	private ArrayList<Pizza> pizzas;
 	private OrderStatus status;
 
-	public LinkedList<MenuItem> getItems() {
+	public ArrayList<MenuItem> getItems() {
 		return items;
 	}
 
@@ -23,8 +23,9 @@ public class Order {
 	 */
 	public Order(Customer customer){
 		this.customer = customer;
-		items = new LinkedList<MenuItem>();
+		items = new ArrayList<MenuItem>();
 		status = OrderStatus.pending;
+		pizzas = new ArrayList<Pizza>();
 	}
 	
 	/*
@@ -33,7 +34,8 @@ public class Order {
 	 */
 	public Order(){
 		this.customer = new Customer();
-		items = new LinkedList<MenuItem>();
+		items = new ArrayList<MenuItem>();
+		pizzas = new ArrayList<Pizza>();
 	}
 
 	public void setStatus(OrderStatus status) {
@@ -55,7 +57,7 @@ public class Order {
 		this.status = status;
 	}
 	
-	public LinkedList<Pizza> getPizzas() {
+	public ArrayList<Pizza> getPizzas() {
 		return pizzas;
 	}
 	
@@ -87,7 +89,6 @@ public class Order {
 	@Override
 	public String toString(){
 		String temp = "";
-		temp += "Order Start-------------------";
 		temp += "Customer: " + this.getCustomer().getName() + '\n';
 		temp += "---------ITEMS--------" + '\n';
 		for (MenuItem mi : this.getItems()){

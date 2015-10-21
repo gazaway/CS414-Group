@@ -4,9 +4,9 @@ import model.*;
 
 public class OrderInterface {
 	
-	private System parentSystem;
+	private PizzaSystem parentSystem;
 	
-	public OrderInterface(System system) {
+	public OrderInterface(PizzaSystem system) {
 		this.parentSystem = system;
 	}
 	

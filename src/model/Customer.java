@@ -17,6 +17,9 @@ public class Customer {
 	 */
 	public Customer(){
 		this.contactInfo = new ContactInfo();
+		setName("Default Name");
+		setAddress("Default Address");
+		setPhone("Default Phone");
 	}
 	
 	public void setName(String name){

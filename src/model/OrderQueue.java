@@ -2,7 +2,7 @@ package model;
 
 import java.util.LinkedList;
 
-import controller.System;
+import controller.PizzaSystem;
 
 public class OrderQueue {
 	
@@ -10,9 +10,9 @@ public class OrderQueue {
 	private LinkedList<Order> ordersBeingMade; //orders being made by cooks at the moment
 	private LinkedList<Order> completedUnpaidOrders; // online orders for cash pick-up
 	private LinkedList<Order> pastOrders;
-	private System parentSystem;
+	private PizzaSystem parentSystem;
 	
-	public OrderQueue(System system){
+	public OrderQueue(PizzaSystem system){
 		currentOrders = new LinkedList<Order>();
 		ordersBeingMade = new LinkedList<Order>();
 		pastOrders =  new LinkedList<Order>();

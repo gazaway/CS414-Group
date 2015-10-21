@@ -2,16 +2,18 @@ package controller;
 
 import model.*;
 
-public class System {
+public class PizzaSystem {
 	
 	private PizzaStore pizzaStore;
 	private OrderQueue orderQueue;
 	private OrderInterface orderInterface;
+	private ManagerInterface managerInterface;
 	
-	public System(){
+	public PizzaSystem(){
 		pizzaStore = new PizzaStore(this);
 		orderQueue = new OrderQueue(this);
 		orderInterface = new OrderInterface(this);
+		managerInterface = new ManagerInterface(this);
 	}
 
 	public OrderQueue getOrderQueue() {
@@ -40,7 +42,20 @@ public class System {
 		return temp;
 	}
 	
+	public OrderInterface getOrderInterface() {
+		return orderInterface;
+	}
+	
+	public ManagerInterface getManagerInterface() {
+		return managerInterface;
+	}
+	
 	public static void main(String[]args){
-		System test = new System();
+		PizzaSystem test = new PizzaSystem();
+		System.out.println(test);
+		Order testOrder = test.getOrderInterface().createNewOrder();
+		test.getOrderInterface().addNewOrder(testOrder);
+		System.out.println("~!~!~!~!~!~!~!~!~!~!~!~!~! ORDER HAS BEEN CREATED NOW ~!~!~!~!~!~!~!~!~!~!~!~!~!" + '\n');
+		System.out.println(test);
 	}
 }
