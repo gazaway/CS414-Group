@@ -6,7 +6,7 @@ public class MenuItem {
 	
 	private double price;
 	private String name;
-	private String desc;
+	private String description;
 	
 	public MenuItem(double price_, String name_, String desc_){
 		this.setPrice(price_);
@@ -15,11 +15,11 @@ public class MenuItem {
 	}
 
 	public String getDesc() {
-		return desc;
+		return description;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDesc(String description) {
+		this.description = description;
 	}
 
 	public String getName() {
@@ -46,7 +46,7 @@ public class MenuItem {
 	@Override
 	public int hashCode(){
 		int hash = 7;
-		hash = 31 * hash + (desc == null ? 0 : this.getDesc().hashCode());
+		hash = 31 * hash + (description == null ? 0 : this.getDesc().hashCode());
 		hash = 31 * hash + (name == null ? 0 : this.getName().hashCode());
 		return hash;
 	}

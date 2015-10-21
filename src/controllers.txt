@@ -1,12 +1,12 @@
-Order interface  		JG
+Order interface  		(JG)
 	- edit, create, cancel, prepOrder (begin cooking)
 queue interface was for moving orders from current queue to beingMade queue, etc
 	- move...
 system administrator
-	- hire, promote, fire
+	- hire, promote, fire (can you change from an employee to a cook?)
 customer interface; for editing profile
-	- create, edit (login info), cancel
+	- create, edit (login info / payment info?), cancel
 manager interface
-	- createSpecial, compPrice
-	- menu interface			BB
+	- createSpecial, compPrice?
+	- menu interface			(BB)
 		create, edit, pricing?

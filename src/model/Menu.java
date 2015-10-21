@@ -2,12 +2,13 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Menu {
 
 	private Map<MenuItem, Double> items;
-	private ArrayList<PizzaTopping> pizzaToppings;
+	private List<PizzaTopping> pizzaToppings;
 	
 	public Menu(){
 		this.items = new HashMap<MenuItem, Double>();
@@ -18,7 +19,7 @@ public class Menu {
 		return this.items;
 	}
 	
-	public ArrayList<PizzaTopping> getPizzaToppings(){
+	public List<PizzaTopping> getPizzaToppings(){
 		return this.pizzaToppings;
 	}
 }
