@@ -44,4 +44,19 @@ public class Pizza {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	/*
+	 * Example: 
+	 * [LARGE PIZZA] : Ham Bacon Pineapple
+	 */
+	@Override
+	public String toString(){
+		String temp = "";
+		temp += "[" + this.getSize() + " PIZZA] :";
+		for (PizzaTopping pt : this.getToppings()){
+			temp += " " + pt.getName();
+		}
+		temp += '\n';
+		return temp;
+	}
 }
