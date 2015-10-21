@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class MenuItem {
 	
 	private double price;
@@ -38,4 +40,26 @@ public class MenuItem {
 		}
 	}
 
+	/*
+	 * Equals overrides are needed so we can use pre-made containers that use .contains
+	 */
+	@Override
+	public int hashCode(){
+		int hash = 7;
+		hash = 31 * hash + (desc == null ? 0 : this.getDesc().hashCode());
+		hash = 31 * hash + (name == null ? 0 : this.getName().hashCode());
+		return hash;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		if (this == o){
+			return true;
+		}
+		if ((o == null) || (o.getClass() != this.getClass())){
+			return false;
+		}
+		MenuItem mi = (MenuItem)o;
+		return (getName().equals(mi.getName()) && (getDesc().equals(mi.getDesc())) && (getPrice() == mi.getPrice()));
+	}
 }

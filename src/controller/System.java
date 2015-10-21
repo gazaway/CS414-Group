@@ -17,4 +17,8 @@ public class System {
 	public OrderQueue getOrderQueue() {
 		return this.orderQueue;
 	}
+	
+	public PizzaStore getStore(){
+		return pizzaStore;
+	}
 }

@@ -12,6 +12,7 @@ public class PizzaStore {
 	private ArrayList<Cook> cooks;
 	private ArrayList<Customer> customers;
 	private System parentSystem;
+	private Menu menu;
 	
 	public PizzaStore(System system){
 		cashiers = new ArrayList<Cashier>();
@@ -19,6 +20,10 @@ public class PizzaStore {
 		cooks = new ArrayList<Cook>();
 		customers = new ArrayList<Customer>();
 		parentSystem = system;
+		menu = new Menu();
 	}
 	
+	public Menu getMenu(){
+		return this.menu;
+	}
 }

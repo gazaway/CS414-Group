@@ -34,4 +34,38 @@ public class Customer {
 	public String getName() {
 		return this.contactInfo.getName();
 	}
+	
+	public String getPhone(){
+		return this.contactInfo.getPhone();
+	}
+	
+	public String getAddress(){
+		return this.getContactInfo().getAddress();
+	}
+	
+	public ContactInfo getContactInfo(){
+		return this.contactInfo;
+	}
+	
+	/*
+	 * Equals overrides are needed so we can use pre-made containers that use .contains
+	 */
+	@Override
+	public int hashCode(){
+		int hash = 7;
+		hash = 31 * hash + (contactInfo == null ? 0 : this.getContactInfo().hashCode());
+		return hash;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		if (this == o){
+			return true;
+		}
+		if ((o == null) || (o.getClass() != this.getClass())){
+			return false;
+		}
+		Customer c = (Customer)o;
+		return (this.getContactInfo() == c.getContactInfo());
+	}
 }
