@@ -93,14 +93,14 @@ public class Order {
 		temp += "Customer: " + this.getCustomer().getName() + '\n';
 		temp += "---------ITEMS--------" + '\n';
 		for (MenuItem mi : this.getItems()){
-			temp += "    " + mi.getName() + " " + mi.getPrice();
+			temp += "    " + mi.toString();
 		}
+		temp += '\n';
 		temp += "---------PIZZAS-------" + '\n';
 		for (Pizza pi : this.getPizzas()){
 			temp += "    " + pi.toString() + '\n';
 		}
-		temp += "Order Status: " + this.getOrderStatus() + '\n';
-		temp += "Order End---------------------";
+		temp += "Order Status: " + this.getOrderStatus() + '\n' + '\n';
 		return temp;
 	}
 }

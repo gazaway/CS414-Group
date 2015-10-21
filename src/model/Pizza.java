@@ -1,11 +1,13 @@
 package model;
 
+import java.text.NumberFormat;
+
 public class Pizza {
 
 	private final double PER_TOPPING_PRICE = 0.99;
 	private PizzaTopping[] toppings;
 	private PizzaSize size;
-	private double price;
+	private long price;
 	
 	public Pizza(PizzaTopping[] toppings, PizzaSize size){
 		this.toppings = toppings;
@@ -14,7 +16,7 @@ public class Pizza {
 	}
 
 	private double determinePrice() {
-		double sum = 0;
+		long sum = 0;
 		sum += size.getCost();
 		sum += ((toppings.length - 1) * PER_TOPPING_PRICE);
 		this.setPrice(sum);
@@ -41,7 +43,7 @@ public class Pizza {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(long price) {
 		this.price = price;
 	}
 	
@@ -52,11 +54,13 @@ public class Pizza {
 	@Override
 	public String toString(){
 		String temp = "";
+		NumberFormat form = NumberFormat.getCurrencyInstance();
+		String price = form.format(this.getPrice());
 		temp += "[" + this.getSize() + " PIZZA] :";
 		for (PizzaTopping pt : this.getToppings()){
 			temp += " " + pt.getName();
 		}
-		temp += '\n';
+		temp += " PRICE: " + price + '\n';
 		return temp;
 	}
 	

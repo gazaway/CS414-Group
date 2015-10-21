@@ -52,7 +52,7 @@ public class OrderInterface {
 	public Order grabNextOrder(){
 		Order temp = new Order();
 		if (!parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().isEmpty()){
-			temp = parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().poll();
+			temp = parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().get(0);
 			parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().add(temp);
 			//TODO GUI CALLS
 		}
@@ -68,5 +68,30 @@ public class OrderInterface {
 		if (parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(order)){
 			parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().add(order);
 		}
+	}
+	
+	/*
+	 * This searches the currentOrders queue, looking for the given order.
+	 * Returns the order if found, else null
+	 */
+	public Order findInCurrentOrders(Order order){
+		for (Order o : parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders()){
+			if (order == o){
+				return o;
+			}
+		}
+		return null;
+	}
+
+	public void addPizzaToOrder(Order order, Pizza pizza) {
+		Order temp = findInCurrentOrders(order);
+		temp.getPizzas().add(pizza);
+		//TODO GUI POPUP IF ORDER ALREADY BEING MADE
+	}
+
+	public void addItemToOrder(Order order, MenuItem menuItem) {
+		Order temp = findInCurrentOrders(order);
+		temp.getItems().add(menuItem);
+		
 	}
 }

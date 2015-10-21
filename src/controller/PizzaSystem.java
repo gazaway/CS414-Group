@@ -28,7 +28,7 @@ public class PizzaSystem {
 		for (Order o : getPizzaStore().getOrderQueue().getCurrentOrders()){
 			temp += o.toString() + '\n';
 		}
-		temp += "LIST OF ORDERS CURRENTLY BEIGN MADE:" + '\n';
+		temp += "LIST OF ORDERS CURRENTLY BEING MADE:" + '\n';
 		temp += "------------------------------------" + '\n';
 		for (Order o : getPizzaStore().getOrderQueue().getOrdersBeingMade()){
 			temp += o.toString() + '\n';
@@ -50,6 +50,9 @@ public class PizzaSystem {
 		Order testOrder = test.getOrderInterface().createNewOrder();
 		test.getOrderInterface().addNewOrder(testOrder);
 		System.out.println("~!~!~!~!~!~!~!~!~!~!~!~!~! ORDER HAS BEEN CREATED NOW ~!~!~!~!~!~!~!~!~!~!~!~!~!" + '\n');
+		PizzaTopping[] pt = { new PizzaTopping("Ham", "") , new PizzaTopping("Bacon", "") , new PizzaTopping("Pineapple", "") };
+		test.getOrderInterface().addPizzaToOrder(testOrder, new Pizza(pt, PizzaSize.SMALL));
+		test.getOrderInterface().addItemToOrder(testOrder, new MenuItem((long)5.00, "6 pc Buffalo Wings", ""));
 		System.out.println(test);
 		
 	}

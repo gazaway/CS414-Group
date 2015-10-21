@@ -20,7 +20,7 @@ public class ManagerInterface {
 	 * THE MENU USES A HASHMAP<MenuItem, Double> AS ITS CONTAINER
 	 */
 	public void addItemToMenu(double price, String name, String desc){
-		MenuItem temp = new MenuItem(price, name, desc);
+		MenuItem temp = new MenuItem((long)price, name, desc);
 		parentSystem.getPizzaStore().getMenu().getMenuItems().put(temp, price);
 	}
 }

@@ -1,14 +1,14 @@
 package model;
 
-import java.util.Objects;
+import java.text.NumberFormat;
 
 public class MenuItem {
 	
-	private double price;
+	private long price;
 	private String name;
 	private String description;
 	
-	public MenuItem(double price_, String name_, String desc_){
+	public MenuItem(long price_, String name_, String desc_){
 		this.setPrice(price_);
 		this.setName(name_);
 		this.setDesc(desc_);
@@ -34,7 +34,7 @@ public class MenuItem {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(long price) {
 		if (price >= 0){
 			this.price = price;
 		}
@@ -61,5 +61,14 @@ public class MenuItem {
 		}
 		MenuItem mi = (MenuItem)o;
 		return (getName().equals(mi.getName()) && (getDesc().equals(mi.getDesc())) && (getPrice() == mi.getPrice()));
+	}
+	
+	@Override
+	public String toString(){
+		String temp = "";
+		NumberFormat form = NumberFormat.getCurrencyInstance();
+		String price = form.format(this.getPrice());
+		temp += this.getName() + " PRICE: " + price + '\n';
+		return temp;
 	}
 }

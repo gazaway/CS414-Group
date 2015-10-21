@@ -1,33 +1,33 @@
 package model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import controller.PizzaSystem;
 
 public class OrderQueue {
 	
-	private LinkedList<Order> currentOrders; // order that's been placed
-	private LinkedList<Order> ordersBeingMade; //orders being made by cooks at the moment
-	private LinkedList<Order> completedUnpaidOrders; // online orders for cash pick-up
-	private LinkedList<Order> pastOrders;
+	private ArrayList<Order> currentOrders; // order that's been placed
+	private ArrayList<Order> ordersBeingMade; //orders being made by cooks at the moment
+	private ArrayList<Order> completedUnpaidOrders; // online orders for cash pick-up
+	private ArrayList<Order> pastOrders;
 	private PizzaSystem parentSystem;
 	
 	public OrderQueue(PizzaSystem system){
-		currentOrders = new LinkedList<Order>();
-		ordersBeingMade = new LinkedList<Order>();
-		pastOrders =  new LinkedList<Order>();
+		currentOrders = new ArrayList<Order>();
+		ordersBeingMade = new ArrayList<Order>();
+		pastOrders =  new ArrayList<Order>();
 		parentSystem = system;
 	}
 	
-	public LinkedList<Order> getCurrentOrders(){
+	public ArrayList<Order> getCurrentOrders(){
 		return currentOrders;
 	}
 
-	public LinkedList<Order> getPastOrders() {
+	public ArrayList<Order> getPastOrders() {
 		return pastOrders;
 	}
 
-	public LinkedList<Order> getOrdersBeingMade() {
+	public ArrayList<Order> getOrdersBeingMade() {
 		return ordersBeingMade;
 	}
 }
