@@ -18,6 +18,7 @@ public class PizzaSystem {
 		return pizzaStore;
 	}
 	
+	@Override
 	public String toString(){
 		String temp = "";
 		temp += "The pizza store has " + getPizzaStore().getOrderQueue().getCurrentOrders().size() + " current orders waiting to be made." + '\n';
