@@ -11,6 +11,7 @@ public class ManagerInterface {
 		return new Menu();
 	}
 	
+	
 	/*
 	 * THE MENU USES A HASHMAP<MenuItem, Double> AS ITS CONTAINER
 	 */
