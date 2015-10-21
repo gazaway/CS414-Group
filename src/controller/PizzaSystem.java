@@ -25,13 +25,23 @@ public class PizzaSystem {
 		temp += "This store has fulfilled " + getPizzaStore().getOrderQueue().getPastOrders().size() + " orders total in the past." + '\n';
 		temp += "LIST OF ORDERS WAITING TO BE MADE:" + '\n';
 		temp += "----------------------------------" + '\n';
-		for (Order o : getPizzaStore().getOrderQueue().getCurrentOrders()){
-			temp += o.toString() + '\n';
+		if (getPizzaStore().getOrderQueue().getCurrentOrders().isEmpty()){
+			temp += "[NO ORDERS]" + '\n' + '\n';
+		}
+		else {
+			for (Order o : getPizzaStore().getOrderQueue().getCurrentOrders()){
+				temp += o.toString() + '\n';
+			}
 		}
 		temp += "LIST OF ORDERS CURRENTLY BEING MADE:" + '\n';
 		temp += "------------------------------------" + '\n';
-		for (Order o : getPizzaStore().getOrderQueue().getOrdersBeingMade()){
-			temp += o.toString() + '\n';
+		if (getPizzaStore().getOrderQueue().getOrdersBeingMade().isEmpty()){
+			temp += "[NO ORDERS]" + '\n' + '\n';
+		}
+		else {
+			for (Order o : getPizzaStore().getOrderQueue().getOrdersBeingMade()){
+				temp += o.toString() + '\n';
+			}
 		}
 		return temp;
 	}
