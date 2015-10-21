@@ -19,8 +19,14 @@ public class ManagerInterface {
 	/*
 	 * THE MENU USES A HASHMAP<MenuItem, Double> AS ITS CONTAINER
 	 */
-	public void addItemToMenu(double price, String name, String desc){
-		MenuItem temp = new MenuItem((long)price, name, desc);
+	public void addItemToMenu(Long price, String name, String desc){
+		MenuItem temp = new MenuItem(price, name, desc);
 		parentSystem.getPizzaStore().getMenu().getMenuItems().put(temp, price);
+	}
+	
+	public void removeitemFromMenu(MenuItem item){
+		if(parentSystem.getPizzaStore().getMenu().getMenuItems().containsKey(item)){
+			parentSystem.getPizzaStore().getMenu().getMenuItems().remove(item);
+		}
 	}
 }
