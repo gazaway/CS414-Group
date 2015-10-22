@@ -2,15 +2,15 @@ package model;
 
 public class PizzaSize {
 	
-	private final long cost;
+	private double cost;
 	private final String desc;
 	
-	public PizzaSize(long cost, String desc){
+	public PizzaSize(double cost, String desc){
 		this.cost = cost;
 		this.desc = desc;
 	}
 	
-	public long getCost(){
+	public double getPrice(){
 		return this.cost;
 	}
 	

@@ -4,7 +4,7 @@ import java.text.NumberFormat;
 
 public class MenuItem {
 	
-	private long price;
+	private double price;
 	private String name;
 	private String description;
 	
@@ -34,7 +34,7 @@ public class MenuItem {
 		return price;
 	}
 
-	public void setPrice(long price) {
+	public void setPrice(double price) {
 		if (price >= 0){
 			this.price = price;
 		}

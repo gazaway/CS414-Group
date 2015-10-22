@@ -7,7 +7,7 @@ public class Pizza {
 	private final double PER_TOPPING_PRICE = 0.99;
 	private PizzaTopping[] toppings;
 	private PizzaSize size;
-	private long price;
+	private double price;
 	
 	public Pizza(PizzaTopping[] toppings, PizzaSize size){
 		this.toppings = toppings;
@@ -17,7 +17,7 @@ public class Pizza {
 
 	private double determinePrice() {
 		long sum = 0;
-		sum += size.getCost();
+		sum += size.getPrice();
 		sum += ((toppings.length - 1) * PER_TOPPING_PRICE);
 		this.setPrice(sum);
 		return sum;
@@ -43,7 +43,7 @@ public class Pizza {
 		return price;
 	}
 
-	public void setPrice(long price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	

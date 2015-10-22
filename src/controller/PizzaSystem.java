@@ -62,7 +62,7 @@ public class PizzaSystem {
 	public static void main(String[]args){
 		//PRINT SYSTEM IN DEFAULT (makes sure all constructors work, etc)
 		PizzaSystem test = new PizzaSystem();
-		System.out.println(test);
+		/*System.out.println(test);
 		//CREATE A NEW ORDER, ADD IT INTO QUEUE, PRINT SYSTEM
 		Order testOrder = test.getOrderInterface().createNewOrder();
 		test.getOrderInterface().addNewOrder(testOrder);
@@ -76,7 +76,13 @@ public class PizzaSystem {
 		System.out.println("~!~!~!~!~!~!~!~!~!~!~!~!~! ORDER HAS BEEN MOVED NOW ~!~!~!~!~!~!~!~!~!~!~!~!~!" + '\n');
 		//THIS SHOULD TAKE THE ORDER OUT OF THE PENDING QUEUE AND PLACE IT IN THE BEING WORKED ON QUEUE
 		test.getOrderInterface().grabNextOrder();
-		System.out.println(test);
+		System.out.println(test);*/
+		System.out.println(test.getPizzaStore().getMenu());
+		test.getPizzaStore().getMenu().loadMenuFromFile();
+		System.out.println();
+		test.getManagerInterface().addItemToMenu((long)8, "Chicken Poppers", "Not good for you");
+		System.out.println(test.getPizzaStore().getMenu());
+		test.getPizzaStore().getMenu().saveMenuToFile();
 		
 	}
 }
