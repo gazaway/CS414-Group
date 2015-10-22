@@ -65,7 +65,7 @@ public class Pizza {
 		for (PizzaTopping pt : this.getToppings()){
 			temp += " " + pt.getName();
 		}
-		temp += " PRICE: " + price + '\n';
+		temp += '\n';
 		return temp;
 	}
 	

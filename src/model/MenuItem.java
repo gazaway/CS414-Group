@@ -68,7 +68,7 @@ public class MenuItem {
 		String temp = "";
 		NumberFormat form = NumberFormat.getCurrencyInstance();
 		String price = form.format(this.getPrice());
-		temp += this.getName() + " PRICE: " + price + '\n';
+		temp += this.getName() + '\n';
 		return temp;
 	}
 }
