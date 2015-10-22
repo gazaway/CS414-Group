@@ -30,19 +30,19 @@ public class Menu {
 			scan = new Scanner(file);
 			String text = "";
 			while (scan.hasNext()){
-				while (!(text = scan.nextLine().trim()).contains("!END PIZZA SIZES!,")){
+				while (!(text = scan.nextLine().trim()).contains("END")){
 					String[] data = text.split(",");
-					PizzaSize tempSize = new PizzaSize(Long.valueOf(data[1].trim()), data[0].trim());
+					PizzaSize tempSize = new PizzaSize(Double.valueOf(data[1].trim()), data[0].trim());
 					pizzaSizes.add(tempSize);
 				}
-				while (!(text = scan.nextLine().trim()).contains("!END PIZZA TOPPINGS!,")){
+				while (!(text = scan.nextLine().trim()).contains("END")){
 					String[] data = text.split(",");
 					PizzaTopping tempTop = new PizzaTopping(data[0].trim(), data[1].trim());
 					pizzaToppings.add(tempTop);
 				}
-				while (!(text = scan.nextLine().trim()).contains("!END MENU ITEMS!,")){
+				while (!(text = scan.nextLine().trim()).contains("END")){
 					String[] data = text.split(",");
-					MenuItem tempItem = new MenuItem(Long.valueOf(data[2].trim()), data[0].trim(), data[1].trim());
+					MenuItem tempItem = new MenuItem(Double.valueOf(data[2].trim()), data[0].trim(), data[1].trim());
 					items.add(tempItem);
 				}	
 			}

@@ -16,6 +16,7 @@ public class PizzaSystem {
 		pizzaStore = new PizzaStore(this);
 		orderInterface = new OrderInterface(this);
 		managerInterface = new ManagerInterface(this);
+		this.getPizzaStore().getMenu().loadMenuFromFile();
 		cv = new CookView(this);
 		cv.start();
 	}
