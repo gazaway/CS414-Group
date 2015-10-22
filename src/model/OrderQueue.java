@@ -1,15 +1,16 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import controller.PizzaSystem;
 
 public class OrderQueue {
 	
-	private ArrayList<Order> currentOrdersNotPrepped; // order that's been placed
-	private ArrayList<Order> ordersBeingMade; //orders being made by cooks at the moment
-	private ArrayList<Order> completedUnpaidOrders; // online orders for cash pick-up
-	private ArrayList<Order> pastOrders;
+	private List<Order> currentOrdersNotPrepped; // order that's been placed
+	private List<Order> ordersBeingMade; //orders being made by cooks at the moment
+	private List<Order> unpaidOrders; // online orders for cash pick-up
+	private List<Order> pastOrders;
 	private PizzaSystem parentSystem;
 	
 	public OrderQueue(PizzaSystem system){
@@ -19,15 +20,19 @@ public class OrderQueue {
 		parentSystem = system;
 	}
 	
-	public ArrayList<Order> getCurrentOrders(){
+	public List<Order> getCurrentOrders(){
 		return currentOrdersNotPrepped;
 	}
 
-	public ArrayList<Order> getPastOrders() {
+	public List<Order> getPastOrders() {
 		return pastOrders;
 	}
 
-	public ArrayList<Order> getOrdersBeingMade() {
+	public List<Order> getOrdersBeingMade() {
 		return ordersBeingMade;
+	}
+	
+	public List<Order> getUnpaidOrders(){
+		return unpaidOrders;
 	}
 }
