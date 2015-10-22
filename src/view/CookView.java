@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import model.MenuItem;
 import model.Order;
@@ -86,7 +87,7 @@ public class CookView{
 		beingPreppedLabel = new JLabel();
 		waitingForPrepLabel = new JLabel();
 		queueTextPanel = new JPanel(new GridLayout(1, 3));
-		bottomButtonPanel = new JPanel(new GridLayout(1,2, 20, 20));
+		bottomButtonPanel = new JPanel(new GridLayout(1,2, 5, 5));
 		Font f = new Font("Arial", Font.BOLD, 12);
 		drawQueueTextPanel();
 		alreadyMadeLabel.setFont(f);
@@ -132,7 +133,7 @@ public class CookView{
 	}
 	
 	private void clearOrderPanel() {
-		
+		orderPanel.removeAll();
 		itemsPanel.removeAll();
 		pizzasPanel.removeAll();
 		drawOrderPanel();
