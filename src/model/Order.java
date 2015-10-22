@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
 	
@@ -8,6 +9,7 @@ public class Order {
 	private ArrayList<MenuItem> items;
 	private ArrayList<Pizza> pizzas;
 	private OrderStatus status;
+	private double totalCost;
 
 	public ArrayList<MenuItem> getItems() {
 		return items;
@@ -22,6 +24,7 @@ public class Order {
 	 * for logged in customers. Creates the association
 	 */
 	public Order(Customer customer){
+		totalCost = 0;
 		this.customer = customer;
 		items = new ArrayList<MenuItem>();
 		status = OrderStatus.pending;
@@ -33,10 +36,27 @@ public class Order {
 	 * orders for non-logged in customers.
 	 */
 	public Order(){
+		totalCost = 0;
 		this.customer = new Customer();
 		items = new ArrayList<MenuItem>();
 		pizzas = new ArrayList<Pizza>();
 		status = OrderStatus.pending;
+	}
+
+	public Order(ArrayList<MenuItem> items, ArrayList<Pizza> pizzas) {
+		this.customer = new Customer();
+		this.items = items;
+		this.pizzas = pizzas;
+		status = OrderStatus.pending;
+		tallyTotalPrice();
+	}
+
+	public Order(Customer customer, ArrayList<MenuItem> items, ArrayList<Pizza> pizzas) {
+		this.customer = customer;
+		this.items = items;
+		this.pizzas = pizzas;
+		status = OrderStatus.pending;
+		tallyTotalPrice();
 	}
 
 	public void setStatus(OrderStatus status) {
@@ -102,5 +122,16 @@ public class Order {
 		}
 		temp += "Order Status: " + this.getOrderStatus() + '\n' + '\n';
 		return temp;
+	}
+
+	public void tallyTotalPrice() {
+		double sum = 0;
+		for (MenuItem mi : this.getItems()){
+			sum += mi.getPrice();
+		}
+		for (Pizza pizza : this.getPizzas()){
+			sum += pizza.getPrice();
+		}
+		totalCost = sum;
 	}
 }

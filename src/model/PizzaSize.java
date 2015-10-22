@@ -14,6 +14,10 @@ public class PizzaSize {
 		return this.cost;
 	}
 	
+	public void setPrice(double price){
+		this.cost = price;
+	}
+	
 	public String getDesc(){
 		return this.desc;
 	}

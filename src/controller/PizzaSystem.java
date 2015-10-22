@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import model.*;
 
 public class PizzaSystem {
@@ -62,27 +64,29 @@ public class PizzaSystem {
 	public static void main(String[]args){
 		//PRINT SYSTEM IN DEFAULT (makes sure all constructors work, etc)
 		PizzaSystem test = new PizzaSystem();
-		/*System.out.println(test);
+		System.out.println(test);
 		//CREATE A NEW ORDER, ADD IT INTO QUEUE, PRINT SYSTEM
-		Order testOrder = test.getOrderInterface().createNewOrder();
-		test.getOrderInterface().addNewOrder(testOrder);
+		PizzaTopping[] pt = { new PizzaTopping("Ham", "") , new PizzaTopping("Bacon", "") , new PizzaTopping("Pineapple", "") };
+		ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+		pizzas.add(new Pizza(pt, new PizzaSize((long)7, "SMALL")));
+		Order testOrder = test.getOrderInterface().createNewOrder(new ArrayList<MenuItem>(), pizzas);
 		System.out.println("~!~!~!~!~!~!~!~!~!~!~!~!~! ORDER HAS BEEN CREATED NOW ~!~!~!~!~!~!~!~!~!~!~!~!~!" + '\n');
 		//This would normally be made by grabbing the "checked options" of a combo box. 
-		PizzaTopping[] pt = { new PizzaTopping("Ham", "") , new PizzaTopping("Bacon", "") , new PizzaTopping("Pineapple", "") };
+		
 		//The size would also be part of a drop down/combo box
-		test.getOrderInterface().addPizzaToOrder(testOrder, new Pizza(pt, new PizzaSize((long)7, "small")));
 		test.getOrderInterface().addItemToOrder(testOrder, new MenuItem((long)5.00, "6 pc Buffalo Wings", ""));
 		System.out.println(test);
 		System.out.println("~!~!~!~!~!~!~!~!~!~!~!~!~! ORDER HAS BEEN MOVED NOW ~!~!~!~!~!~!~!~!~!~!~!~!~!" + '\n');
 		//THIS SHOULD TAKE THE ORDER OUT OF THE PENDING QUEUE AND PLACE IT IN THE BEING WORKED ON QUEUE
 		test.getOrderInterface().grabNextOrder();
-		System.out.println(test);*/
-		System.out.println(test.getPizzaStore().getMenu());
+		System.out.println(test);
+		/*System.out.println(test.getPizzaStore().getMenu());
 		test.getPizzaStore().getMenu().loadMenuFromFile();
 		System.out.println();
 		test.getManagerInterface().addItemToMenu((long)8, "Chicken Poppers", "Not good for you");
 		System.out.println(test.getPizzaStore().getMenu());
-		test.getPizzaStore().getMenu().saveMenuToFile();
-		
+		test.getPizzaStore().getMenu().saveMenuToFile();*/
+		test.getOrderInterface().completeOrder(testOrder);
+		System.out.println(test);
 	}
 }

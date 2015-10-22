@@ -1,34 +1,44 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Special {
 	
-	private List<MenuItem> items;
-	private List<Pizza> pizzas;
+	private MenuItem item;
+	private PizzaSize size;
+	private String specialName;
 	
-	public Special(){
-		this.items = new ArrayList<MenuItem>();
-		this.pizzas = new ArrayList<Pizza>();
+	public Special(String name){
+		this.item = null;
+		this.size = null;
+		specialName = name;
 	}
 	
 	public void addItemToSpecial(MenuItem item, double price){
 		item.setPrice(price);
-		this.items.add(item);
+		this.item = item;
 	}
 	
-	public void addPizzaToSpecial(Pizza pizza, double price){
-		pizza.setPrice(price);
-		this.pizzas.add(pizza);
+	public void addPizzaToSpecial(PizzaSize size, double price){
+		size.setPrice(price);
+		this.size = size;
 	}
 	
-	public List<Pizza> getPizzas(){
-		return pizzas;
+	public String getSpecialName(){
+		return this.specialName;
+	}
+	
+	public PizzaSize getSize(){
+		return size;
 	}
 
-	public List<MenuItem> getItems() {
-		return items;
+	public MenuItem getItem() {
+		return item;
+	}
+	
+	public void removeItemFromSpecial(){
+		this.item = null;
 	}
 
+	public void removePizzaSizeFromSpecial(){
+		this.size = null;
+	}
 }

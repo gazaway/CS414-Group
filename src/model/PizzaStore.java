@@ -1,17 +1,16 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import controller.*;
 
 public class PizzaStore {
 
-	private List<Cashier> cashiers;
-	private List<Manager> managers;
-	private List<Cook> cooks;
-	private List<Customer> customers;
-	private List<Special> specials;
+	private ArrayList<Cashier> cashiers;
+	private ArrayList<Manager> managers;
+	private ArrayList<Cook> cooks;
+	private ArrayList<Customer> customers;
+	private ArrayList<Special> specials;
 	private PizzaSystem parentSystem;
 	private Menu menu;
 	private OrderQueue orderQueue;
@@ -35,7 +34,11 @@ public class PizzaStore {
 		return this.orderQueue;
 	}
 
-	public List<Special> getSpecials() {
+	public ArrayList<Special> getSpecials() {
 		return specials;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 }

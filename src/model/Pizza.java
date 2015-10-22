@@ -1,10 +1,11 @@
 package model;
 
 import java.text.NumberFormat;
+import model.Menu;
 
 public class Pizza {
 
-	private final double PER_TOPPING_PRICE = 0.99;
+	private final double PIZZA_TOPPING_PRICE = 1.00;
 	private PizzaTopping[] toppings;
 	private PizzaSize size;
 	private double price;
@@ -18,7 +19,7 @@ public class Pizza {
 	private double determinePrice() {
 		long sum = 0;
 		sum += size.getPrice();
-		sum += ((toppings.length - 1) * PER_TOPPING_PRICE);
+		sum += ((toppings.length - 1) * PIZZA_TOPPING_PRICE);
 		this.setPrice(sum);
 		return sum;
 	}
@@ -45,6 +46,10 @@ public class Pizza {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	
+	public double getPizzaToppingPrice(){
+		return PIZZA_TOPPING_PRICE;
 	}
 	
 	/*

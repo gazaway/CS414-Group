@@ -60,7 +60,7 @@ public class MenuItem {
 			return false;
 		}
 		MenuItem mi = (MenuItem)o;
-		return (getName().equals(mi.getName()) && (getDesc().equals(mi.getDesc())) && (getPrice() == mi.getPrice()));
+		return (getName().equals(mi.getName()) && (getDesc().equals(mi.getDesc())));
 	}
 	
 	@Override
