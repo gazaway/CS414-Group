@@ -171,6 +171,7 @@ public class CookView{
 			else {
 				JOptionPane.showMessageDialog(frame, "You have to prep the order before completing it.");
 			}
+			
 		}
 	}
 }
