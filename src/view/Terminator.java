@@ -15,5 +15,6 @@ public class Terminator extends WindowAdapter {
 	}
 	public void windowClosing(WindowEvent e){
 		parentSystem.getPizzaStore().getMenu().saveMenuToFile();
+		System.exit(0);
 	}
 }
