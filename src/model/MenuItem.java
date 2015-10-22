@@ -8,7 +8,7 @@ public class MenuItem {
 	private String name;
 	private String description;
 	
-	public MenuItem(long price_, String name_, String desc_){
+	public MenuItem(double price_, String name_, String desc_){
 		this.setPrice(price_);
 		this.setName(name_);
 		this.setDesc(desc_);

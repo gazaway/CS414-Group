@@ -17,6 +17,10 @@ public class OrderInterface {
 	public Order createNewOrder(Customer customer){
 		return new Order(customer);
 	}
+	
+	public void applySpecialsToOrder(Order order){
+		parentSystem.getPizzaStore().getSpecials();
+	}
 
 	public void addNewOrder(Order order){
 		parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().add(order);
