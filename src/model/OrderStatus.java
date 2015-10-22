@@ -1,7 +1,7 @@
 package model;
 
 public enum OrderStatus {
-	canceled ("Canceled"), complete ("Complete"), pending ("Pending"), beingMade ("Being Made");
+	canceled ("Canceled"), complete ("Complete"), pending ("Pending"), beingMade ("Being Made"), noneSelected ("None Selected");
 	
 	private final String desc;
 	

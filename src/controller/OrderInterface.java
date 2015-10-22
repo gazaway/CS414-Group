@@ -64,7 +64,6 @@ public class OrderInterface {
 		}
 		else {
 			//TODO GUI POPUP
-			System.out.println("ASDFIKJDSFGIOJADFGHIOJAGIJKFDGIJO");
 		}
 	}
 	
@@ -88,13 +87,9 @@ public class OrderInterface {
 	 * Places order into the ordersBeingMade queue.
 	 */
 	public Order grabNextOrder(){
-		Order temp = new Order();
-		if (!parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().isEmpty()){
-			temp = parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(0);
-			temp.setOrderStatus(OrderStatus.beingMade);
-			parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().add(temp);
-			//TODO GUI CALLS
-		}
+		Order temp = parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(0);
+		temp.setOrderStatus(OrderStatus.beingMade);
+		parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().add(temp);
 		return temp;
 	}
 	
