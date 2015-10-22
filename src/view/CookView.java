@@ -110,9 +110,11 @@ public class CookView{
 	}
 	
 	private void drawOrderPanel(){
+		itemsPanel.setLayout(new GridLayout(currentOrder.getItems().size(), 1));
 		for (MenuItem mi : currentOrder.getItems()){
 			itemsPanel.add(new JLabel(mi.toString()));
 		}
+		pizzasPanel.setLayout(new GridLayout(currentOrder.getPizzas().size(), 1));
 		for (Pizza pi : currentOrder.getPizzas()){
 			pizzasPanel.add(new JLabel(pi.toString()));
 		}
@@ -149,9 +151,14 @@ public class CookView{
 	private class NextPrepHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e){
 			if (!parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().isEmpty()){
-				currentOrder = parentSystem.getOrderInterface().grabNextOrder();
-				drawQueueTextPanel();
-				drawOrderPanel();
+				if ((currentOrder.getOrderStatus() == OrderStatus.noneSelected)){
+					currentOrder = parentSystem.getOrderInterface().grabNextOrder();
+					drawQueueTextPanel();
+					drawOrderPanel();
+				}
+				else {
+					JOptionPane.showMessageDialog(frame, "Finish current order before prepping another.");
+				}
 			}
 			else {
 				JOptionPane.showMessageDialog(frame, "There are no pending orders to prep.");
