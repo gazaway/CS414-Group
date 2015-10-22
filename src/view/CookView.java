@@ -13,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import model.MenuItem;
 import model.Order;
@@ -115,9 +114,15 @@ public class CookView{
 		for (MenuItem mi : currentOrder.getItems()){
 			itemsPanel.add(new JLabel(mi.toString()));
 		}
+		if (currentOrder.getItems().isEmpty() && !(currentOrder.getOrderStatus() == OrderStatus.noneSelected)){
+			itemsPanel.add(new JLabel("[None]"));
+		}
 		pizzasPanel.setLayout(new GridLayout(currentOrder.getPizzas().size(), 1));
 		for (Pizza pi : currentOrder.getPizzas()){
 			pizzasPanel.add(new JLabel(pi.toString()));
+		}
+		if (currentOrder.getPizzas().isEmpty() && !(currentOrder.getOrderStatus() == OrderStatus.noneSelected)){
+			pizzasPanel.add(new JLabel("[None]"));
 		}
 		itemsPanel.setBorder(BorderFactory.createCompoundBorder(
 	            BorderFactory.createTitledBorder("Regular Menu Items"), 
@@ -137,6 +142,7 @@ public class CookView{
 		itemsPanel.removeAll();
 		pizzasPanel.removeAll();
 		drawOrderPanel();
+		frame.repaint();
 	}
 
 	private void drawQueueTextPanel() {
