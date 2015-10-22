@@ -2,6 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import model.Customer;
 import model.MenuItem;
 import model.Order;
@@ -75,7 +77,9 @@ public class OrderInterface {
 		if (parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(order)){
 			order.setStatus(OrderStatus.canceled);
 			parentSystem.getPizzaStore().getOrderQueue().getPastOrders().add(order);
-			//TODO GUI CALLS FOR REFRESH, ETC.
+			if (parentSystem.getCookView().getCurrentOrder() == order){
+				JOptionPane.showMessageDialog(parentSystem.getCookView().getFrame(), "This order has been canceled.");
+			}
 		}
 		else {
 			//TODO GUI POPUP?

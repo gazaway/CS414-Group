@@ -53,6 +53,10 @@ public class CookView{
 			}
 		});
 	}
+	
+	public JFrame getFrame(){
+		return this.frame;
+	}
 
 	/**
 	 * Create the application.
@@ -186,5 +190,9 @@ public class CookView{
 				JOptionPane.showMessageDialog(frame, "You have to prep the order before completing it.");
 			}
 		}
+	}
+
+	public Order getCurrentOrder() {
+		return this.currentOrder;
 	}
 }
