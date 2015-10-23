@@ -26,4 +26,23 @@ public class PizzaSize {
 	public String toString(){
 		return this.getDesc();
 	}
+	
+	@Override
+	public int hashCode(){
+		int hash = 7;
+		hash = 31 * hash + (desc == null ? 0 : this.getDesc().hashCode());
+		return hash;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		if (this == o){
+			return true;
+		}
+		if ((o == null) || (o.getClass() != this.getClass())){
+			return false;
+		}
+		PizzaSize c = (PizzaSize)o;
+		return (this.getDesc() == c.getDesc());
+	}
 }

@@ -29,6 +29,7 @@ public class ManagerInterface {
 	public Special createSpecialWithPizza(String name, PizzaSize size, double price){
 		Special temp = new Special(name);
 		temp.addPizzaToSpecial(size, price);
+		parentSystem.getPizzaStore().getSpecials().add(temp);
 		return temp;
 	}
 	

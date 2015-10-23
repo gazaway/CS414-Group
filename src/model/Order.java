@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Order {
 	
@@ -133,5 +132,17 @@ public class Order {
 			sum += pizza.getPrice();
 		}
 		totalCost = sum;
+	}
+
+	public void setOrderCustomer(Customer customer2) {
+		this.customer = customer2;
+	}
+
+	public double getPrice() {
+		return this.totalCost;
+	}
+
+	public void setOrderPrice(double totalSum) {
+		this.totalCost = totalSum;
 	}
 }

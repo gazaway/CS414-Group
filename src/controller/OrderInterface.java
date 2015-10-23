@@ -33,20 +33,28 @@ public class OrderInterface {
 	
 	public void applySpecialsToOrder(Order order){
 		order.tallyTotalPrice();
+		double totalSum = 0;
 		for (Special spec : parentSystem.getPizzaStore().getSpecials()){
 			//apply item pricing
 			for (MenuItem mi : order.getItems()){
 				if (spec.getItem() == mi){
-					mi.setPrice(spec.getItem().getPrice());
+					System.out.println("Applying special price to " + mi.toString());
+					System.out.println("Changing price from " + mi.getPrice() + " to " + spec.getSpecialPrice());
+					mi.setPrice(spec.getSpecialPrice());	
 				}
+				totalSum += mi.getPrice();
 			}
 			//apply pizza pricing
 			for (Pizza pizza : order.getPizzas()){
 				if (pizza.getSize() == spec.getSize()){
-					pizza.setPrice((spec.getSize().getPrice() + ((pizza.getToppings().length - 1) * pizza.getPizzaToppingPrice()))) ;
+					System.out.println("Applying special price to " + pizza.toString());
+					System.out.println("Changing price from " + pizza.getPrice() + " to " + spec.getSpecialPrice());
+					pizza.setPrice((spec.getSpecialPrice() + ((pizza.getToppings().length - 1) * pizza.getPizzaToppingPrice()))) ;
 				}
+				totalSum += pizza.getPrice();
 			}
 		}
+		order.setOrderPrice(totalSum);
 	}
 
 	private void addNewOrderToNotPreppedQueue(Order order){
