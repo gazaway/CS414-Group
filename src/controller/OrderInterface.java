@@ -34,23 +34,22 @@ public class OrderInterface {
 	public void applySpecialsToOrder(Order order){
 		order.tallyTotalPrice();
 		double totalSum = 0;
-		for (Special spec : parentSystem.getPizzaStore().getSpecials()){
+		for (MenuItem mi : order.getItems()){
 			//apply item pricing
-			for (MenuItem mi : order.getItems()){
+			for (Special spec : parentSystem.getPizzaStore().getSpecials()){
 				if (spec.getItem() == mi){
-					System.out.println("Applying special price to " + mi.toString());
-					System.out.println("Changing price from " + mi.getPrice() + " to " + spec.getSpecialPrice());
 					mi.setPrice(spec.getSpecialPrice());	
 				}
+				System.out.println(mi + " " + mi.getPrice());
 				totalSum += mi.getPrice();
 			}
-			//apply pizza pricing
-			for (Pizza pizza : order.getPizzas()){
+		}
+		for (Pizza pizza : order.getPizzas()){
+			for (Special spec : parentSystem.getPizzaStore().getSpecials()){
 				if (pizza.getSize() == spec.getSize()){
-					System.out.println("Applying special price to " + pizza.toString());
-					System.out.println("Changing price from " + pizza.getPrice() + " to " + spec.getSpecialPrice());
 					pizza.setPrice((spec.getSpecialPrice() + ((pizza.getToppings().length - 1) * pizza.getPizzaToppingPrice()))) ;
 				}
+				System.out.println(pizza+ " " + pizza.getPrice());
 				totalSum += pizza.getPrice();
 			}
 		}
