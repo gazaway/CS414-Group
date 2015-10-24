@@ -75,10 +75,4 @@ public class ManagerInterfaceTest {
 	public void testRemovePizzaToppingFromMenu() {
 		fail("Not yet implemented"); // TODO
 	}
-
-	@Test
-	public void testEquals() {
-		fail("Not yet implemented"); // TODO
-	}
-
 }
