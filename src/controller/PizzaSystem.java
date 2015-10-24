@@ -82,4 +82,13 @@ public class PizzaSystem {
 		Special testSpecial = test.getManagerInterface().createSpecialWithPizza("small pizza", small, 1.00);
 		test.getOrderInterface().applySpecialsToOrder(testOrder2);
 	}
+
+	/*
+	 * Method used for testing purposes only.
+	 */
+	public void clearSystem() {
+		pizzaStore = new PizzaStore(this);
+		orderInterface = new OrderInterface(this);
+		managerInterface = new ManagerInterface(this);
+	}
 }

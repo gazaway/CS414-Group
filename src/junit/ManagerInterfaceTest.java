@@ -11,6 +11,7 @@ import model.PizzaSize;
 import model.PizzaTopping;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import controller.PizzaSystem;
@@ -21,23 +22,34 @@ import controller.PizzaSystem;
  */
 public class ManagerInterfaceTest {
 	
-	private PizzaSystem test;
-	private ArrayList<Pizza> pizzas2;
-	private ArrayList<Pizza> pizzas;
-	private PizzaSize small;
-	private PizzaSize large;
-	private PizzaTopping[] pts = {new PizzaTopping("Ham", "") , new PizzaTopping("Bacon", ""), new PizzaTopping("Pineapple", "")};
+	private static PizzaSystem test;
+	private static ArrayList<Pizza> pizzas2;
+	private static ArrayList<Pizza> pizzas;
+	private static PizzaSize small;
+	private static PizzaSize large;
+	private static PizzaTopping ham;
+	private static PizzaTopping bacon;
+	private static PizzaTopping pineApple;
+	private static PizzaTopping[] pts = { ham, bacon, pineApple};
 
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@Before
-	public void setUp() throws Exception {
+	@BeforeClass
+	public static void setUpClass() throws Exception {
 		test = new PizzaSystem();
-		pizzas = new ArrayList<Pizza>();
 		pizzas2 = new ArrayList<Pizza>();
+		pizzas = new ArrayList<Pizza>();
 		small = new PizzaSize((double)7, "SMALL");
 		large = new PizzaSize((double)9, "LARGE");
+		ham = new PizzaTopping("Ham", "");
+		bacon = new PizzaTopping("Bacon", "");
+		pineApple = new PizzaTopping("Pineapple", "");
+	}
+	
+	@Before
+	public void beforeTest(){
+		test.clearSystem();
 	}
 
 	/**
@@ -57,9 +69,11 @@ public class ManagerInterfaceTest {
 	 * Test method for {@link controller.ManagerInterface#createNewMenu()}.
 	 * Create menu with a menu already created. Should simply replace, restricted via GUI.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCreateNewMenuBad() {
-		fail("Not yet implemented");
+		test.getManagerInterface().createNewMenu();
+		//create menu second time. Should throw error.
+		test.getManagerInterface().createNewMenu();
 	}
 
 	/**
@@ -68,16 +82,22 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testClearWholeMenuGood() {
-		fail("Not yet implemented");
+		//create a menu. Add item to it. Assert item stays.
+		test.getManagerInterface().createNewMenu();
+		test.getManagerInterface().addItemToMenu(5.00, "Chicken Wings", "Don't order them, they make people fat. People like me");
+		assertTrue(test.getPizzaStore().getMenu().getMenuItems().size() == 1);
+		//clear menu. Assert menu is empty.
+		test.getManagerInterface().clearWholeMenu();
+		assertTrue(test.getPizzaStore().getMenu().getMenuItems().size() == 0);
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#clearWholeMenu()}.
 	 * Test case for clear menu when no menu exists.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testClearWholeMenuBad() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -86,43 +106,43 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testCreateSpecialWithItemGood() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#createSpecialWithItem(java.lang.String, model.MenuItem, double)}.
 	 * Test createSpecialWithItem with a null string. Should return error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithItemNullString() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#createSpecialWithItem(java.lang.String, model.MenuItem, double)}.
 	 * Test createSpecialWithItem with a null MenuItem. Should return error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithItemNullMenuItem() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#createSpecialWithItem(java.lang.String, model.MenuItem, double)}.
 	 * Test createSpecialWithItem with a null price. Should return error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithItemNullPrice() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#createSpecialWithItem(java.lang.String, model.MenuItem, double)}.
 	 * Test createSpecialWithItem with a null price. Should return error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithItemNegativePrice() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
@@ -130,9 +150,9 @@ public class ManagerInterfaceTest {
 	 * Test createSpecialWithItem with a duplicate MenuItem. Should replace existing special's price with double given,
 	 * retaining old special's name.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithItemDuplicateItem() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -141,52 +161,52 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testCreateSpecialWithPizzaWithPizzaGood() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#createSpecialWithPizza(java.lang.String, model.PizzaSize, double)}.
 	 * Test createSpecialWithPizza with a null string. Should return error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithPizzaNullString() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#createSpecialWithPizza(java.lang.String, model.PizzaSize, double)}.
 	 * Test createSpecialWithPizza with a null PizzaSize. Should return error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithPizzaNullPizzaSize() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#createSpecialWithPizza(java.lang.String, model.PizzaSize, double)}.
 	 * Test createSpecialWithPizza with a null price. Should return error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithPizzaNullPrice() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#createSpecialWithPizza(java.lang.String, model.PizzaSize, double)}.
 	 * Test createSpecialWithPizza with a negative price. Should return error.
 	 */
-	@Test
-	public void testCreateSpecialWithPizzaNrgativePrice() {
-		fail("Not yet implemented");
+	@Test(expected=model.PizzaException.class)
+	public void testCreateSpecialWithPizzaNegativePrice() {
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#createSpecialWithPizza(java.lang.String, model.PizzaSize, double)}.
 	 * Test createSpecialWithPizza with a null price. Should return error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithPizzaDuplicatePizza() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -195,16 +215,16 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testAddItemToSpecialGood() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addItemToSpecial(model.Special, model.MenuItem, double)}.
 	 * Test with a Special that is not in the system. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddItemToSpecialBadSpecial() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
@@ -212,36 +232,36 @@ public class ManagerInterfaceTest {
 	 * Test with a null param. Should throw error.
 	 * 
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddItemToSpecialNullSpecial() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addItemToSpecial(model.Special, model.MenuItem, double)}.
 	 * Test with a MenuItem not yet in the system. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddItemToSpecialBadMenuItem() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addItemToSpecial(model.Special, model.MenuItem, double)}.
 	 * Test with a null price.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddItemToSpecialNullPrice() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addItemToSpecial(model.Special, model.MenuItem, double)}.
 	 * Test with a negative price.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddItemToSpecialNegativePrice() {
-		fail("Not yet implemented");
+		
 	}
 		
 
@@ -251,34 +271,34 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testRemoveItemFromSpecialGood() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#removeItemFromSpecial(model.Special)}.
 	 * Test with a special that has no item. Should throw an error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testRemoveItemFromSpecialBadNoItem() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#removeItemFromSpecial(model.Special)}.
 	 * Test with a special that that is not in the system.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testRemoveItemFromSpecialBadSpecial() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#removeItemFromSpecial(model.Special)}.
 	 * Test with a null param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testRemoveItemFromSpecialNullSpecial() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -287,16 +307,16 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testAddPizzaToSpecialGood() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToSpecial(model.Special, model.PizzaSize, double)}.
 	 * Test with a special not in system. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToSpecialBadSpecial() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
@@ -304,54 +324,47 @@ public class ManagerInterfaceTest {
 	 * Test with a null param. Should throw error.
 	 * 
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToSpecialNullSpecial() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToSpecial(model.Special, model.PizzaSize, double)}.
 	 * Test with a pizza size that is not in system. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToSpecialBadPizza() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToSpecial(model.Special, model.PizzaSize, double)}.
 	 * Test with a null param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToSpecialNullPizza() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToSpecial(model.Special, model.PizzaSize, double)}.
 	 * Test with a null price param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToSpecialNullPrice() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToSpecial(model.Special, model.PizzaSize, double)}.
 	 * Test with a negative price. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToSpecialNegativePrice() {
-		fail("Not yet implemented");
+		
 	}
 
-	/**
-	 * Test method for {@link controller.ManagerInterface#removePizzaFromSpecial(model.Special)}.
-	 */
-	@Test
-	public void testRemovePizzaFromSpecial() {
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * Test method for {@link controller.ManagerInterface#addItemToMenu(double, java.lang.String, java.lang.String)}.
@@ -359,69 +372,69 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testAddItemToMenuGood() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
 	 * Test method for {@link controller.ManagerInterface#addItemToMenu(double, java.lang.String, java.lang.String)}.
 	 * Test with a negative price param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddItemToMenuNegativeNumber() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addItemToMenu(double, java.lang.String, java.lang.String)}.
 	 * Test with null price param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddItemToMenuNullNumber() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addItemToMenu(double, java.lang.String, java.lang.String)}.
 	 * Test with empty string 1st param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddItemToMenuEmpty1stString() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addItemToMenu(double, java.lang.String, java.lang.String)}.
 	 * Test with null string 1st param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddItemToMenuNull1stString() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addItemToMenu(double, java.lang.String, java.lang.String)}.
 	 * Test with empty string 2nd param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddItemToMenuEmpty2ndString() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
 	 * Test method for {@link controller.ManagerInterface#removeItemFromMenu(model.MenuItem)}.
 	 * Test with bull string 2nd param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testRemoveItemFromMenuNull2ndString() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaSizeToMenu(double, java.lang.String)}.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaSizeToMenu() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
@@ -430,43 +443,43 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testAddPizzaSizeToMenuGood() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaSizeToMenu(double, java.lang.String)}.
 	 * Test with a negative param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaSizeToMenuNegNumber() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaSizeToMenu(double, java.lang.String)}.
 	 * Test with a null param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaSizeToMenuNullNumber() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaSizeToMenu(double, java.lang.String)}.
 	 * Test with an empty string. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaSizeToMenuEmptyString() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaSizeToMenu(double, java.lang.String)}.
 	 * Test with a null string param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaSizeToMenuNullString() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -475,25 +488,25 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testRemovePizzaSizeFromMenuGood() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#removePizzaSizeFromMenu(model.PizzaSize)}.
 	 * Test with size that isn't in system. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testRemovePizzaSizeFromMenuBadSize() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#removePizzaSizeFromMenu(model.PizzaSize)}.
 	 * Test with null param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testRemovePizzaSizeFromMenuNullSize() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -502,43 +515,43 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testAddPizzaToppingToMenuGood() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToppingToMenu(java.lang.String, java.lang.String)}.
 	 * Test with an empty first param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToppingToMenuEmpty1stString() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToppingToMenu(java.lang.String, java.lang.String)}.
 	 * Test with a null first param. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToppingToMenuNull1stString() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToppingToMenu(java.lang.String, java.lang.String)}.
 	 * Test with an empty 2nd string. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToppingToMenuEmpty2ndString() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToppingToMenu(java.lang.String, java.lang.String)}.
 	 * Test with a null 2nd string. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToppingToMenuNull2ndString() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -547,24 +560,24 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testRemovePizzaToppingFromMenuGood() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#removePizzaToppingFromMenu(model.PizzaTopping)}.
 	 * Test with param of topping not in system. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testRemovePizzaToppingFromMenuBadTopping() {
-		fail("Not yet implemented");
+		
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#removePizzaToppingFromMenu(model.PizzaTopping)}.
 	 * Test with param of null topping. Should throw error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testRemovePizzaToppingFromMenuNullTopping() {
-		fail("Not yet implemented");
+		
 	}
 }
