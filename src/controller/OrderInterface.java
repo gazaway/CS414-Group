@@ -40,7 +40,6 @@ public class OrderInterface {
 				if (spec.getItem() == mi){
 					mi.setPrice(spec.getSpecialPrice());	
 				}
-				System.out.println(mi + " " + mi.getPrice());
 				totalSum += mi.getPrice();
 			}
 		}
@@ -49,7 +48,6 @@ public class OrderInterface {
 				if (pizza.getSize() == spec.getSize()){
 					pizza.setPrice((spec.getSpecialPrice() + ((pizza.getToppings().length - 1) * pizza.getPizzaToppingPrice()))) ;
 				}
-				System.out.println(pizza+ " " + pizza.getPrice());
 				totalSum += pizza.getPrice();
 			}
 		}

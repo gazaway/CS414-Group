@@ -79,9 +79,7 @@ public class PizzaSystem {
 		Order testOrder2 = test.getOrderInterface().createNewOrder(new ArrayList<MenuItem>(), pizzas2);
 		test.getOrderInterface().addItemToOrder(testOrder, new MenuItem((long)5.00, "6 pc Buffalo Wings", ""));
 		testOrder2.setOrderCustomer(new Customer("Englebert Humperdink", "155 Address Way", "555-5555"));
-		System.out.println("Price before applying special: " + testOrder2.getPrice());
 		Special testSpecial = test.getManagerInterface().createSpecialWithPizza("small pizza", small, 1.00);
 		test.getOrderInterface().applySpecialsToOrder(testOrder2);
-		System.out.println("Price after applying special: " + testOrder2.getPrice());
 	}
 }
