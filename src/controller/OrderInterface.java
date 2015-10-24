@@ -84,8 +84,9 @@ public class OrderInterface {
 		if (parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(order)){
 			order.setStatus(OrderStatus.canceled);
 			parentSystem.getPizzaStore().getOrderQueue().getPastOrders().add(order);
-			if (parentSystem.getCookView().getCurrentOrder() == order){
-				JOptionPane.showMessageDialog(parentSystem.getCookView().getFrame(), "This order has been canceled.");
+			if (true ){   /*Cook is working on current order*/
+					
+				//Show error dialog that it's too late to cancel.
 			}
 		}
 		else {

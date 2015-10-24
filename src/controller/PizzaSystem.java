@@ -2,7 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 
-import view.CookView;
 import model.*;
 
 public class PizzaSystem {
@@ -10,7 +9,6 @@ public class PizzaSystem {
 	private PizzaStore pizzaStore;
 	private OrderInterface orderInterface;
 	private ManagerInterface managerInterface;
-	private CookView cv;
 	private Main orderMain;
 	
 	public PizzaSystem(){
@@ -20,16 +18,10 @@ public class PizzaSystem {
 		orderMain = new Main();
 		orderMain.run(new String[0]);
 		this.getPizzaStore().getMenu().loadMenuFromFile();
-		cv = new CookView(this);
-		cv.start();
 	}
 	
 	public PizzaStore getPizzaStore(){
 		return pizzaStore;
-	}
-	
-	public CookView getCookView(){
-		return this.cv;
 	}
 	
 	@Override
