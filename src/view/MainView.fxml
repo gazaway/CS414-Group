@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <tabs>
+      <Tab fx:id="menuTab" closable="false" text="Menu">
+         <content>
+            <HBox alignment="CENTER">
+               <children>
+                  <GridPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" vgap="5.0">
+                     <children>
+                        <Label text="Menu" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <GridPane.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Order" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <GridPane.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <ListView fx:id="menuList" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </ListView>
+                        <ListView fx:id="orderList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="32.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="270.0" prefHeight="329.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </children>
+            </HBox>
+         </content>
+      </Tab>
+      <Tab fx:id="checkoutTab" closable="false" text="Checkout">
+        <content>
+            <HBox alignment="CENTER">
+               <children>
+                 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="477.0">
+                    <columnConstraints>
+                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                       <RowConstraints maxHeight="49.0" minHeight="7.0" prefHeight="8.0" vgrow="SOMETIMES" />
+                       <RowConstraints maxHeight="160.0" minHeight="10.0" prefHeight="159.0" vgrow="SOMETIMES" />
+                       <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                       <Label text="Order" GridPane.halignment="LEFT" />
+                       <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
+                       <RadioButton mnemonicParsing="false" text="Pickup" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="OrderAcquisition" />
+                           </toggleGroup>
+                        </RadioButton>
+                       <RadioButton mnemonicParsing="false" text="Delivery" toggleGroup="$OrderAcquisition" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                          <children>
+                             <Label alignment="TOP_LEFT" text="Name">
+                                <padding>
+                                   <Insets bottom="5.0" />
+                                </padding>
+                             </Label>
+                             <TextField />
+                          </children>
+                          <GridPane.margin>
+                             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                          </GridPane.margin>
+                       </VBox>
+                       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                          <children>
+                             <VBox prefHeight="200.0" prefWidth="100.0">
+                                <VBox.margin>
+                                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                </VBox.margin>
+                                <children>
+                                   <Label text="Phone">
+                                      <padding>
+                                         <Insets bottom="5.0" />
+                                      </padding>
+                                   </Label>
+                                   <TextField />
+                                </children>
+                             </VBox>
+                          </children>
+                       </VBox>
+                       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="5">
+                          <children>
+                             <Label alignment="CENTER" text="Street">
+                                <padding>
+                                   <Insets bottom="5.0" />
+                                </padding>
+                             </Label>
+                             <TextField />
+                          </children>
+                          <padding>
+                             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                          </padding>
+                       </VBox>
+                       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="6">
+                          <children>
+                             <Label text="City">
+                                <VBox.margin>
+                                   <Insets bottom="5.0" />
+                                </VBox.margin>
+                             </Label>
+                             <TextField />
+                          </children>
+                          <GridPane.margin>
+                             <Insets bottom="30.0" left="15.0" right="15.0" top="15.0" />
+                          </GridPane.margin>
+                       </VBox>
+                       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                          <children>
+                             <Label text="State" />
+                              <ComboBox prefWidth="250.0" />
+                          </children>
+                          <GridPane.margin>
+                             <Insets bottom="30.0" left="15.0" right="15.0" top="15.0" />
+                          </GridPane.margin>
+                       </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+                           <children>
+                             <Label text="SubTotal" />
+                              <Label text="Total" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                    </children>
+                 </GridPane>
+               </children>
+            </HBox>
+        </content>
+      </Tab>
+      <Tab fx:id="billingTab" closable="false" text="Billing">
+        <content>
+            <HBox alignment="CENTER">
+               <children>
+                 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="543.0">
+                    <columnConstraints>
+                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                       <Label text="Billing" GridPane.halignment="LEFT">
+                           <GridPane.margin>
+                              <Insets left="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                       <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                          <children>
+                             <Label text="Credit Card #">
+                                <VBox.margin>
+                                   <Insets bottom="5.0" />
+                                </VBox.margin>
+                             </Label>
+                             <TextField />
+                          </children>
+                          <padding>
+                             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                          </padding>
+                       </VBox>
+                       <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                          <children>
+                             <Label text="Expiration Date">
+                                <VBox.margin>
+                                   <Insets bottom="5.0" />
+                                </VBox.margin>
+                             </Label>
+                             <DatePicker />
+                          </children>
+                          <opaqueInsets>
+                             <Insets />
+                          </opaqueInsets>
+                          <padding>
+                             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                          </padding>
+                       </VBox>
+                       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                          <children>
+                             <Label text="CSV">
+                                <VBox.margin>
+                                   <Insets bottom="5.0" />
+                                </VBox.margin>
+                             </Label>
+                             <TextField />
+                          </children>
+                          <padding>
+                             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                          </padding>
+                       </VBox>
+                       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
+                          <children>
+                             <CheckBox mnemonicParsing="false" text="Same as delivery address" />
+                          </children>
+                          <padding>
+                             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                          </padding>
+                       </VBox>
+                       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="5">
+                          <children>
+                             <Label text="Label">
+                                <VBox.margin>
+                                   <Insets bottom="5.0" />
+                                </VBox.margin>
+                             </Label>
+                             <TextField />
+                          </children>
+                          <padding>
+                             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                          </padding>
+                       </VBox>
+                       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                          <padding>
+                             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                          </padding>
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                       </VBox>
+                       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                          <children>
+                             <Label text="Total:" />
+                             <Label text="\$0.00">
+                                <HBox.margin>
+                                   <Insets left="5.0" />
+                                </HBox.margin>
+                             </Label>
+                          </children>
+                          <padding>
+                             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                          </padding>
+                       </HBox>
+                       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                          <children>
+                             <Label text="Name">
+                                <VBox.margin>
+                                   <Insets bottom="5.0" />
+                                </VBox.margin>
+                             </Label>
+                             <TextField />
+                          </children>
+                          <padding>
+                             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                          </padding>
+                       </VBox>
+                       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="6">
+                          <children>
+                             <Label text="Label">
+                                <VBox.margin>
+                                   <Insets bottom="5.0" />
+                                </VBox.margin>
+                             </Label>
+                             <TextField />
+                          </children>
+                          <padding>
+                             <Insets bottom="30.0" left="15.0" right="15.0" top="15.0" />
+                          </padding>
+                       </VBox>
+                       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                          <children>
+                             <Label text="Label">
+                                <VBox.margin>
+                                   <Insets bottom="5.0" />
+                                </VBox.margin>
+                             </Label>
+                             <TextField />
+                          </children>
+                          <padding>
+                             <Insets bottom="30.0" left="15.0" right="15.0" top="15.0" />
+                          </padding>
+                       </VBox>
+                       <Button mnemonicParsing="false" text="Cancel Order" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                       <Button mnemonicParsing="false" text="Submit Order" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                    </children>
+                 </GridPane>
+               </children>
+            </HBox>
+        </content>
+      </Tab>
+   </tabs>
+</TabPane>
