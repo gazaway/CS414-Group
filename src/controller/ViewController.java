@@ -38,12 +38,7 @@ public class ViewController {
     private ViewController() {
         menuItems = FXCollections.observableArrayList();
         orderItems = FXCollections.observableArrayList();
-        orderItems.addListener(new ListChangeListener() {
-            @Override
-            public void onChanged(ListChangeListener.Change change) {
-                checkoutTab.setDisable(orderItems.isEmpty());
-            }
-        });
+        orderItems.addListener((ListChangeListener) change -> checkoutTab.setDisable(orderItems.isEmpty()));
     }
 
     public static ViewController getInstance() {
@@ -55,23 +50,14 @@ public class ViewController {
 
     @FXML
     protected void initialize() {
+        menuTab.setDisable(false);
         checkoutTab.setDisable(true);
         billingTab.setDisable(true);
 
-        menuList.setCellFactory(new Callback<ListView<MenuItem>, ListCell<MenuItem>>() {
-            @Override
-            public ListCell<MenuItem> call(ListView<MenuItem> param) {
-                return new MenuItemCell();
-            }
-        });
+        menuList.setCellFactory(param -> new MenuItemCell());
         menuList.setItems(menuItems);
 
-        orderList.setCellFactory(new Callback<ListView<MenuItem>, ListCell<MenuItem>>() {
-            @Override
-            public ListCell<MenuItem> call(ListView<MenuItem> param) {
-                return new OrderItemCell();
-            }
-        });
+        orderList.setCellFactory(param -> new OrderItemCell());
         orderList.setItems(orderItems);
 
         MenuItem testItem = new MenuItem(1.00, "Test Name", "Test Descr");
