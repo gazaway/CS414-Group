@@ -10,7 +10,6 @@ import model.Pizza;
 import model.PizzaSize;
 import model.PizzaTopping;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -352,17 +351,64 @@ public class ManagerInterfaceTest {
 
 	/**
 	 * Test method for {@link controller.ManagerInterface#addItemToMenu(double, java.lang.String, java.lang.String)}.
+	 * Test with good params.
 	 */
 	@Test
-	public void testAddItemToMenu() {
+	public void testAddItemToMenuGood() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link controller.ManagerInterface#addItemToMenu(double, java.lang.String, java.lang.String)}.
+	 * Test with a negative price param. Should throw error.
+	 */
+	@Test
+	public void testAddItemToMenuNegativeNumber() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addItemToMenu(double, java.lang.String, java.lang.String)}.
+	 * Test with null price param. Should throw error.
+	 */
+	@Test
+	public void testAddItemToMenuNullNumber() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addItemToMenu(double, java.lang.String, java.lang.String)}.
+	 * Test with empty string 1st param. Should throw error.
+	 */
+	@Test
+	public void testAddItemToMenuEmpty1stString() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addItemToMenu(double, java.lang.String, java.lang.String)}.
+	 * Test with null string 1st param. Should throw error.
+	 */
+	@Test
+	public void testAddItemToMenuNull1stString() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addItemToMenu(double, java.lang.String, java.lang.String)}.
+	 * Test with empty string 2nd param. Should throw error.
+	 */
+	@Test
+	public void testAddItemToMenuEmpty2ndString() {
 		fail("Not yet implemented");
 	}
 
 	/**
 	 * Test method for {@link controller.ManagerInterface#removeItemFromMenu(model.MenuItem)}.
+	 * Test with bull string 2nd param. Should throw error.
 	 */
 	@Test
-	public void testRemoveItemFromMenu() {
+	public void testRemoveItemFromMenuNull2ndString() {
 		fail("Not yet implemented");
 	}
 
@@ -373,29 +419,148 @@ public class ManagerInterfaceTest {
 	public void testAddPizzaSizeToMenu() {
 		fail("Not yet implemented");
 	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addPizzaSizeToMenu(double, java.lang.String)}.
+	 * Test with good params.
+	 */
+	@Test
+	public void testAddPizzaSizeToMenuGood() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addPizzaSizeToMenu(double, java.lang.String)}.
+	 * Test with a negative param. Should throw error.
+	 */
+	@Test
+	public void testAddPizzaSizeToMenuNegNumber() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addPizzaSizeToMenu(double, java.lang.String)}.
+	 * Test with a null param. Should throw error.
+	 */
+	@Test
+	public void testAddPizzaSizeToMenuNullNumber() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addPizzaSizeToMenu(double, java.lang.String)}.
+	 * Test with an empty string. Should throw error.
+	 */
+	@Test
+	public void testAddPizzaSizeToMenuEmptyString() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addPizzaSizeToMenu(double, java.lang.String)}.
+	 * Test with a null string param. Should throw error.
+	 */
+	@Test
+	public void testAddPizzaSizeToMenuNullString() {
+		fail("Not yet implemented");
+	}
 
 	/**
 	 * Test method for {@link controller.ManagerInterface#removePizzaSizeFromMenu(model.PizzaSize)}.
+	 * Test remove with good params.
 	 */
 	@Test
-	public void testRemovePizzaSizeFromMenu() {
+	public void testRemovePizzaSizeFromMenuGood() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#removePizzaSizeFromMenu(model.PizzaSize)}.
+	 * Test with size that isn't in system. Should throw error.
+	 */
+	@Test
+	public void testRemovePizzaSizeFromMenuBadSize() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#removePizzaSizeFromMenu(model.PizzaSize)}.
+	 * Test with null param. Should throw error.
+	 */
+	@Test
+	public void testRemovePizzaSizeFromMenuNullSize() {
 		fail("Not yet implemented");
 	}
 
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToppingToMenu(java.lang.String, java.lang.String)}.
+	 * Add topping with good inputs.
 	 */
 	@Test
-	public void testAddPizzaToppingToMenu() {
+	public void testAddPizzaToppingToMenuGood() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addPizzaToppingToMenu(java.lang.String, java.lang.String)}.
+	 * Test with an empty first param. Should throw error.
+	 */
+	@Test
+	public void testAddPizzaToppingToMenuEmpty1stString() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addPizzaToppingToMenu(java.lang.String, java.lang.String)}.
+	 * Test with a null first param. Should throw error.
+	 */
+	@Test
+	public void testAddPizzaToppingToMenuNull1stString() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addPizzaToppingToMenu(java.lang.String, java.lang.String)}.
+	 * Test with an empty 2nd string. Should throw error.
+	 */
+	@Test
+	public void testAddPizzaToppingToMenuEmpty2ndString() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addPizzaToppingToMenu(java.lang.String, java.lang.String)}.
+	 * Test with a null 2nd string. Should throw error.
+	 */
+	@Test
+	public void testAddPizzaToppingToMenuNull2ndString() {
 		fail("Not yet implemented");
 	}
 
 	/**
 	 * Test method for {@link controller.ManagerInterface#removePizzaToppingFromMenu(model.PizzaTopping)}.
+	 * Test with a topping that exists in the system.
 	 */
 	@Test
-	public void testRemovePizzaToppingFromMenu() {
+	public void testRemovePizzaToppingFromMenuGood() {
 		fail("Not yet implemented");
 	}
-
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#removePizzaToppingFromMenu(model.PizzaTopping)}.
+	 * Test with param of topping not in system. Should throw error.
+	 */
+	@Test
+	public void testRemovePizzaToppingFromMenuBadTopping() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#removePizzaToppingFromMenu(model.PizzaTopping)}.
+	 * Test with param of null topping. Should throw error.
+	 */
+	@Test
+	public void testRemovePizzaToppingFromMenuNullTopping() {
+		fail("Not yet implemented");
+	}
 }
