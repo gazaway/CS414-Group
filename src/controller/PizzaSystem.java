@@ -11,11 +11,14 @@ public class PizzaSystem {
 	private OrderInterface orderInterface;
 	private ManagerInterface managerInterface;
 	private CookView cv;
+	private Main orderMain;
 	
 	public PizzaSystem(){
 		pizzaStore = new PizzaStore(this);
 		orderInterface = new OrderInterface(this);
 		managerInterface = new ManagerInterface(this);
+		orderMain = new Main();
+		orderMain.run(new String[0]);
 		this.getPizzaStore().getMenu().loadMenuFromFile();
 		cv = new CookView(this);
 		cv.start();
