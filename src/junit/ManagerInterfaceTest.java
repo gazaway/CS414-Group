@@ -308,7 +308,7 @@ public class ManagerInterfaceTest {
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToSpecial(model.Special, model.PizzaSize, double)}.
-	 * Test with a pizza size that
+	 * Test with a pizza size that is not in system. Should throw error.
 	 */
 	@Test
 	public void testAddPizzaToSpecialBadPizza() {
@@ -317,17 +317,28 @@ public class ManagerInterfaceTest {
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToSpecial(model.Special, model.PizzaSize, double)}.
+	 * Test with a null param. Should throw error.
 	 */
 	@Test
-	public void testAddPizzaToSpecial() {
+	public void testAddPizzaToSpecialNullPizza() {
 		fail("Not yet implemented");
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToSpecial(model.Special, model.PizzaSize, double)}.
+	 * Test with a null price param. Should throw error.
 	 */
 	@Test
-	public void testAddPizzaToSpecial() {
+	public void testAddPizzaToSpecialNullPrice() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#addPizzaToSpecial(model.Special, model.PizzaSize, double)}.
+	 * Test with a negative price. Should throw error.
+	 */
+	@Test
+	public void testAddPizzaToSpecialNegativePrice() {
 		fail("Not yet implemented");
 	}
 
