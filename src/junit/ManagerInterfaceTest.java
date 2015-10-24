@@ -46,7 +46,11 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testCreateNewMenuGood() {
-		fail("Not yet implemented");
+		test.getManagerInterface().createNewMenu();
+		//assert that the menu is empty in every way.
+		assertTrue(test.getPizzaStore().getMenu().getMenuItems().size() == 0);
+		assertTrue(test.getPizzaStore().getMenu().getPizzaSizes().size() == 0);
+		assertTrue(test.getPizzaStore().getMenu().getPizzaToppings().size() == 0);
 	}
 	
 	/**

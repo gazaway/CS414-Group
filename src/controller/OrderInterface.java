@@ -20,13 +20,13 @@ public class OrderInterface {
 	}
 	
 	public Order createNewOrder(ArrayList<MenuItem> items, ArrayList<Pizza> pizzas){
-		Order temp = new Order(items, pizzas);
+		Order temp = new Order(items, pizzas, parentSystem);
 		addNewOrderToNotPreppedQueue(temp);
 		return temp;
 	}
 	
 	public Order createNewOrder(Customer customer, ArrayList<MenuItem> items, ArrayList<Pizza> pizzas){
-		Order temp = new Order(customer, items, pizzas);
+		Order temp = new Order(customer, items, pizzas, parentSystem);
 		addNewOrderToNotPreppedQueue(temp);
 		return temp;
 	}
