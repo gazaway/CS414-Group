@@ -45,6 +45,6 @@ public class PizzaSize {
 			return false;
 		}
 		PizzaSize c = (PizzaSize)o;
-		return (this.getDesc() == c.getDesc());
+		return (this.getDesc().trim().equalsIgnoreCase(c.getDesc().trim()));
 	}
 }

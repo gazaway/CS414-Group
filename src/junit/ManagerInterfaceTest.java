@@ -9,6 +9,7 @@ import model.Order;
 import model.Pizza;
 import model.PizzaSize;
 import model.PizzaTopping;
+import model.Special;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -16,17 +17,12 @@ import org.junit.Test;
 
 import controller.PizzaSystem;
 
-/**
- * @author Jim
- *
- */
+
 public class ManagerInterfaceTest {
 	
 	private static PizzaSystem test;
 	private static ArrayList<Pizza> pizzas2;
 	private static ArrayList<Pizza> pizzas;
-	private static PizzaSize small;
-	private static PizzaSize large;
 	private static PizzaTopping ham;
 	private static PizzaTopping bacon;
 	private static PizzaTopping pineApple;
@@ -40,15 +36,13 @@ public class ManagerInterfaceTest {
 		test = new PizzaSystem();
 		pizzas2 = new ArrayList<Pizza>();
 		pizzas = new ArrayList<Pizza>();
-		small = new PizzaSize((double)7, "SMALL");
-		large = new PizzaSize((double)9, "LARGE");
 		ham = new PizzaTopping("Ham", "");
 		bacon = new PizzaTopping("Bacon", "");
 		pineApple = new PizzaTopping("Pineapple", "");
 	}
 	
 	@Before
-	public void beforeTest(){
+	public void beforeTest() throws Exception{
 		test.clearSystem();
 	}
 
@@ -97,7 +91,8 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testClearWholeMenuBad() {
-		
+		//just clear it before there is a menu
+		test.getManagerInterface().clearWholeMenu();
 	}
 
 	/**
@@ -106,7 +101,12 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testCreateSpecialWithItemGood() {
-		
+		//create menu item, add it to the menu. Assert menu contains the item.
+		MenuItem item = test.getManagerInterface().addItemToMenu(5.00, "Wings", "Wings");
+		assertTrue(test.getPizzaStore().getMenu().getMenuItems().contains(item));
+		//create the special, add it to the menu. Assert the special is recorded.
+		Special spec = test.getManagerInterface().createSpecialWithItem("Cheap Wings!", item, 2.00);
+		assertTrue(test.getPizzaStore().getSpecials().contains(spec));		
 	}
 	
 	/**
@@ -115,7 +115,12 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithItemNullString() {
-		
+		//create menu item, add it to the menu. Assert menu contains the item.
+		MenuItem item = test.getManagerInterface().addItemToMenu(5.00, "Wings", "Wings");
+		assertTrue(test.getPizzaStore().getMenu().getMenuItems().contains(item));
+		//create the special with null name. Should throw error. Assert it is not contained in specials.
+		Special spec = test.getManagerInterface().createSpecialWithItem(null, item, 2.00);
+		assertFalse(test.getPizzaStore().getSpecials().contains(spec));	
 	}
 	
 	/**
@@ -124,7 +129,9 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithItemNullMenuItem() {
-		
+		//create special with null item. Should throw error. Assert it is not contained in specials.
+		Special spec = test.getManagerInterface().createSpecialWithItem("Wings!", null, 2.00);
+		assertFalse(test.getPizzaStore().getSpecials().contains(spec));
 	}
 	
 	/**
@@ -133,26 +140,40 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithItemNullPrice() {
-		
+		MenuItem item = test.getManagerInterface().addItemToMenu(5.00, "Wings", "Wings");
+		double ha = (Double) null;
+		Special spec = test.getManagerInterface().createSpecialWithItem("Wings!", item, ha);
+		assertFalse(test.getPizzaStore().getSpecials().contains(spec));
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#createSpecialWithItem(java.lang.String, model.MenuItem, double)}.
-	 * Test createSpecialWithItem with a null price. Should return error.
+	 * Test createSpecialWithItem with a negative price. Should return error.
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithItemNegativePrice() {
-		
+		MenuItem item = test.getManagerInterface().addItemToMenu(5.00, "Wings", "Wings");
+		Special spec = test.getManagerInterface().createSpecialWithItem("Wings!", item, -10.00);
+		assertFalse(test.getPizzaStore().getSpecials().contains(spec));
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#createSpecialWithItem(java.lang.String, model.MenuItem, double)}.
 	 * Test createSpecialWithItem with a duplicate MenuItem. Should replace existing special's price with double given,
-	 * retaining old special's name.
+	 * replacing old special's name.
 	 */
-	@Test(expected=model.PizzaException.class)
+	@Test
 	public void testCreateSpecialWithItemDuplicateItem() {
-		
+		//create two specials with the same item. 
+		MenuItem item = test.getManagerInterface().addItemToMenu(5.00, "Wings", "Wings");
+		Special spec = test.getManagerInterface().createSpecialWithItem("Wings!", item, 10.00);
+		Special spec2 = test.getManagerInterface().createSpecialWithItem("CHEAP WINGS", item, 2.00);
+		//assert that spec2 is NOT in the store specials.
+		assertTrue(test.getPizzaStore().getSpecials().contains(spec));
+		assertFalse(test.getPizzaStore().getSpecials().contains(spec2));
+		//assert that spec has spec2's pricing and name
+		assertTrue(spec.getSpecialName().equals(spec2.getSpecialName()));
+		assertTrue(spec.getSpecialPrice() == spec2.getSpecialPrice());
 	}
 
 	/**
@@ -161,7 +182,9 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testCreateSpecialWithPizzaWithPizzaGood() {
-		
+		PizzaSize small = test.getManagerInterface().addPizzaSizeToMenu(7.00, "small");
+		Special spec = test.getManagerInterface().createSpecialWithPizza("Cheap small", small, 3);
+		assertTrue(test.getPizzaStore().getSpecials().contains(spec));
 	}
 	
 	/**
@@ -170,7 +193,10 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithPizzaNullString() {
-		
+		PizzaSize small = test.getManagerInterface().addPizzaSizeToMenu(7.00, "small");
+		//create special with null name. Should return error. Assert special is not contained.
+		Special spec = test.getManagerInterface().createSpecialWithPizza(null, small, 3);
+		assertFalse(test.getPizzaStore().getSpecials().contains(spec));
 	}
 	
 	/**
@@ -179,7 +205,9 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithPizzaNullPizzaSize() {
-		
+		//Try to create with null size. Should throw error. Assert not in store specials.
+		Special spec = test.getManagerInterface().createSpecialWithPizza("Cheap small", null, 3);
+		assertFalse(test.getPizzaStore().getSpecials().contains(spec));
 	}
 	
 	/**
@@ -188,7 +216,10 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithPizzaNullPrice() {
-		
+		PizzaSize small = test.getManagerInterface().addPizzaSizeToMenu(7.00, "small");
+		double ha = (Double) null;
+		Special spec = test.getManagerInterface().createSpecialWithPizza("Cheap small", small, ha);
+		assertFalse(test.getPizzaStore().getSpecials().contains(spec));
 	}
 	
 	/**
@@ -197,7 +228,9 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testCreateSpecialWithPizzaNegativePrice() {
-		
+		PizzaSize small = test.getManagerInterface().addPizzaSizeToMenu(7.00, "small");
+		Special spec = test.getManagerInterface().createSpecialWithPizza("Cheap small", small, -10);
+		assertFalse(test.getPizzaStore().getSpecials().contains(spec));
 	}
 	
 	/**

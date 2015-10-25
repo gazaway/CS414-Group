@@ -72,10 +72,18 @@ public class ManagerInterface {
 		special.removePizzaSizeFromSpecial();
 	}
 	
-	public void addItemToMenu(double price, String name, String desc){
+	public MenuItem addItemToMenu(double price, String name, String desc){
 		MenuItem temp = new MenuItem(price, name, desc);
 		if (!parentSystem.getPizzaStore().getMenu().getMenuItems().contains(temp)){
 			parentSystem.getPizzaStore().getMenu().getMenuItems().add(temp);
+			return temp;
+		}
+		else {
+			try {
+				throw new PizzaException("Item being added to menu is already in system.");
+			} catch (PizzaException e) {
+			}
+			return null;
 		}
 	}
 	
@@ -85,10 +93,18 @@ public class ManagerInterface {
 		}
 	}
 	
-	public void addPizzaSizeToMenu(double price, String desc){
+	public PizzaSize addPizzaSizeToMenu(double price, String desc){
 		PizzaSize temp = new PizzaSize(price, desc);
 		if (!parentSystem.getPizzaStore().getMenu().getPizzaSizes().contains(temp)){
 			parentSystem.getPizzaStore().getMenu().getPizzaSizes().add(temp);
+			return temp;
+		}
+		else {
+			try {
+				throw new PizzaException("Pizza size already in system.");
+			} catch (PizzaException e) {
+			}
+			return null;
 		}
 	}
 	
