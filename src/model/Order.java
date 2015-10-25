@@ -11,7 +11,6 @@ public class Order {
 	private ArrayList<Pizza> pizzas;
 	private OrderStatus status;
 	private double totalCost;
-	private PizzaSystem parentSystem;
 
 	public ArrayList<MenuItem> getItems() {
 		return items;
@@ -28,7 +27,6 @@ public class Order {
 	public Order(Customer customer, PizzaSystem parentSystem){
 		totalCost = 0;
 		this.customer = customer;
-		this.parentSystem = parentSystem;
 		items = new ArrayList<MenuItem>();
 		status = OrderStatus.pending;
 		pizzas = new ArrayList<Pizza>();
@@ -38,27 +36,24 @@ public class Order {
 	 * Default constructor. This is to be used for creating
 	 * orders for non-logged in customers.
 	 */
-	public Order(PizzaSystem parentSystem){
+	public Order(){
 		totalCost = 0;
-		this.parentSystem = parentSystem;
 		this.customer = new Customer();
 		items = new ArrayList<MenuItem>();
 		pizzas = new ArrayList<Pizza>();
 		status = OrderStatus.pending;
 	}
 
-	public Order(ArrayList<MenuItem> items, ArrayList<Pizza> pizzas, PizzaSystem parentSystem) {
+	public Order(ArrayList<MenuItem> items, ArrayList<Pizza> pizzas) {
 		this.customer = new Customer();
 		this.items = items;
 		this.pizzas = pizzas;
-		this.parentSystem = parentSystem;
 		status = OrderStatus.pending;
 		tallyTotalPrice();
 	}
 
-	public Order(Customer customer, ArrayList<MenuItem> items, ArrayList<Pizza> pizzas, PizzaSystem parentSystem) {
+	public Order(Customer customer, ArrayList<MenuItem> items, ArrayList<Pizza> pizzas) {
 		this.customer = customer;
-		this.parentSystem = parentSystem;
 		this.items = items;
 		this.pizzas = pizzas;
 		status = OrderStatus.pending;

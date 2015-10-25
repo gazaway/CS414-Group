@@ -89,4 +89,8 @@ public class PizzaStore {
 		}
 		return temp;
 	}
+
+	public ArrayList<Customer> getCustomers() {
+		return this.customers;
+	}
 }

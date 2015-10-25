@@ -2,9 +2,6 @@ package model;
 
 import java.text.NumberFormat;
 
-import controller.PizzaSystem;
-import model.Menu;
-
 public class Pizza {
 
 	private final double PIZZA_TOPPING_PRICE = 1.00;

@@ -2,8 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import model.Customer;
 import model.MenuItem;
 import model.Order;
@@ -20,13 +18,13 @@ public class OrderInterface {
 	}
 	
 	public Order createNewOrder(ArrayList<MenuItem> items, ArrayList<Pizza> pizzas){
-		Order temp = new Order(items, pizzas, parentSystem);
+		Order temp = new Order(items, pizzas);
 		addNewOrderToNotPreppedQueue(temp);
 		return temp;
 	}
 	
 	public Order createNewOrder(Customer customer, ArrayList<MenuItem> items, ArrayList<Pizza> pizzas){
-		Order temp = new Order(customer, items, pizzas, parentSystem);
+		Order temp = new Order(customer, items, pizzas);
 		addNewOrderToNotPreppedQueue(temp);
 		return temp;
 	}
@@ -81,11 +79,7 @@ public class OrderInterface {
 	public void cancelCurrentOrder(Order order){
 		if (parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(order)){
 			order.setStatus(OrderStatus.canceled);
-			parentSystem.getPizzaStore().getOrderQueue().getPastOrders().add(order);
-			if (true ){   /*Cook is working on current order*/
-					
-				//Show error dialog that it's too late to cancel.
-			}
+			parentSystem.getPizzaStore().getOrderQueue().getCanceledOrders().add(order);
 		}
 		else {
 			//TODO GUI POPUP?

@@ -7,12 +7,14 @@ public class PizzaSystem {
 	private PizzaStore pizzaStore;
 	private OrderInterface orderInterface;
 	private ManagerInterface managerInterface;
+	private CustomerInterface customerInterface;
 	private Main orderMain;
 	
 	public PizzaSystem(){
 		pizzaStore = new PizzaStore(this);
 		orderInterface = new OrderInterface(this);
 		managerInterface = new ManagerInterface(this);
+		customerInterface = new CustomerInterface(this);
 		orderMain = new Main();
 		orderMain.run(new String[0]);
 		this.getPizzaStore().getMenu().loadMenuFromFile();
@@ -74,5 +76,9 @@ public class PizzaSystem {
 		pizzaStore = new PizzaStore(this);
 		orderInterface = new OrderInterface(this);
 		managerInterface = new ManagerInterface(this);
+	}
+
+	public CustomerInterface getCustomerInterface() {
+		return this.customerInterface;
 	}
 }
