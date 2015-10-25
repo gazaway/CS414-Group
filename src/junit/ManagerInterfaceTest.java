@@ -2,11 +2,7 @@ package junit;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
 import model.MenuItem;
-import model.Order;
-import model.Pizza;
 import model.PizzaSize;
 import model.PizzaTopping;
 import model.Special;
@@ -21,12 +17,6 @@ import controller.PizzaSystem;
 public class ManagerInterfaceTest {
 	
 	private static PizzaSystem test;
-	private static ArrayList<Pizza> pizzas2;
-	private static ArrayList<Pizza> pizzas;
-	private static PizzaTopping ham;
-	private static PizzaTopping bacon;
-	private static PizzaTopping pineApple;
-	private static PizzaTopping[] pts = { ham, bacon, pineApple};
 
 	/**
 	 * @throws java.lang.Exception
@@ -34,11 +24,6 @@ public class ManagerInterfaceTest {
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		test = new PizzaSystem();
-		pizzas2 = new ArrayList<Pizza>();
-		pizzas = new ArrayList<Pizza>();
-		ham = new PizzaTopping("Ham", "");
-		bacon = new PizzaTopping("Bacon", "");
-		pineApple = new PizzaTopping("Pineapple", "");
 	}
 	
 	@Before
