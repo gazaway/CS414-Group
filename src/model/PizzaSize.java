@@ -1,7 +1,5 @@
 package model;
 
-import controller.PizzaSystem;
-
 public class PizzaSize {
 	
 	private double cost;
