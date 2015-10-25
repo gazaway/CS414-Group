@@ -435,7 +435,9 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToSpecialNullSpecial() {
-		
+		PizzaSize size = test.getManagerInterface().addPizzaSizeToMenu(7.00, "small");
+		//attempt to add pizza to null special. Should result in error.
+		test.getManagerInterface().addPizzaToSpecial(null, size, 10);
 	}
 	
 	/**
@@ -444,7 +446,14 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToSpecialBadPizza() {
-		
+		PizzaSize size = new PizzaSize(2, "desc");
+		PizzaSize size2 = test.getManagerInterface().addPizzaSizeToMenu(5.0, "large");
+		//create special with good size
+		Special spec = test.getManagerInterface().createSpecialWithPizza("string", size2, 5);
+		//remove good size, try to add bad size. assert size not in special.
+		test.getManagerInterface().removePizzaFromSpecial(spec);
+		test.getManagerInterface().addPizzaToSpecial(spec, size, 10);
+		assertFalse(spec.getSize() == size);
 	}
 	
 	/**
@@ -453,7 +462,11 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToSpecialNullPizza() {
-		
+		PizzaSize size = test.getManagerInterface().addPizzaSizeToMenu(5.0, "large");
+		Special spec = test.getManagerInterface().createSpecialWithPizza("bah", size, 5);
+		//remove pizza size from special. add null size. Should throw error
+		test.getManagerInterface().removePizzaFromSpecial(spec);
+		test.getManagerInterface().addPizzaToSpecial(spec, null, 5);
 	}
 	
 	/**
@@ -462,7 +475,14 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToSpecialNullPrice() {
-		
+		PizzaSize size = test.getManagerInterface().addPizzaSizeToMenu(5.0, "large");
+		Special spec = test.getManagerInterface().createSpecialWithPizza("bah", size, 5);
+		//remove pizza size from special. 
+		test.getManagerInterface().removePizzaFromSpecial(spec);
+		//try to add pizza to special with null price. Should throw error. Assert size not added
+		double ba = (Double) null;
+		test.getManagerInterface().addPizzaToSpecial(spec, size, ba);
+		assertFalse(spec.getSize() == size);
 	}
 	
 	/**
@@ -471,7 +491,13 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToSpecialNegativePrice() {
-		
+		PizzaSize size = test.getManagerInterface().addPizzaSizeToMenu(5.0, "large");
+		Special spec = test.getManagerInterface().createSpecialWithPizza("bah", size, 5);
+		//remove pizza size from special. 
+		test.getManagerInterface().removePizzaFromSpecial(spec);
+		//try to add pizza to special with neg price. Should throw error. Assert size not added
+		test.getManagerInterface().addPizzaToSpecial(spec, size, -10);
+		assertFalse(spec.getSize() == size);
 	}
 
 
@@ -481,7 +507,8 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testAddItemToMenuGood() {
-		
+		MenuItem item = test.getManagerInterface().addItemToMenu(5, "chicken", "chicken");
+		assertTrue(test.getPizzaStore().getMenu().getMenuItems().contains(item));
 	}
 
 	/**
@@ -490,7 +517,8 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddItemToMenuNegativeNumber() {
-		
+		MenuItem item = test.getManagerInterface().addItemToMenu(-10, "chicken", "chicken");
+		assertFalse(test.getPizzaStore().getMenu().getMenuItems().contains(item));
 	}
 	
 	/**
@@ -499,7 +527,9 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddItemToMenuNullNumber() {
-		
+		double ba = (Double) null;
+		MenuItem item = test.getManagerInterface().addItemToMenu(ba, "chicken", "chicken");
+		assertFalse(test.getPizzaStore().getMenu().getMenuItems().contains(item));
 	}
 	
 	/**
@@ -508,7 +538,8 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddItemToMenuEmpty1stString() {
-		
+		MenuItem item = test.getManagerInterface().addItemToMenu(5, "", "chicken");
+		assertFalse(test.getPizzaStore().getMenu().getMenuItems().contains(item));
 	}
 	
 	/**
@@ -517,34 +548,30 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddItemToMenuNull1stString() {
-		
+		MenuItem item = test.getManagerInterface().addItemToMenu(5, null, "chicken");
+		assertFalse(test.getPizzaStore().getMenu().getMenuItems().contains(item));
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addItemToMenu(double, java.lang.String, java.lang.String)}.
-	 * Test with empty string 2nd param. Should throw error.
+	 * Test with empty string 2nd param. Should be allowed, simply item with no description
 	 */
-	@Test(expected=model.PizzaException.class)
+	@Test
 	public void testAddItemToMenuEmpty2ndString() {
-		
+		MenuItem item = test.getManagerInterface().addItemToMenu(5, "chicken", "");
+		assertTrue(test.getPizzaStore().getMenu().getMenuItems().contains(item));
 	}
 
 	/**
 	 * Test method for {@link controller.ManagerInterface#removeItemFromMenu(model.MenuItem)}.
-	 * Test with bull string 2nd param. Should throw error.
+	 * Test with null string 2nd param. Should throw error.
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testRemoveItemFromMenuNull2ndString() {
-		
+		MenuItem item = test.getManagerInterface().addItemToMenu(5, "chicken", null);
+		assertFalse(test.getPizzaStore().getMenu().getMenuItems().contains(item));
 	}
 
-	/**
-	 * Test method for {@link controller.ManagerInterface#addPizzaSizeToMenu(double, java.lang.String)}.
-	 */
-	@Test(expected=model.PizzaException.class)
-	public void testAddPizzaSizeToMenu() {
-		
-	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaSizeToMenu(double, java.lang.String)}.
@@ -552,7 +579,8 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testAddPizzaSizeToMenuGood() {
-		
+		PizzaSize size = test.getManagerInterface().addPizzaSizeToMenu(7.00, "small");
+		assertTrue(test.getPizzaStore().getMenu().getPizzaSizes().contains(size));
 	}
 	
 	/**
@@ -561,7 +589,8 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaSizeToMenuNegNumber() {
-		
+		PizzaSize size = test.getManagerInterface().addPizzaSizeToMenu(-7.00, "small");
+		assertFalse(test.getPizzaStore().getMenu().getPizzaSizes().contains(size));
 	}
 	
 	/**
@@ -570,7 +599,9 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaSizeToMenuNullNumber() {
-		
+		double ba = (Double) null;
+		PizzaSize size = test.getManagerInterface().addPizzaSizeToMenu(ba, "small");
+		assertFalse(test.getPizzaStore().getMenu().getPizzaSizes().contains(size));
 	}
 	
 	/**
@@ -579,7 +610,8 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaSizeToMenuEmptyString() {
-		
+		PizzaSize size = test.getManagerInterface().addPizzaSizeToMenu(7.00, "");
+		assertFalse(test.getPizzaStore().getMenu().getPizzaSizes().contains(size));
 	}
 	
 	/**
@@ -588,7 +620,8 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaSizeToMenuNullString() {
-		
+		PizzaSize size = test.getManagerInterface().addPizzaSizeToMenu(-7.00, null);
+		assertFalse(test.getPizzaStore().getMenu().getPizzaSizes().contains(size));
 	}
 
 	/**
@@ -597,7 +630,9 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testRemovePizzaSizeFromMenuGood() {
-		
+		PizzaSize size = test.getManagerInterface().addPizzaSizeToMenu(7.00, "small");
+		test.getManagerInterface().removePizzaSizeFromMenu(size);
+		assertFalse(test.getPizzaStore().getMenu().getPizzaSizes().contains(size));
 	}
 	
 	/**
@@ -606,7 +641,9 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testRemovePizzaSizeFromMenuBadSize() {
-		
+		PizzaSize size = test.getManagerInterface().addPizzaSizeToMenu(7.00, "small");
+		PizzaSize size2 = new PizzaSize(1, "");
+		test.getManagerInterface().removePizzaSizeFromMenu(size2);
 	}
 	
 	/**
@@ -615,7 +652,7 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testRemovePizzaSizeFromMenuNullSize() {
-		
+		test.getManagerInterface().removePizzaSizeFromMenu(null);
 	}
 
 	/**
@@ -624,7 +661,8 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testAddPizzaToppingToMenuGood() {
-		
+		PizzaTopping top = test.getManagerInterface().addPizzaToppingToMenu("Bacon", "Bacon");
+		assertTrue(test.getPizzaStore().getMenu().getPizzaToppings().contains(top));
 	}
 	
 	/**
@@ -633,7 +671,8 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToppingToMenuEmpty1stString() {
-		
+		PizzaTopping top = test.getManagerInterface().addPizzaToppingToMenu("", "Bacon");
+		assertFalse(test.getPizzaStore().getMenu().getPizzaToppings().contains(top));
 	}
 	
 	/**
@@ -642,16 +681,18 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToppingToMenuNull1stString() {
-		
+		PizzaTopping top = test.getManagerInterface().addPizzaToppingToMenu(null, "Bacon");
+		assertFalse(test.getPizzaStore().getMenu().getPizzaToppings().contains(top));
 	}
 	
 	/**
 	 * Test method for {@link controller.ManagerInterface#addPizzaToppingToMenu(java.lang.String, java.lang.String)}.
-	 * Test with an empty 2nd string. Should throw error.
+	 * Test with an empty 2nd string. Should allow, simply topping with no description.
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToppingToMenuEmpty2ndString() {
-		
+		PizzaTopping top = test.getManagerInterface().addPizzaToppingToMenu("Bacon", "");
+		assertTrue(test.getPizzaStore().getMenu().getPizzaToppings().contains(top));
 	}
 	
 	/**
@@ -660,7 +701,8 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToppingToMenuNull2ndString() {
-		
+		PizzaTopping top = test.getManagerInterface().addPizzaToppingToMenu("Bacon", null);
+		assertFalse(test.getPizzaStore().getMenu().getPizzaToppings().contains(top));
 	}
 
 	/**
@@ -669,7 +711,10 @@ public class ManagerInterfaceTest {
 	 */
 	@Test
 	public void testRemovePizzaToppingFromMenuGood() {
-		
+		PizzaTopping top = test.getManagerInterface().addPizzaToppingToMenu("Bacon", "Bacon");
+		assertTrue(test.getPizzaStore().getMenu().getPizzaToppings().contains(top));
+		test.getManagerInterface().removePizzaToppingFromMenu(top);
+		assertFalse(test.getPizzaStore().getMenu().getPizzaToppings().contains(top));
 	}
 	
 	/**
@@ -678,7 +723,10 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testRemovePizzaToppingFromMenuBadTopping() {
-		
+		PizzaTopping top = new PizzaTopping("Bacon", "Bacon");
+		//assert top is not in system. attempt to remove top from system. Should throw error
+		assertFalse(test.getPizzaStore().getMenu().getPizzaToppings().contains(top));
+		test.getManagerInterface().removePizzaToppingFromMenu(top);
 	}
 	
 	/**
@@ -687,6 +735,6 @@ public class ManagerInterfaceTest {
 	 */
 	@Test(expected=model.PizzaException.class)
 	public void testRemovePizzaToppingFromMenuNullTopping() {
-		
+		test.getManagerInterface().removePizzaToppingFromMenu(null);
 	}
 }

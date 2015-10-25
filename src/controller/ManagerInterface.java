@@ -114,12 +114,13 @@ public class ManagerInterface {
 		}
 	}
 		
-	public void addPizzaToppingToMenu(String name, String desc){
+	public PizzaTopping addPizzaToppingToMenu(String name, String desc){
 		PizzaTopping temp = new PizzaTopping(name, desc);
 		if (parentSystem.getPizzaStore().getMenu().getPizzaToppings().contains(temp)){
 			removePizzaToppingFromMenu(temp);
 		}
 		parentSystem.getPizzaStore().getMenu().getPizzaToppings().add(temp);
+		return temp;
 	}
 	
 	public void removePizzaToppingFromMenu(PizzaTopping pt){
