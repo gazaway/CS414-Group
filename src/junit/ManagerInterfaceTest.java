@@ -19,9 +19,6 @@ public class ManagerInterfaceTest {
 	
 	private static PizzaSystem test;
 
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		test = new PizzaSystem();
