@@ -30,6 +30,10 @@ public class Special {
 		return this.specialName;
 	}
 	
+	public void setSpecialName(String name){
+		this.specialName = name;
+	}
+	
 	public PizzaSize getSize(){
 		return size;
 	}
@@ -52,5 +56,13 @@ public class Special {
 
 	public void removePizzaSizeFromSpecial(){
 		this.size = null;
+	}
+
+	public boolean hasPizzaSize() {
+		return (this.size != null);
+	}
+	
+	public boolean hasItem() {
+		return (this.item != null);
 	}
 }

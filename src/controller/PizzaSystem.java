@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
-
 import model.*;
 
 public class PizzaSystem {
@@ -67,20 +65,6 @@ public class PizzaSystem {
 	 */
 	public static void main(String[]args){
 		PizzaSystem test = new PizzaSystem();
-		PizzaTopping[] pt = { new PizzaTopping("Ham", "") , new PizzaTopping("Bacon", "") , new PizzaTopping("Pineapple", "") };
-		ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
-		ArrayList<Pizza> pizzas2 = new ArrayList<Pizza>();
-		PizzaSize small = new PizzaSize((double)7, "SMALL");
-		PizzaSize large = new PizzaSize((double)9, "LARGE");
-		pizzas.add(new Pizza(pt, small));
-		pizzas2.add(new Pizza(pt, small));
-		Order testOrder = test.getOrderInterface().createNewOrder(new ArrayList<MenuItem>(), pizzas);
-		pizzas2.add(new Pizza(pt, large));
-		Order testOrder2 = test.getOrderInterface().createNewOrder(new ArrayList<MenuItem>(), pizzas2);
-		test.getOrderInterface().addItemToOrder(testOrder, new MenuItem((long)5.00, "6 pc Buffalo Wings", ""));
-		testOrder2.setOrderCustomer(new Customer("Englebert Humperdink", "155 Address Way", "555-5555"));
-		Special testSpecial = test.getManagerInterface().createSpecialWithPizza("small pizza", small, 1.00);
-		test.getOrderInterface().applySpecialsToOrder(testOrder2);
 	}
 
 	/*

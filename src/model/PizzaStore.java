@@ -41,4 +41,52 @@ public class PizzaStore {
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
+
+	public boolean checkSpecialsForPizzaSize(PizzaSize size) {
+		boolean temp = false;
+		for (Special spec : specials){
+			if (spec.hasPizzaSize()){
+				if (spec.getSize() == size){
+					temp = true;
+				}
+			}
+		}
+		return temp;
+	}
+	
+	public boolean checkSpecialsForItem(MenuItem item) {
+		boolean temp = false;
+		for (Special spec : specials){
+			if (spec.hasItem()){
+				if (spec.getItem() == item){
+					temp = true;
+				}
+			}
+		}
+		return temp;
+	}
+
+	public Special findSpecialBySize(PizzaSize size) {
+		Special temp = new Special("NOT EVER USED");
+		for (Special spec : this.getSpecials()){
+			if (spec.hasPizzaSize()){
+				if (spec.getSize() == size){
+					temp = spec;
+				}
+			}
+		}
+		return temp;
+	}
+
+	public Special findSpecialByItem(MenuItem item) {
+		Special temp = new Special("NOT EVER USED");
+		for (Special spec : this.getSpecials()){
+			if (spec.hasItem()){
+				if (spec.getItem() == item){
+					temp = spec;
+				}
+			}
+		}
+		return temp;
+	}
 }
