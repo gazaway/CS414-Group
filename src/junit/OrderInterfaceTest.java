@@ -65,7 +65,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#createNewOrder(java.util.ArrayList, java.util.ArrayList)}.
 	 * Test with a null first param list. Expect null error.
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void testCreateNewOrderNoCustNullFirst() {
 		Order temp = test.getOrderInterface().createNewOrder(null, pizzaList);
 		assertFalse(test.getPizzaStore().getOrderQueue().getCurrentOrders().contains(temp));
@@ -75,7 +75,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#createNewOrder(java.util.ArrayList, java.util.ArrayList)}.
 	 * Test with a null second param list. Expect null error.
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void testCreateNewOrderNoCustNullSecond() {
 		Order temp = test.getOrderInterface().createNewOrder(itemList, null);
 		assertTrue(test.getPizzaStore().getOrderQueue().getCurrentOrders().contains(temp));
@@ -109,7 +109,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#createNewOrder(model.Customer, java.util.ArrayList, java.util.ArrayList)}.
 	 * Test with null first param list. Expect error.
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void testCreateNewOrderWithCustGoodNull1stList() {
 		Customer cust = test.getCustomerInterface().createNewCustProfile("Jack", "address", "phone");
 		pizzaList.add(new Pizza(toppings, new PizzaSize(10, "Large")));
@@ -121,7 +121,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#createNewOrder(model.Customer, java.util.ArrayList, java.util.ArrayList)}.
 	 * Test with null second param list. Expect error.
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void testCreateNewOrderWithCustGoodNull2ndList() {
 		Customer cust = test.getCustomerInterface().createNewCustProfile("Jack", "address", "phone");
 		itemList.add(new MenuItem(5, "wings", "wings"));
@@ -133,7 +133,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#createNewOrder(model.Customer, java.util.ArrayList, java.util.ArrayList)}.
 	 * Test with a non-system customer. Expect error
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCreateNewOrderWithCustBadCustomer() {
 		Customer cust = new Customer("Jack", "address", "phone");
 		Order temp = test.getOrderInterface().createNewOrder(cust, itemList, pizzaList);
@@ -144,7 +144,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#createNewOrder(model.Customer, java.util.ArrayList, java.util.ArrayList)}.
 	 * Test with a null customer. Expect error
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void testCreateNewOrderWithCustNullCustomer() {
 		Order temp = test.getOrderInterface().createNewOrder(null, itemList, pizzaList);
 		assertFalse(test.getPizzaStore().getOrderQueue().getCurrentOrders().contains(temp));
@@ -170,7 +170,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#applySpecialsToOrder(model.Order)}.
 	 * Test with null order param. Expect error
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void testApplySpecialsToOrderNull() throws PizzaException {
 		test.getManagerInterface().createSpecialWithItem("Cheap Wings", new MenuItem(5, "wings", "wings"), 1);
 		test.getOrderInterface().applySpecialsToOrder(null);
@@ -180,7 +180,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#applySpecialsToOrder(model.Order)}.
 	 * Test with order not in system. Expect error
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testApplySpecialsToOrderNotInSystem() throws PizzaException {
 		pizzaList.add(new Pizza(toppings, new PizzaSize(10, "Large")));
 		itemList.add(new MenuItem(5, "wings", "wings"));
@@ -211,7 +211,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#completeOrder(model.Order)}.
 	 * Test complete order with null order. Expect error
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void testCompleteOrderNull() throws PizzaException {
 		test.getOrderInterface().completeOrder(null);
 	}
@@ -220,7 +220,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#completeOrder(model.Order)}.
 	 * Test complete order with non-system order.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCompleteOrderBadOrder() throws PizzaException {
 		Order temp = new Order();
 		test.getOrderInterface().completeOrder(temp);
@@ -232,7 +232,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#completeOrder(model.Order)}.
 	 * Test complete order with already completed order. Expect error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCompleteOrderCompletedOrder() throws PizzaException {
 		pizzaList.add(new Pizza(toppings, new PizzaSize(10, "Large")));
 		itemList.add(new MenuItem(5, "wings", "wings"));
@@ -251,7 +251,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#completeOrder(model.Order)}.
 	 * Test complete order with already canceled order
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCompleteOrderCanceledOrder() throws PizzaException {
 		Order temp = test.getOrderInterface().createNewOrder(itemList, pizzaList);
 		test.getOrderInterface().cancelCurrentOrder(temp);
@@ -276,7 +276,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#cancelCurrentOrder(model.Order)}.
 	 * Test with a null order. Expect error.
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void testCancelCurrentOrderNull() throws PizzaException {
 		test.getOrderInterface().cancelCurrentOrder(null);
 	}
@@ -285,7 +285,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#cancelCurrentOrder(model.Order)}.
 	 * Test with a non-system order. Expect error
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCancelCurrentOrderBadOrder() throws PizzaException {
 		Order temp = new Order();
 		test.getOrderInterface().cancelCurrentOrder(temp);
@@ -297,7 +297,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#cancelCurrentOrder(model.Order)}.
 	 * Test with an order that's already canceled. Expect error
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCancelCurrentOrderAlreadyCanceled() throws PizzaException {
 		Order temp = test.getOrderInterface().createNewOrder(itemList, pizzaList);
 		test.getOrderInterface().cancelCurrentOrder(temp);
@@ -309,7 +309,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#cancelCurrentOrder(model.Order)}.
 	 * Test with an order that's already completed
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testCancelCurrentOrderAlreadyComplete() throws PizzaException {
 		Order temp = test.getOrderInterface().createNewOrder(itemList, pizzaList);
 		test.getOrderInterface().prepOrder(temp);
@@ -338,7 +338,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#prepOrder(model.Order)}.
 	 * Test with an order that's ready to be prepped, but is empty. Expect error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testPrepOrderGoodButEmpty() throws PizzaException {
 		Order temp = test.getOrderInterface().createNewOrder(itemList, pizzaList);
 		test.getOrderInterface().prepOrder(temp);
@@ -350,7 +350,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#prepOrder(model.Order)}.
 	 * Test with a null order. Expect error.
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void testPrepOrderNull() throws PizzaException {
 		test.getOrderInterface().prepOrder(null);
 	}
@@ -359,7 +359,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#prepOrder(model.Order)}.
 	 * Test with an order that's already been prepped. Expect error
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testPrepOrderAlreadyPrepped() throws PizzaException {
 		pizzaList.add(new Pizza(toppings, new PizzaSize(10, "Large")));
 		itemList.add(new MenuItem(5, "wings", "wings"));
@@ -374,7 +374,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#prepOrder(model.Order)}.
 	 * Test with an order that's already been complete. Expect error
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testPrepOrderAlreadyComplete() throws PizzaException {
 		pizzaList.add(new Pizza(toppings, new PizzaSize(10, "Large")));
 		itemList.add(new MenuItem(5, "wings", "wings"));
@@ -393,7 +393,7 @@ public class OrderInterfaceTest {
 	 * Test method for {@link controller.OrderInterface#prepOrder(model.Order)}.
 	 * Test with an order that's already been canceled. Expect error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testPrepOrderCanceled() throws PizzaException {
 		pizzaList.add(new Pizza(toppings, new PizzaSize(10, "Large")));
 		itemList.add(new MenuItem(5, "wings", "wings"));
@@ -415,41 +415,41 @@ public class OrderInterfaceTest {
 	@Test
 	public void testFindInCurrentOrdersGood() throws PizzaException {
 		Order temp = test.getOrderInterface().createNewOrder(itemList, pizzaList);
-		test.getOrderInterface().prepOrder(temp);
-		assertTrue(test.getPizzaStore().getOrderQueue().getOrdersBeingMade().contains(temp));
-		assertTrue(temp.getOrderStatus() == model.OrderStatus.beingMade);
-		test.getOrderInterface().completeOrder(temp);
-		test.getOrderInterface().prepOrder(temp);
-		assertTrue(test.getPizzaStore().getOrderQueue().getPastOrders().contains(temp));
-		assertTrue(temp.getOrderStatus() == model.OrderStatus.complete);
-		assertFalse(test.getPizzaStore().getOrderQueue().getOrdersBeingMade().contains(temp));
+		Order temp2 = test.getOrderInterface().findInCurrentOrders(temp);
+		assertTrue(temp == temp2);
 	}
 	
 	/**
 	 * Test method for {@link controller.OrderInterface#findInCurrentOrders(model.Order)}.
-	 * Test with null param. 
+	 * Test with null param. Expect error
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void testFindInCurrentOrdersNull() throws PizzaException {
-		
+		Order temp2 = test.getOrderInterface().findInCurrentOrders(null);
 	}
 	
 	/**
 	 * Test method for {@link controller.OrderInterface#findInCurrentOrders(model.Order)}.
-	 * Test with system order that is in another queue.
+	 * Test with system order that is in another queue. Expect error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testFindInCurrentOrdersAnotherQueue() throws PizzaException {
-		
+		Order temp = test.getOrderInterface().createNewOrder(itemList, pizzaList);
+		test.getOrderInterface().prepOrder(temp);
+		assertFalse(test.getPizzaStore().getOrderQueue().getCurrentOrders().contains(temp));
+		Order temp2 = test.getOrderInterface().findInCurrentOrders(temp);
+		assertFalse(temp == temp2);
 	}
 	
 	/**
 	 * Test method for {@link controller.OrderInterface#findInCurrentOrders(model.Order)}.
-	 * Test with a non-system order.
+	 * Test with a non-system order. Expect error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testFindInCurrentOrdersBad() throws PizzaException {
-		
+		Order temp = new Order();
+		Order temp2 = test.getOrderInterface().findInCurrentOrders(temp);
+		assertFalse(temp == temp2);
 	}
 
 	/**
@@ -458,34 +458,61 @@ public class OrderInterfaceTest {
 	 */
 	@Test
 	public void testAddPizzaToOrderGood() throws PizzaException {
-		
+		PizzaSize ps = test.getManagerInterface().addPizzaSizeToMenu(6, "bloop");
+		Pizza pizza = new Pizza(toppings, ps);
+		Order temp = test.getOrderInterface().createNewOrder(itemList, pizzaList);
+		test.getOrderInterface().addPizzaToOrder(temp, pizza);
+		assertTrue(temp.getPizzas().contains(pizza));
 	}
 	
 	/**
 	 * Test method for {@link controller.OrderInterface#addPizzaToOrder(model.Order, model.Pizza)}.
-	 * Test with a null order.
+	 * Test with a null order. Expect error
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void testAddPizzaToOrderNullOrder() throws PizzaException {
-		
+		PizzaSize ps = test.getManagerInterface().addPizzaSizeToMenu(6, "bloop");
+		Pizza pizza = new Pizza(toppings, ps);
+		test.getOrderInterface().addPizzaToOrder(null, pizza);
 	}
 	
 	/**
 	 * Test method for {@link controller.OrderInterface#addPizzaToOrder(model.Order, model.Pizza)}.
-	 * Test with a non-system order.
+	 * Test with a non-system order. Expect error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddPizzaToOrderNonSystem() throws PizzaException {
-		
+		PizzaSize ps = test.getManagerInterface().addPizzaSizeToMenu(6, "bloop");
+		Pizza pizza = new Pizza(toppings, ps);
+		Order temp = new Order();
+		test.getOrderInterface().addPizzaToOrder(temp, pizza);
+		assertFalse(temp.getPizzas().contains(pizza));
+		assertFalse(test.getPizzaStore().getOrderQueue().getCurrentOrders().contains(temp));
 	}
 	
 	/**
 	 * Test method for {@link controller.OrderInterface#addPizzaToOrder(model.Order, model.Pizza)}.
-	 * Test with a null pizza.
+	 * Test with a non-system pizzasize. Expect error.
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
+	public void testAddPizzaToOrderNonSystemPizzaSize() throws PizzaException {
+		PizzaSize ps = new PizzaSize(10, "ARRRRRRRGGGGHH");
+		Pizza pizza = new Pizza(toppings, ps);
+		Order temp = new Order();
+		test.getOrderInterface().addPizzaToOrder(temp, pizza);
+		assertFalse(temp.getPizzas().contains(pizza));
+		assertFalse(test.getPizzaStore().getOrderQueue().getCurrentOrders().contains(temp));
+	}
+	
+	/**
+	 * Test method for {@link controller.OrderInterface#addPizzaToOrder(model.Order, model.Pizza)}.
+	 * Test with a null pizza. Expect error.
+	 */
+	@Test(expected=NullPointerException.class)
 	public void testAddPizzaToOrderNullPizza() throws PizzaException {
-		
+		Order temp = test.getOrderInterface().createNewOrder(itemList, pizzaList);
+		test.getOrderInterface().addPizzaToOrder(temp, null);
+		assertTrue(temp.getPizzas().size() == 0);
 	}
 
 	/**
@@ -494,33 +521,44 @@ public class OrderInterfaceTest {
 	 */
 	@Test
 	public void testAddItemToOrderGood() throws PizzaException {
-		
+		MenuItem mi = new MenuItem(5, "wings", "wings");
+		Order temp = test.getOrderInterface().createNewOrder(itemList, pizzaList);
+		test.getOrderInterface().addItemToOrder(temp, mi);
+		assertTrue(temp.getItems().contains(mi));
 	}
 	
 	/**
 	 * Test method for {@link controller.OrderInterface#addItemToOrder(model.Order, model.MenuItem)}.
-	 * Test with null order.
+	 * Test with null order. Expect error
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void testAddItemToOrderNullOrder() throws PizzaException {
-		
+		MenuItem mi = new MenuItem(5, "wings", "wings");
+		Order temp = test.getOrderInterface().createNewOrder(itemList, pizzaList);
+		test.getOrderInterface().addItemToOrder(null, mi);
+		assertFalse(temp.getItems().contains(mi));
 	}
 	
 	/**
 	 * Test method for {@link controller.OrderInterface#addItemToOrder(model.Order, model.MenuItem)}.
-	 * Test with non-system order.
+	 * Test with non-system order. Expect error
 	 */
-	@Test
+	@Test(expected=model.PizzaException.class)
 	public void testAddItemToOrderNonSystem() throws PizzaException {
-		
+		MenuItem mi = new MenuItem(5, "wings", "wings");
+		Order temp = new Order();
+		test.getOrderInterface().addItemToOrder(temp, mi);
+		assertFalse(temp.getItems().contains(mi));
 	}
 	
 	/**
 	 * Test method for {@link controller.OrderInterface#addItemToOrder(model.Order, model.MenuItem)}.
-	 * Test with a null item param.
+	 * Test with a null item param. Expect error
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void testAddItemToOrderNullItem() throws PizzaException {
-		
+		Order temp = test.getOrderInterface().createNewOrder(itemList, pizzaList);
+		test.getOrderInterface().addItemToOrder(temp, null);
+		assertTrue(temp.getItems().size() == 0);
 	}
 }
