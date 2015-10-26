@@ -70,7 +70,7 @@ public class OrderInterface {
 			for (MenuItem mi : order.getItems()){
 				//apply item pricing
 				for (Special spec : parentSystem.getPizzaStore().getSpecials()){
-					if (spec.getItem() == mi){
+					if (spec.getItem() == mi){// should this be .equals()?
 						mi.setPrice(spec.getSpecialPrice());	
 					}
 					totalSum += mi.getPrice();
