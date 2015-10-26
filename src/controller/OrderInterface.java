@@ -7,6 +7,8 @@ import model.MenuItem;
 import model.Order;
 import model.OrderStatus;
 import model.Pizza;
+import model.PizzaException;
+import model.PizzaSize;
 import model.Special;
 
 public class OrderInterface {
@@ -23,33 +25,67 @@ public class OrderInterface {
 		return temp;
 	}
 	
-	public Order createNewOrder(Customer customer, ArrayList<MenuItem> items, ArrayList<Pizza> pizzas){
+	public Order createNewOrder(Customer customer, ArrayList<MenuItem> items, ArrayList<Pizza> pizzas) throws PizzaException{
 		Order temp = new Order(customer, items, pizzas);
+		if (!(parentSystem.getPizzaStore().getCustomers().contains(customer)) || (customer == null) || (items == null) || (pizzas == null) || !(checkOrderValidity(temp))){
+			throw new PizzaException("Param error. OrderInterface.createNewOrder(Customer customer, ArrayList<MenuItem> items, ArrayList<Pizza> pizzas)");
+		}
+		else {
 		addNewOrderToNotPreppedQueue(temp);
+		}
 		return temp;
 	}
 	
-	public void applySpecialsToOrder(Order order){
-		order.tallyTotalPrice();
-		double totalSum = 0;
-		for (MenuItem mi : order.getItems()){
-			//apply item pricing
-			for (Special spec : parentSystem.getPizzaStore().getSpecials()){
-				if (spec.getItem() == mi){
-					mi.setPrice(spec.getSpecialPrice());	
-				}
-				totalSum += mi.getPrice();
+	private boolean checkOrderValidity(Order order){
+		return ((checkOrderPizzaValidity(order.getPizzas())) && (checkOrderItemValidity(order.getItems())));
+	}
+	
+	private boolean checkOrderItemValidity(ArrayList<MenuItem> items) {
+		boolean valid = true;
+		for (MenuItem mi : items){
+			if (!(parentSystem.getPizzaStore().getMenu().getMenuItems().contains(mi))){
+				valid = false;
 			}
 		}
-		for (Pizza pizza : order.getPizzas()){
-			for (Special spec : parentSystem.getPizzaStore().getSpecials()){
-				if (pizza.getSize() == spec.getSize()){
-					pizza.setPrice((spec.getSpecialPrice() + ((pizza.getToppings().length - 1) * pizza.getPizzaToppingPrice()))) ;
-				}
-				totalSum += pizza.getPrice();
+		return valid;
+	}
+
+	private boolean checkOrderPizzaValidity(ArrayList<Pizza> pizzas) {
+		boolean valid = true;
+		for (Pizza pi : pizzas){
+			if (!(parentSystem.getPizzaStore().getMenu().getPizzaSizes().contains(pi.getSize()))){
+				valid = false;
 			}
 		}
-		order.setOrderPrice(totalSum);
+		return valid;
+	}
+
+	public void applySpecialsToOrder(Order order) throws PizzaException{
+		if ((order == null) || !((parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().contains(order)) || (parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().contains(order)) || (parentSystem.getPizzaStore().getOrderQueue().getPastOrders().contains(order)))){
+			throw new PizzaException("Param error. OrderInterface.applySpecialsToOrder(Order order)");
+		}
+		else {
+			order.tallyTotalPrice();
+			double totalSum = 0;
+			for (MenuItem mi : order.getItems()){
+				//apply item pricing
+				for (Special spec : parentSystem.getPizzaStore().getSpecials()){
+					if (spec.getItem() == mi){
+						mi.setPrice(spec.getSpecialPrice());	
+					}
+					totalSum += mi.getPrice();
+				}
+			}
+			for (Pizza pizza : order.getPizzas()){
+				for (Special spec : parentSystem.getPizzaStore().getSpecials()){
+					if (pizza.getSize() == spec.getSize()){
+						pizza.setPrice((spec.getSpecialPrice() + ((pizza.getToppings().length - 1) * pizza.getPizzaToppingPrice()))) ;
+					}
+					totalSum += pizza.getPrice();
+				}
+			}
+			order.setOrderPrice(totalSum);
+		}
 	}
 
 	private void addNewOrderToNotPreppedQueue(Order order){
@@ -61,14 +97,15 @@ public class OrderInterface {
 	 * Attempts to remove the order from the order queue.
 	 * If successful, adds the order to the past orders.
 	 */
-	public void completeOrder(Order order){
-		if (parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().remove(order)){
-			order.setOrderStatus(OrderStatus.complete);
-			parentSystem.getPizzaStore().getOrderQueue().getPastOrders().add(order);
-			//TODO GUI CALLS
+	public void completeOrder(Order order) throws PizzaException{
+		if ((order == null) || !(parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().contains(order)) || !(order.getOrderStatus() == model.OrderStatus.beingMade)){
+			throw new PizzaException("Param error. OrderInterface.completeOrder(Order order)");
 		}
 		else {
-			//TODO GUI POPUP
+			if (parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().remove(order)){
+				order.setOrderStatus(OrderStatus.complete);
+				parentSystem.getPizzaStore().getOrderQueue().getPastOrders().add(order);
+			}
 		}
 	}
 	
@@ -76,13 +113,15 @@ public class OrderInterface {
 	/*
 	 * Cancels an order currently being worked on. Moves it to complete
 	 */
-	public void cancelCurrentOrder(Order order){
-		if (parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(order)){
-			order.setStatus(OrderStatus.canceled);
-			parentSystem.getPizzaStore().getOrderQueue().getCanceledOrders().add(order);
+	public void cancelCurrentOrder(Order order) throws PizzaException{
+		if ((order == null) || !(parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().contains(order)) || (order.getOrderStatus() != model.OrderStatus.pending)){
+			throw new PizzaException("Bad param. OrderInterface.cancelCurrentOrder(Order order)");
 		}
 		else {
-			//TODO GUI POPUP?
+			if (parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(order)){
+				order.setStatus(OrderStatus.canceled);
+				parentSystem.getPizzaStore().getOrderQueue().getCanceledOrders().add(order);
+			}
 		}
 	}
 	
@@ -101,14 +140,15 @@ public class OrderInterface {
 	 * USED WHEN COOK STARTS WORKING ON AN ORDER. TAKES ORDER OUT OF
 	 * THE currentOrder queue and places it in ordersBeingMade
 	 */
-	public void prepOrder(Order order){
-		//if order is in the current order queue
-		if (parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(order)){
-			order.setOrderStatus(OrderStatus.beingMade);
-			parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().add(order);
+	public void prepOrder(Order order) throws PizzaException{
+		if ((order == null) || !(parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().contains(order)) || !(order.getOrderStatus() == model.OrderStatus.pending) || ((order.getItems().isEmpty() && order.getPizzas().isEmpty()))){
+			throw new PizzaException("Param error. OrderInterface.prepOrder(Order order)");
 		}
 		else {
-			//TODO GUI POPUP
+			//if order is in the current order queue
+			parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(order);
+			order.setOrderStatus(OrderStatus.beingMade);
+			parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().add(order);
 		}
 	}
 	
@@ -116,24 +156,38 @@ public class OrderInterface {
 	 * This searches the currentOrders queue, looking for the given order.
 	 * Returns the order if found, else null
 	 */
-	public Order findInCurrentOrders(Order order){
+	public Order findInCurrentOrders(Order order) throws PizzaException{
+		if ((order == null) || !(parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().contains(order))){
+			throw new PizzaException("Param error. OrderInterface.findInCurrentOrders(Order order)");
+		}
+		else {
 		for (Order o : parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders()){
 			if (order == o){
 				return o;
 			}
 		}
 		return null;
+		}
 	}
 
-	public void addPizzaToOrder(Order order, Pizza pizza) {
+	public void addPizzaToOrder(Order order, Pizza pizza) throws PizzaException {
+		if ((order == null) || (pizza == null) || !(checkOrderValidity(order)) || !(parentSystem.getPizzaStore().getMenu().getPizzaSizes().contains(pizza.getSize()))){
+			throw new PizzaException("Param error. OrderInterface.addPizzaToOrder(Order order, Pizza pizza)");
+		}
+		else {
 		Order temp = findInCurrentOrders(order);
 		temp.getPizzas().add(pizza);
-		//TODO GUI POPUP IF ORDER ALREADY BEING MADE
+		}
 	}
 
-	public void addItemToOrder(Order order, MenuItem menuItem) {
-		Order temp = findInCurrentOrders(order);
-		temp.getItems().add(menuItem);
+	public void addItemToOrder(Order order, MenuItem menuItem) throws PizzaException {
+		if ((order == null) || (menuItem == null) || !(parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().contains(order)) || !(parentSystem.getPizzaStore().getMenu().getMenuItems().contains(menuItem))){
+			throw new PizzaException("Param error. OrderInterface.addItemToOrder(Order order, MenuItem menuItem)");
+		}
+		else {
+			Order temp = findInCurrentOrders(order);
+			temp.getItems().add(menuItem);
+		}
 		
 	}
 }

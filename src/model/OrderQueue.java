@@ -32,13 +32,8 @@ public class OrderQueue {
 	public List<Order> getOrdersBeingMade() {
 		return ordersBeingMade;
 	}
-	
-	public List<Order> getUnpaidOrders(){
-		return canceledOrders;
-	}
 
 	public List<Order> getCanceledOrders() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.canceledOrders;
 	}
 }
