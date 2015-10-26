@@ -1,14 +1,18 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer {
 	
-	private ContactInfo contactInfo;
+	private List<ContactInfo> contactList;
 	
 	/*
 	 * Create customer with known information. Probably not used much
 	 */
 	public Customer(String name, String address, String phone){
-		this.contactInfo = new ContactInfo(name, address, phone);
+		contactList = new ArrayList<ContactInfo>();
+		this.contactList.add(new ContactInfo(name, address, phone));
 	}
 	
 	/*
@@ -16,38 +20,42 @@ public class Customer {
 	 * Will be used often for order creation.
 	 */
 	public Customer(){
-		this.contactInfo = new ContactInfo();
-		setName("Default Name");
-		setAddress("Default Address");
-		setPhone("Default Phone");
+		this.contactList = new ArrayList<ContactInfo>();
+		this.contactList.add(new ContactInfo("Default Name", "Default Address", "Default Phone"));
 	}
 	
 	public void setName(String name){
-		contactInfo = new ContactInfo(name, contactInfo.getAddress(), contactInfo.getPhone());
+		ContactInfo temp = this.contactList.get(contactList.size() - 1);
+		temp.setName(name);
 	}
 	
 	public void setAddress(String address){
-		contactInfo = new ContactInfo(contactInfo.getName(), address, contactInfo.getPhone());
+		ContactInfo temp = this.contactList.get(contactList.size() - 1);
+		temp.setAddress(address);
 	}
 
 	public void setPhone(String phone){
-		contactInfo = new ContactInfo(contactInfo.getName(), contactInfo.getAddress(), phone);
+		ContactInfo temp = this.contactList.get(contactList.size() - 1);
+		temp.setPhone(phone);
 	}
 
 	public String getName() {
-		return this.contactInfo.getName();
+		ContactInfo temp = this.contactList.get(contactList.size() - 1);
+		return temp.getName();
 	}
 	
 	public String getPhone(){
-		return this.contactInfo.getPhone();
+		ContactInfo temp = this.contactList.get(contactList.size() - 1);
+		return temp.getPhone();
 	}
 	
 	public String getAddress(){
-		return this.getContactInfo().getAddress();
+		ContactInfo temp = this.contactList.get(contactList.size() - 1);
+		return temp.getAddress();
 	}
 	
 	public ContactInfo getContactInfo(){
-		return this.contactInfo;
+		return this.contactList.get(contactList.size() - 1);
 	}
 	
 	/*
@@ -56,7 +64,7 @@ public class Customer {
 	@Override
 	public int hashCode(){
 		int hash = 7;
-		hash = 31 * hash + (contactInfo == null ? 0 : this.getContactInfo().hashCode());
+		hash = 31 * hash + (contactList == null ? 0 : this.getContactInfo().hashCode());
 		return hash;
 	}
 	
@@ -79,5 +87,10 @@ public class Customer {
 		temp += this.getAddress() + '\n';
 		temp += this.getPhone();
 		return temp;
+	}
+
+	public ContactInfo addNewContactInfo(ContactInfo contactInfo) {
+		this.contactList.add(contactInfo);
+		return contactInfo;
 	}
 }
