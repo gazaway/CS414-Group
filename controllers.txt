@@ -1,9 +1,2 @@
 system administrator    (do last)
 	- hire, promote, fire (can you change from an employee to a cook?)
-customer interface; for editing profile  (NEXT JG TASK)
-	- create, edit (login info / payment info?), cancel
-manager interface
-	- compPrice?  I think I'll actually put this in with the OrderInterface, would be more coherent that way. We'll just restrict its access
-	              via the GUI
-	- menu interface			(BB)
-		create, edit, pricing?
