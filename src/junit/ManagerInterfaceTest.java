@@ -77,6 +77,65 @@ public class ManagerInterfaceTest {
 		//just clear it before there is a menu
 		test.getManagerInterface().clearWholeMenu();
 	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#modifySpecialPrice()}.
+	 * Test case with good inputs
+	 */
+	@Test
+	public void testSpecialPriceGood() throws PizzaException {
+		//create menu item, add it to the menu. Assert menu contains the item.
+		MenuItem item = test.getManagerInterface().addItemToMenu(5.00, "Wings", "Wings");
+		assertTrue(test.getPizzaStore().getMenu().getMenuItems().contains(item));
+		//create the special, add it to the menu. Assert the special is recorded.
+		Special spec = test.getManagerInterface().createSpecialWithItem("Cheap Wings!", item, 2.00);
+		assertTrue(test.getPizzaStore().getSpecials().contains(spec));	
+		test.getManagerInterface().modifySpecialPrice(spec, 1);
+		assertTrue(spec.getSpecialPrice() == 1);
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#modifySpecialPrice()}.
+	 * Test case with non-system special. Expect error.
+	 */
+	@Test(expected=model.PizzaException.class)
+	public void testSpecialPriceBad() throws PizzaException {
+		//create menu item, add it to the menu. Assert menu contains the item.
+		MenuItem item = test.getManagerInterface().addItemToMenu(5.00, "Wings", "Wings");
+		assertTrue(test.getPizzaStore().getMenu().getMenuItems().contains(item));
+		//create the special, add it to the menu. Assert the special is recorded.
+		Special spec = new Special("wings");
+		assertFalse(test.getPizzaStore().getSpecials().contains(spec));	
+		test.getManagerInterface().modifySpecialPrice(spec, 1);
+		assertTrue(spec.getSpecialPrice() == 1);
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#modifySpecialPrice()}.
+	 * Test case with null special. Expect error.
+	 * @throws PizzaException 
+	 */
+	@Test(expected=NullPointerException.class)
+	public void testSpecialPriceNull() throws PizzaException {
+		test.getManagerInterface().modifySpecialPrice(null, 1);
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#modifySpecialPrice()}.
+	 * Test case with negative price. Expect error.
+	 * @throws PizzaException 
+	 */
+	@Test(expected=model.PizzaException.class)
+	public void testSpecialPriceBadNeg() throws PizzaException {
+		//create menu item, add it to the menu. Assert menu contains the item.
+		MenuItem item = test.getManagerInterface().addItemToMenu(5.00, "Wings", "Wings");
+		assertTrue(test.getPizzaStore().getMenu().getMenuItems().contains(item));
+		//create the special, add it to the menu. Assert the special is recorded.
+		Special spec = test.getManagerInterface().createSpecialWithItem("wings", item, 2);
+		assertTrue(test.getPizzaStore().getSpecials().contains(spec));	
+		test.getManagerInterface().modifySpecialPrice(spec, -1);
+		assertTrue(spec.getSpecialPrice() == 2);
+	}
 
 	/**
 	 * Test method for {@link controller.ManagerInterface#createSpecialWithItem(java.lang.String, model.MenuItem, double)}.

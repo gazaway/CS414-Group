@@ -90,6 +90,14 @@ public class ManagerInterface {
 		} else {
 			special.removeItemFromSpecial();
 		}
+	}	
+
+	public void modifySpecialPrice(Special special, double price) throws PizzaException {
+		if (!(parentSystem.getPizzaStore().getSpecials().contains(special)) || (special == null) || (special.getItem() == null) || (price < 0) || (Double)price == null) {
+			throw new PizzaException("Incorrect parameter removeItemFromSpecial(<" + special.getSpecialName() + ">:Special)");
+		} else {
+			special.setSpecialPrice(price);
+		}	
 	}
 
 	public Special addPizzaToSpecial(Special special, PizzaSize size, double price) throws PizzaException {
