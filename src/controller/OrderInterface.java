@@ -129,10 +129,16 @@ public class OrderInterface {
 	 * Grabs the next order, returns it.
 	 * Places order into the ordersBeingMade queue.
 	 */
-	public Order grabNextOrder(){
-		Order temp = parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(0);
-		temp.setOrderStatus(OrderStatus.beingMade);
-		parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().add(temp);
+	public Order grabNextOrder() throws PizzaException{
+		Order temp;
+		if (parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().size() > 0){
+			temp = parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().remove(0);
+			temp.setOrderStatus(OrderStatus.beingMade);
+			parentSystem.getPizzaStore().getOrderQueue().getOrdersBeingMade().add(temp);
+		}
+		else {
+			throw new PizzaException("OrderInterface.grabNextOrder() - No order to grab.");
+		}
 		return temp;
 	}
 	

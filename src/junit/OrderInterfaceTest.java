@@ -565,4 +565,31 @@ public class OrderInterfaceTest {
 		test.getOrderInterface().addItemToOrder(temp, null);
 		assertTrue(temp.getItems().size() == 0);
 	}
+	
+	/**
+	 * Test method for {@link controller.OrderInterface#createNewOrder(model.Customer, java.util.ArrayList, java.util.ArrayList)}.
+	 * Test with no order in queue.
+	 */
+	@Test(expected=model.PizzaException.class)
+	public void testGrabNextOrderBad() throws PizzaException {
+		assertTrue(test.getPizzaStore().getOrderQueue().getCurrentOrders().size() == 0);
+		test.getOrderInterface().grabNextOrder();
+	}
+	
+	/**
+	 * Test method for {@link controller.OrderInterface#createNewOrder(model.Customer, java.util.ArrayList, java.util.ArrayList)}.
+	 * Test with an order in the queue.
+	 */
+	@Test
+	public void testGrabNextOrderGood() throws PizzaException {
+		Customer cust = test.getCustomerInterface().createNewCustProfile("Jack", "address", "phone");
+		PizzaSize ps = test.getManagerInterface().addPizzaSizeToMenu(10, "Large");
+		pizzaList.add(new Pizza(toppings, ps));
+		MenuItem mi = test.getManagerInterface().addItemToMenu(5, "wing", "wing");
+		itemList.add(mi);
+		Order temp = test.getOrderInterface().createNewOrder(cust, itemList, pizzaList);
+		assertTrue(test.getPizzaStore().getOrderQueue().getCurrentOrders().contains(temp));
+		Order grab = test.getOrderInterface().grabNextOrder();
+		assertTrue(grab == temp);
+	}
 }
