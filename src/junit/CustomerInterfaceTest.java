@@ -55,7 +55,7 @@ public class CustomerInterfaceTest {
 	 * Test method for {@link controller.CustomerInterface#createNewCustProfile(java.lang.String, java.lang.String, java.lang.String)}.
 	 * Test with null first param. Expect error.
 	 */
-	@Test(expected=model.PizzaException.class)
+	@Test(expected=NullPointerException.class)
 	public void testCreateNewCustProfileNull1st() throws PizzaException{
 		Customer temp = test.getCustomerInterface().createNewCustProfile(null, "Some place", "phone");
 		assertFalse(test.getPizzaStore().getCustomers().contains(temp));
@@ -75,7 +75,7 @@ public class CustomerInterfaceTest {
 	 * Test method for {@link controller.CustomerInterface#createNewCustProfile(java.lang.String, java.lang.String, java.lang.String)}.
 	 * Test with null second param. Expect error.
 	 */
-	@Test(expected=model.PizzaException.class)
+	@Test(expected=NullPointerException.class)
 	public void testCreateNewCustProfileNull2nd() throws PizzaException{
 		Customer temp = test.getCustomerInterface().createNewCustProfile("John", null, "phone");
 		assertFalse(test.getPizzaStore().getCustomers().contains(temp));
@@ -95,7 +95,7 @@ public class CustomerInterfaceTest {
 	 * Test method for {@link controller.CustomerInterface#createNewCustProfile(java.lang.String, java.lang.String, java.lang.String)}.
 	 * Test with null third param. Expect error.
 	 */
-	@Test(expected=model.PizzaException.class)
+	@Test(expected=NullPointerException.class)
 	public void testCreateNewCustProfileNull3rd() throws PizzaException{
 		Customer temp = test.getCustomerInterface().createNewCustProfile("John", "Some place", null);
 		assertFalse(test.getPizzaStore().getCustomers().contains(temp));
@@ -153,7 +153,7 @@ public class CustomerInterfaceTest {
 	/**
 	 * Test method for {@link controller.CustomerInterface#editCustomerName(model.Customer, java.lang.String)}.
 	 */
-	@Test(expected=model.PizzaException.class)
+	@Test(expected=NullPointerException.class)
 	public void testEditCustomerNameNullString() throws PizzaException{
 		Customer temp = test.getCustomerInterface().createNewCustProfile("John", "Some place", "phone");
 		assertTrue(test.getPizzaStore().getCustomers().contains(temp));
@@ -198,7 +198,7 @@ public class CustomerInterfaceTest {
 	 * Test method for {@link controller.CustomerInterface#editCustomerAddress(model.Customer, java.lang.String)}.
 	 * Test with a null string. Expect error
 	 */
-	@Test(expected=model.PizzaException.class)
+	@Test(expected=NullPointerException.class)
 	public void testEditCustomerAddressNullString() throws PizzaException{
 		Customer temp = test.getCustomerInterface().createNewCustProfile("John", "Some place", "phone");
 		assertTrue(test.getPizzaStore().getCustomers().contains(temp));
@@ -267,7 +267,7 @@ public class CustomerInterfaceTest {
 	 * Test method for {@link controller.CustomerInterface#editCustomerPhone(model.Customer, java.lang.String)}.
 	 * Test with a null string param. Expect error
 	 */
-	@Test(expected=model.PizzaException.class)
+	@Test(expected=NullPointerException.class)
 	public void testEditCustomerPhoneNullString() throws PizzaException{
 		Customer temp = test.getCustomerInterface().createNewCustProfile("John", "Some place", "phone");
 		assertTrue(test.getPizzaStore().getCustomers().contains(temp));
