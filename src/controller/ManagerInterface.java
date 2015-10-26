@@ -21,7 +21,7 @@ public class ManagerInterface {
 
 	public Special createSpecialWithItem(String name, MenuItem item, double price) throws PizzaException {
 		Special temp = new Special(name.trim());
-		if ((name.trim() == ("")) || (name == null) || (item == null) || (price < 0)|| ((Double) price == null)) {
+		if ((name.trim().equals("")) || (name == null) || (item == null) || (price < 0)|| ((Double) price == null)) {
 			throw new PizzaException("Incorrect parameter createSpecialWithItem(<" + name.trim() + ">:String, <"
 						+ item.getName() + ">:MenuItem, <" + price + ">:double)");
 		} else {
@@ -50,7 +50,7 @@ public class ManagerInterface {
 
 	public Special createSpecialWithPizza(String name, PizzaSize size, double price) throws PizzaException {
 		Special temp = new Special(name);
-		if ((name.trim() == ("")) || (name == null) || (size == null)
+		if ((name.trim().equals("")) || (name == null) || (size == null)
 				|| !(parentSystem.getPizzaStore().getMenu().getPizzaSizes().contains(size)) || (price < 0)
 				|| ((Double) price == null)) {
 			throw new PizzaException("Incorrect parameter createSpecialWithPizza(<" + name.trim() + ">:String, <"
@@ -121,11 +121,9 @@ public class ManagerInterface {
 				special.addPizzaToSpecial(size, price);
 				return special;
 			} else {
-				Special temp = new Special("WILL GET FROM GUI");
-				temp.addPizzaToSpecial(size, price);
-				// TODO GUI POPUP giving options for making a new special
-				// make the special using createSpecialWithPizza.
-				return temp;
+				special.removePizzaSizeFromSpecial();
+				special.addPizzaToSpecial(size, price);
+				return special;
 			}
 		}
 	}
@@ -140,7 +138,7 @@ public class ManagerInterface {
 	}
 
 	public MenuItem addItemToMenu(double price, String name, String desc) throws PizzaException{
-		if ((name == null) || (name.trim() == "") || (price < 0) || ((Double) price == null) || (desc == null)) {
+		if ((name == null) || (name.trim().equals("")) || (price < 0) || ((Double) price == null) || (desc == null)) {
 			throw new PizzaException("Incorrect parameter addItemToSpecial(<" + name + ">:String, <" + desc
 						+ ">:String, <" + price + ">:double)");
 		} else {
@@ -164,7 +162,7 @@ public class ManagerInterface {
 
 	public PizzaSize addPizzaSizeToMenu(double price, String desc) throws PizzaException{
 		PizzaSize temp = new PizzaSize(price, desc);
-		if (!parentSystem.getPizzaStore().getMenu().getPizzaSizes().contains(temp) && (price > 0) && !(desc.trim() == "")) {
+		if (!parentSystem.getPizzaStore().getMenu().getPizzaSizes().contains(temp) && (price > 0) && !(desc.trim().equals(""))) {
 			parentSystem.getPizzaStore().getMenu().getPizzaSizes().add(temp);
 			return temp;
 		} else {
@@ -184,7 +182,7 @@ public class ManagerInterface {
 	public PizzaTopping addPizzaToppingToMenu(String name, String desc) throws PizzaException {
 		PizzaTopping temp = new PizzaTopping(name, desc);
 		if ((parentSystem.getPizzaStore().getMenu().getPizzaSizes().contains(temp)) || (name == null)
-				|| (name.trim() == "") || (desc == null)) {
+				|| (name.trim().equals("")) || (desc == null)) {
 			throw new PizzaException("Incorrect parameter. addPizzaToppingToMenu(String name, String desc)");
 		} else {
 			if (parentSystem.getPizzaStore().getMenu().getPizzaToppings().contains(temp)) {

@@ -65,4 +65,28 @@ public class Special {
 	public boolean hasItem() {
 		return (this.item != null);
 	}
+	
+	/*
+	 * Equals overrides are needed so we can use pre-made containers that use .contains
+	 */
+	@Override
+	public int hashCode(){
+		int hash = 7;
+		hash = 31 * hash + (item == null ? 0 : this.getItem().hashCode());
+		hash = 31 * hash + (size == null ? 0 : this.getSize().hashCode());
+		hash = 31 * hash + (specialName == null ? 0 : this.getSpecialName().hashCode());
+		return hash;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		if (this == (o)){
+			return true;
+		}
+		if ((o == null) || (o.getClass() != this.getClass())){
+			return false;
+		}
+		Special c = (Special)o;
+		return ((this.getItem().equals(c.getItem())) && (this.getSize().equals(c.getSize())) && (this.getSpecialName().equals(c.getSpecialName())) && (this.price == (c.price)));
+	}
 }

@@ -98,14 +98,14 @@ public class Order {
 	
 	@Override
 	public boolean equals(Object o){
-		if (this == o){
+		if (this == (o)){
 			return true;
 		}
 		if ((o == null) || (o.getClass() != this.getClass())){
 			return false;
 		}
 		Order c = (Order)o;
-		return ((this.getCustomer() == c.getCustomer()) && (this.getItems() == c.getItems()) && (this.getPizzas() == c.getPizzas()) && (this.getOrderStatus() == c.getOrderStatus()));
+		return ((this.getCustomer().equals(c.getCustomer())) && (this.getItems().equals(c.getItems())) && (this.getPizzas().equals(c.getPizzas())) && (this.getOrderStatus().equals(c.getOrderStatus())));
 	}
 	
 	@Override

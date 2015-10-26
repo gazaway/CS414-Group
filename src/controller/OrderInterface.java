@@ -8,7 +8,6 @@ import model.Order;
 import model.OrderStatus;
 import model.Pizza;
 import model.PizzaException;
-import model.PizzaSize;
 import model.Special;
 
 public class OrderInterface {
@@ -90,7 +89,6 @@ public class OrderInterface {
 
 	private void addNewOrderToNotPreppedQueue(Order order){
 		parentSystem.getPizzaStore().getOrderQueue().getCurrentOrders().add(order);
-		//TODO GUI CALLS
 	}
 	
 	/*
