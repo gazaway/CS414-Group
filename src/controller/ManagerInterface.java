@@ -38,6 +38,15 @@ public class ManagerInterface {
 		}
 		return temp;
 	}
+	
+	public void deleteSpecial(Special special) throws PizzaException{
+		if (!(parentSystem.getPizzaStore().getSpecials().contains(special)) || (special == null)){
+			throw new PizzaException("Incorrect paramete ManagerInterface.deleteSpecial(Special special)");
+		}
+		else {
+			parentSystem.getPizzaStore().getSpecials().remove(special);
+		}
+	}
 
 	public Special createSpecialWithPizza(String name, PizzaSize size, double price) throws PizzaException {
 		Special temp = new Special(name);

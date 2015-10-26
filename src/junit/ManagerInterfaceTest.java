@@ -79,6 +79,47 @@ public class ManagerInterfaceTest {
 	}
 	
 	/**
+	 * Test method for {@link controller.ManagerInterface#deleteSpecial(Special special)}.
+	 * Test case with good inputs
+	 */
+	@Test
+	public void testDeleteSpecialGood() throws PizzaException {
+		MenuItem item = test.getManagerInterface().addItemToMenu(5.00, "Wings", "Wings");
+		//create the special, add it to the menu. Assert the special is recorded.
+		Special spec = test.getManagerInterface().createSpecialWithItem("Cheap Wings!", item, 2.00);
+		assertTrue(test.getPizzaStore().getSpecials().contains(spec));	
+		test.getManagerInterface().deleteSpecial(spec);
+		assertTrue(test.getPizzaStore().getSpecials().size() == 0);
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#deleteSpecial(Special special)}.
+	 * Test case with null input special
+	 */
+	@Test(expected=model.PizzaException.class)
+	public void testDeleteSpecialNull() throws PizzaException {
+		MenuItem item = test.getManagerInterface().addItemToMenu(5.00, "Wings", "Wings");
+		//create the special, add it to the menu. Assert the special is recorded.
+		Special spec = test.getManagerInterface().createSpecialWithItem("Cheap Wings!", item, 2.00);
+		assertTrue(test.getPizzaStore().getSpecials().contains(spec));	
+		test.getManagerInterface().deleteSpecial(null);
+		assertTrue(test.getPizzaStore().getSpecials().size() == 1);
+	}
+	
+	/**
+	 * Test method for {@link controller.ManagerInterface#deleteSpecial(Special special)}.
+	 * Test case with non-system input special
+	 */
+	@Test(expected=model.PizzaException.class)
+	public void testDeleteSpecialBad() throws PizzaException {
+		MenuItem item = test.getManagerInterface().addItemToMenu(5.00, "Wings", "Wings");
+		//create the special, add it to the menu. Assert the special is recorded.
+		Special spec = new Special("Cheap Wings!");
+		assertFalse(test.getPizzaStore().getSpecials().contains(spec));
+		test.getManagerInterface().deleteSpecial(spec);
+	}
+	
+	/**
 	 * Test method for {@link controller.ManagerInterface#modifySpecialPrice()}.
 	 * Test case with good inputs
 	 */
