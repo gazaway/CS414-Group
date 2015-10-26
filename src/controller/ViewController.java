@@ -60,8 +60,12 @@ public class ViewController {
         orderList.setCellFactory(param -> new OrderItemCell());
         orderList.setItems(orderItems);
 
+        //fill menu here
         MenuItem testItem = new MenuItem(1.00, "Test Name", "Test Descr");
         menuItems.add(testItem);
+        
+        PizzaSystem pizzaSystem = new PizzaSystem();
+        // need a menu with items to populate item list
     }
 
     public void addOrderItem(MenuItem orderItem) {
