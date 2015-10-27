@@ -12,12 +12,13 @@ public class CookController {
     @FXML
     private ListView orderList;
 
-    private ObservableList<MenuItem> orderItems;
+    private ObservableList<MenuItem> currentOrdersNotPrepped;
+    private ObservableList<MenuItem> ordersBeingMade;
 
     private static CookController instance;
 
     private CookController() {
-        orderItems = CustomerController.getInstance().getOrderItems();
+    	currentOrdersNotPrepped = CustomerController.getInstance().getOrderItems();
     }
 
     public static CookController getInstance() {
@@ -30,7 +31,7 @@ public class CookController {
     @FXML
     protected void initialize() {
         orderList.setCellFactory(param -> new CookOrderItemCell());
-        orderList.setItems(orderItems);
+        orderList.setItems(currentOrdersNotPrepped);
     }
 
     @FXML
