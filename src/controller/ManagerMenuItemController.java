@@ -3,12 +3,10 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import model.MenuItem;
 
 import java.text.NumberFormat;
-import java.util.Currency;
 import java.util.Locale;
 
 public class ManagerMenuItemController {
@@ -19,16 +17,13 @@ public class ManagerMenuItemController {
     private Parent root;
 
     @FXML
-    private Label priceLabel;
+    private TextField nameField;
 
     @FXML
-    private Label nameLabel;
+    private TextField priceField;
 
     @FXML
-    private Label descriptionLabel;
-
-    @FXML
-    private Button addToCartButton;
+    private TextField descriptionField;
 
     private static Locale currentLocale = new Locale.Builder().setLanguage("en").setRegion("US").build();
 
@@ -38,11 +33,10 @@ public class ManagerMenuItemController {
 
     public void setMenuItem(MenuItem item) {
         this.item = item;
-        Currency currentCurrency = Currency.getInstance(currentLocale);
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(currentLocale);
-        priceLabel.setText(currencyFormatter.format(item.getPrice()));
-        nameLabel.setText(item.getName());
-        descriptionLabel.setText(item.getDesc());
+        priceField.setText(currencyFormatter.format(item.getPrice()));
+        nameField.setText(item.getName());
+        descriptionField.setText(item.getDesc());
     }
 
     @FXML

@@ -10,12 +10,13 @@
     <ColumnConstraints hgrow="SOMETIMES" />
   </columnConstraints>
   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints vgrow="SOMETIMES" />
     <RowConstraints vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ListView fx:id="menuList" />
-      <GridPane hgap="5.0" vgap="5.0" GridPane.rowIndex="1">
+      <ListView fx:id="menuList" GridPane.rowIndex="1" />
+      <GridPane hgap="5.0" vgap="5.0" GridPane.rowIndex="2">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
           <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
@@ -29,7 +30,7 @@
             <TextField promptText="name" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <TextField promptText="description" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <TextField promptText="price" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" onAction="#handleSave" prefWidth="65.0" text="Save" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#handleSave" prefWidth="65.0" text="Add" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -39,5 +40,6 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </GridPane.margin>
       </GridPane>
+      <Label text="Manage menu" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
    </children>
 </GridPane>

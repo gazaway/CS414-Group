@@ -27,9 +27,6 @@ public class CustomerMenuItemController {
     @FXML
     private Label descriptionLabel;
 
-    @FXML
-    private Button addToCartButton;
-
     private static Locale currentLocale = new Locale.Builder().setLanguage("en").setRegion("US").build();
 
     public Parent getRoot() {
@@ -38,7 +35,6 @@ public class CustomerMenuItemController {
 
     public void setMenuItem(MenuItem item) {
         this.item = item;
-        Currency currentCurrency = Currency.getInstance(currentLocale);
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(currentLocale);
         priceLabel.setText(currencyFormatter.format(item.getPrice()));
         nameLabel.setText(item.getName());
