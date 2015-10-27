@@ -5,15 +5,13 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
-import javafx.util.Callback;
 import model.MenuItem;
 import model.MenuItemCell;
 import model.OrderItemCell;
 
-public class ViewController {
+public class CustomerController {
 
     @FXML
     private Tab menuTab;
@@ -33,27 +31,23 @@ public class ViewController {
     private ObservableList<MenuItem> menuItems;
     private ObservableList<MenuItem> orderItems;
 
-    private static ViewController instance;
+    private static CustomerController instance;
 
-    private ViewController() {
+    private CustomerController() {
         menuItems = FXCollections.observableArrayList();
         orderItems = FXCollections.observableArrayList();
         orderItems.addListener((ListChangeListener) change -> checkoutTab.setDisable(orderItems.isEmpty()));
     }
 
-    public static ViewController getInstance() {
+    public static CustomerController getInstance() {
         if(null == instance) {
-            instance = new ViewController();
+            instance = new CustomerController();
         }
         return instance;
     }
 
     @FXML
     protected void initialize() {
-        menuTab.setDisable(false);
-        checkoutTab.setDisable(true);
-        billingTab.setDisable(true);
-
         menuList.setCellFactory(param -> new MenuItemCell());
         menuList.setItems(menuItems);
 

@@ -10,6 +10,10 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    private Stage customerStage;
+    private Stage managerStage;
+    private Stage cookStage;
+
     public  void run(String[] args) {
         launch(args);
     }
@@ -17,8 +21,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws RuntimeException {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainView.fxml"));
-            loader.setController(ViewController.getInstance());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/CustomerView.fxml"));
+            loader.setController(CustomerController.getInstance());
             Parent root = (Parent) loader.load();
             Scene scene = new Scene(root, 600.0, 600.0);
             stage.setTitle("Mario Brothers Pizza");

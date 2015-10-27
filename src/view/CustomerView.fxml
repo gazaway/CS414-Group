@@ -45,7 +45,7 @@
             </HBox>
          </content>
       </Tab>
-      <Tab fx:id="checkoutTab" closable="false" text="Checkout">
+      <Tab fx:id="checkoutTab" closable="false" disable="true" text="Checkout">
         <content>
             <HBox alignment="CENTER">
                <children>
@@ -152,7 +152,7 @@
             </HBox>
         </content>
       </Tab>
-      <Tab fx:id="billingTab" closable="false" text="Billing">
+      <Tab fx:id="billingTab" closable="false" disable="true" text="Billing">
         <content>
             <HBox alignment="CENTER">
                <children>
@@ -197,7 +197,20 @@
                                    <Insets bottom="5.0" />
                                 </VBox.margin>
                              </Label>
-                             <DatePicker />
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <TextField>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
                           </children>
                           <opaqueInsets>
                              <Insets />

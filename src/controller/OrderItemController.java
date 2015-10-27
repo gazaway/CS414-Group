@@ -7,10 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import model.MenuItem;
 
-import java.text.NumberFormat;
-import java.util.Currency;
-import java.util.Locale;
-
 public class OrderItemController {
 
     private MenuItem item;
@@ -35,6 +31,6 @@ public class OrderItemController {
 
     @FXML
     protected void handleRemoveFromCart(ActionEvent event) {
-        ViewController.getInstance().removeOrderItem(item);
+        CustomerController.getInstance().removeOrderItem(item);
     }
 }

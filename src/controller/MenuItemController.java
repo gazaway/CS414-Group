@@ -47,6 +47,6 @@ public class MenuItemController {
 
     @FXML
     protected void handleAddToCart(ActionEvent event) {
-        ViewController.getInstance().addOrderItem(item);
+        CustomerController.getInstance().addOrderItem(item);
     }
 }
