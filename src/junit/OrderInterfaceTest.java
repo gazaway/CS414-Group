@@ -27,7 +27,7 @@ public class OrderInterfaceTest {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		test = new PizzaSystem();
+		test = PizzaSystem.getInstance();
 		toppings = new PizzaTopping[1];
 		toppings[0] = ham;
 	}

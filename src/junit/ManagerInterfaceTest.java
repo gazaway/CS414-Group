@@ -21,7 +21,7 @@ public class ManagerInterfaceTest {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		test = new PizzaSystem();
+		test = PizzaSystem.getInstance();
 	}
 	
 	@Before

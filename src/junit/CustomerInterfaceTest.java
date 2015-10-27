@@ -20,7 +20,7 @@ public class CustomerInterfaceTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		test = new PizzaSystem();
+		test = PizzaSystem.getInstance();
 	}
 
 	/**
