@@ -34,6 +34,7 @@ public class ManagerController {
 
     @FXML
     protected void handleAdd(ActionEvent event) {
+        nameField.requestFocus();
     }
 
     @FXML
