@@ -10,6 +10,7 @@ import javafx.scene.control.Tab;
 import model.MenuItem;
 import model.CustomerMenuItemCell;
 import model.CustomerOrderItemCell;
+import model.Order;
 
 public class CustomerController {
 
@@ -70,6 +71,8 @@ public class CustomerController {
 
     public void addOrderItem(MenuItem orderItem) {
         orderItems.add(orderItem);
+        Order order = new Order();
+        order.getItems().add(orderItem);
     }
 
     public void removeOrderItem(MenuItem orderItem) {

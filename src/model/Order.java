@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import controller.PizzaSystem;
 import javafx.beans.property.DoubleProperty;
@@ -8,12 +9,12 @@ import javafx.beans.property.DoubleProperty;
 public class Order {
 	
 	private Customer customer;	
-	private ArrayList<MenuItem> items;
-	private ArrayList<Pizza> pizzas;
+	private List<MenuItem> items;
+	private List<Pizza> pizzas;
 	private OrderStatus status;
 	private DoubleProperty totalCost;
 
-	public ArrayList<MenuItem> getItems() {
+	public List<MenuItem> getItems() {
 		return items;
 	}
 
@@ -80,7 +81,7 @@ public class Order {
 		this.status = status;
 	}
 	
-	public ArrayList<Pizza> getPizzas() {
+	public List<Pizza> getPizzas() {
 		return pizzas;
 	}
 	

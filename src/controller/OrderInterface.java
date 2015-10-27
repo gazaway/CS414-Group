@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Customer;
 import model.MenuItem;
@@ -39,7 +40,7 @@ public class OrderInterface {
 		return ((checkOrderPizzaValidity(order.getPizzas())) && (checkOrderItemValidity(order.getItems())));
 	}
 	
-	private boolean checkOrderItemValidity(ArrayList<MenuItem> items) {
+	private boolean checkOrderItemValidity(List<MenuItem> items) {
 		boolean valid = true;
 		for (MenuItem mi : items){
 			if (!(parentSystem.getPizzaStore().getMenu().getMenuItems().contains(mi))){
@@ -49,7 +50,7 @@ public class OrderInterface {
 		return valid;
 	}
 
-	private boolean checkOrderPizzaValidity(ArrayList<Pizza> pizzas) {
+	private boolean checkOrderPizzaValidity(List<Pizza> pizzas) {
 		boolean valid = true;
 		for (Pizza pi : pizzas){
 			if (!(parentSystem.getPizzaStore().getMenu().getPizzaSizes().contains(pi.getSize()))){
