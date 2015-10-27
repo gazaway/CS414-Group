@@ -1,0 +1,5 @@
+6 pc Buffalo Wings, HOT!, 6.0
+12 pc Buffalo Wings, HOT!, 10.0
+Bread Sticks, plain bread sticks, 6.0
+Cheesey Bread, MMMMMMM Cheesey, 8.0
+!END MENU ITEMS!,
