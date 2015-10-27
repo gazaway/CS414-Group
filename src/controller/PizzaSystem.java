@@ -10,9 +10,7 @@ public class PizzaSystem {
 	private CustomerInterface customerInterface;
 	private Main orderMain;
 	
-	
-	
-	public PizzaSystem(){
+	public PizzaSystem() {
 		pizzaStore = new PizzaStore(this);
 		orderInterface = new OrderInterface(this);
 		managerInterface = new ManagerInterface(this);
@@ -68,14 +66,6 @@ public class PizzaSystem {
 	
 	public ManagerInterface getManagerInterface() {
 		return managerInterface;
-	}
-	
-	/*
-	 * This is a test run main. In reality, we should be creating an instance of our GUI and making it run.
-	 * But this will work for now.
-	 */
-	public static void main(String[]args){
-		PizzaSystem test = new PizzaSystem();
 	}
 
 	/*
