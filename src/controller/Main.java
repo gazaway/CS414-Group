@@ -26,16 +26,16 @@ public class Main extends Application {
     public void start(Stage stage) throws RuntimeException {
         startStage(customerStage, CUST_STAGE_TITLE, "/view/CustomerView.fxml");
         startStage(managerStage, MAN_STAGE_TITLE, "/view/ManagerView.fxml");
-        startStage(cookStage, COOK_STAGE_TITLE, "/view/CookView.fxml");
+//        startStage(cookStage, COOK_STAGE_TITLE, "/view/CookView.fxml");
     }
 
-    void startStage(Stage stage, String stageTitle, String viewFile) {
+    private void startStage(Stage stage, String stageTitle, String viewFile) {
         stage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(viewFile));
             loader.setController(CustomerController.getInstance());
             Parent root = (Parent) loader.load();
-            Scene scene = new Scene(root, 600.0, 600.0);
+            Scene scene = new Scene(root, 500.0, 500.0);
             stage.setTitle(stageTitle);
             stage.setScene(scene);
             stage.show();
