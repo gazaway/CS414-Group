@@ -71,8 +71,7 @@ public class CustomerController {
 
     public void addOrderItem(MenuItem orderItem) {
         orderItems.add(orderItem);
-        Order order = new Order();
-        order.getItems().add(orderItem);
+        
     }
 
     public void removeOrderItem(MenuItem orderItem) {
@@ -86,4 +85,13 @@ public class CustomerController {
             orderItems.remove(selectedItem);
         }
     }
+    
+    public void createOrder(){
+    	Order order = new Order();
+        for(MenuItem temp : orderItems){
+        	order.getItems().add(temp);
+        }
+        PizzaSystem.getInstance().getPizzaStore().getOrderQueue().getCurrentOrders().add(order);
+    }
+    
 }
