@@ -39,9 +39,9 @@ public class Main extends Application {
             loader.setController(CustomerController.getInstance());
             Parent root = (Parent) loader.load();
             Scene scene = new Scene(root, 600.0, 600.0);
-            customerStage.setTitle(stageTitle);
-            customerStage.setScene(scene);
-            customerStage.show();
+            stage.setTitle(stageTitle);
+            stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
