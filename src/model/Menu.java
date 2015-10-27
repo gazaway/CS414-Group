@@ -1,5 +1,8 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -11,13 +14,13 @@ import java.util.Scanner;
 public class Menu {
 
 	private final String MENU_FILE_LOCATION;
-	private List<MenuItem> items;
+	private ObservableList<MenuItem> items;
 	private List<PizzaTopping> pizzaToppings;
 	private List<PizzaSize> pizzaSizes;
 	
 	public Menu(){
 		MENU_FILE_LOCATION = "src/menu.txt";
-		this.items = new ArrayList<MenuItem>();
+		this.items = FXCollections.observableArrayList();
 		this.pizzaToppings = new ArrayList<PizzaTopping>();
 		this.pizzaSizes = new ArrayList<PizzaSize>();
 	}
@@ -77,7 +80,7 @@ public class Menu {
 		}
 	}
 	
-	public List<MenuItem> getMenuItems(){
+	public ObservableList<MenuItem> getMenuItems(){
 		return this.items;
 	}
 	

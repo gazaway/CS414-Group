@@ -29,10 +29,7 @@ public class ManagerController {
     private static ManagerController instance;
 
     private ManagerController() {
-    	menuItems = FXCollections.observableArrayList();
-    	for(MenuItem temp : PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems()){
-    		menuItems.add(temp);
-    	}
+    	menuItems = PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems();
     }
 
     public static ManagerController getInstance() {
