@@ -34,7 +34,7 @@ public class CustomerController {
     private static CustomerController instance;
 
     private CustomerController() {
-        menuItems = FXCollections.observableArrayList();
+        menuItems = ManagerController.getInstance().getMenuItems();
         orderItems = FXCollections.observableArrayList();
         orderItems.addListener((ListChangeListener) change -> checkoutTab.setDisable(orderItems.isEmpty()));
     }
