@@ -1,6 +1,5 @@
 package model;
 
-import controller.MenuItemController;
 import controller.OrderItemController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;

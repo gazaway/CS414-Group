@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import model.MenuItem;
-import model.MenuItemCell;
+import model.CustomerMenuItemCell;
 import model.OrderItemCell;
 
 public class CustomerController {
@@ -48,7 +48,7 @@ public class CustomerController {
 
     @FXML
     protected void initialize() {
-        menuList.setCellFactory(param -> new MenuItemCell());
+        menuList.setCellFactory(param -> new CustomerMenuItemCell());
         menuList.setItems(menuItems);
 
         orderList.setCellFactory(param -> new OrderItemCell());

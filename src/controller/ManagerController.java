@@ -1,14 +1,12 @@
 package controller;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
 import model.MenuItem;
-import model.MenuItemCell;
+import model.CustomerMenuItemCell;
 
 import java.awt.*;
 
@@ -46,7 +44,7 @@ public class ManagerController {
 
     @FXML
     protected void initialize() {
-        menuList.setCellFactory(param -> new MenuItemCell());
+        menuList.setCellFactory(param -> new CustomerMenuItemCell());
         menuList.setItems(menuItems);
     }
 

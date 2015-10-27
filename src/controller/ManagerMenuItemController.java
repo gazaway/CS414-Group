@@ -11,7 +11,7 @@ import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.Locale;
 
-public class MenuItemController {
+public class ManagerMenuItemController {
 
     private MenuItem item;
 
