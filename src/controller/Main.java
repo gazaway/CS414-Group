@@ -16,11 +16,18 @@ public class Main extends Application {
     private Stage managerStage;
     private Stage cookStage;
 
+    private Scene customerScene;
+    private Scene managerScene;
+    private Scene cookScene;
+
+    private static final double SCENE_WIDTH = 500.0;
+    private static final double SCENE_HEIGHT = 500.0;
+
     private static final String CUST_STAGE_TITLE = "Mario Brother's Pizza.";
     private static final String MAN_STAGE_TITLE = "Mario Brothers Pizza (Manager Interface).";
     private static final String COOK_STAGE_TITLE = "Mario Brother's Pizza (Cook Interface).";
 
-    public static void Main(String[] args) {
+    public static void main(String[] args) {
         launch(args);
     }
 
@@ -30,9 +37,33 @@ public class Main extends Application {
         managerStage = new Stage();
         cookStage = new Stage();
 
-        startStage(customerStage, CUST_STAGE_TITLE, "/view/CustomerView.fxml");
-        startStage(managerStage, MAN_STAGE_TITLE, "/view/ManagerView.fxml");
-        startStage(cookStage, COOK_STAGE_TITLE, "/view/CookView.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/CustomerView.fxml"));
+            loader.setController(CustomerController.getInstance());
+            Parent root = (Parent) loader.load();
+            customerScene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
+            customerStage.setTitle(CUST_STAGE_TITLE);
+            customerStage.setScene(customerScene);
+            customerStage.show();
+
+            loader = new FXMLLoader(getClass().getResource("/view/ManagerView.fxml"));
+            loader.setController(ManagerController.getInstance());
+            root = (Parent) loader.load();
+            managerScene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
+            managerStage.setTitle(MAN_STAGE_TITLE);
+            managerStage.setScene(managerScene);
+            managerStage.show();
+
+            loader = new FXMLLoader(getClass().getResource("/view/CookView.fxml"));
+            loader.setController(CookController.getInstance());
+            root = (Parent) loader.load();
+            cookScene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
+            cookStage.setTitle(COOK_STAGE_TITLE);
+            cookStage.setScene(cookScene);
+            cookStage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         managerStage.setX(0.0);
@@ -41,19 +72,5 @@ public class Main extends Application {
         cookStage.setY((screenBounds.getHeight() - cookStage.getHeight()) / 2);
         customerStage.setX((screenBounds.getWidth() - customerStage.getWidth()) / 2);
         customerStage.setY((screenBounds.getHeight() - customerStage.getHeight()) / 2);
-    }
-
-    private void startStage(Stage stage, String stageTitle, String viewFile) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(viewFile));
-            loader.setController(CustomerController.getInstance());
-            Parent root = (Parent) loader.load();
-            final Scene scene = new Scene(root, 500.0, 500.0);
-            stage.setTitle(stageTitle);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
