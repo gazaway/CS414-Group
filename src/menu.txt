@@ -1,3 +1,6 @@
+Pizza, Pepperoni, 5.0
+Pizza, Cheese, 3.0
+Pizza, Mushrooms, 6.0
 6 pc Buffalo Wings, HOT!, 6.0
 12 pc Buffalo Wings, HOT!, 10.0
 Bread Sticks, plain bread sticks, 6.0
