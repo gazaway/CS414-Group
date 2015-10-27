@@ -28,7 +28,7 @@ public class ManagerController {
     private ManagerController() {
     	
     	for(MenuItem temp : PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems()){
-    		
+    		menuItems.add(temp);
     	}
     }
 
