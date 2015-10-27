@@ -18,10 +18,7 @@ public class Main extends Application {
     private static final String MAN_STAGE_TITLE = "Mario Brothers Pizza (Manager Interface).";
     private static final String COOK_STAGE_TITLE = "Mario Brother's Pizza (Cook Interface).";
 
-    private PizzaSystem system;
-
     public void run(String[] args) {
-        system = new PizzaSystem();
         launch(args);
     }
 
