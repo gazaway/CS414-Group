@@ -5,6 +5,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import model.MenuItem;
 
@@ -20,6 +21,9 @@ public class ManagerController {
 
     @FXML
     private TextField descriptionField;
+
+    @FXML
+    private ListView<MenuItem> menuList;
 
     private ObservableList<MenuItem> menuItems;
 
