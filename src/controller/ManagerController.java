@@ -23,6 +23,10 @@ public class ManagerController {
     private static ManagerController instance;
 
     private ManagerController() {
+    	
+    	for(MenuItem temp : PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems()){
+    		
+    	}
     }
 
     public static ManagerController getInstance() {
