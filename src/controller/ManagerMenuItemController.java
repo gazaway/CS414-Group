@@ -46,7 +46,7 @@ public class ManagerMenuItemController {
     }
 
     @FXML
-    protected void handleAddToCart(ActionEvent event) {
-        CustomerController.getInstance().addOrderItem(item);
+    protected void handleRemove(ActionEvent event) {
+        ManagerController.getInstance().removeMenuItem(item);
     }
 }

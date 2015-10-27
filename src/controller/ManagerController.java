@@ -5,8 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import model.ManagerMenuItemCell;
 import model.MenuItem;
-import model.CustomerMenuItemCell;
 
 import java.awt.*;
 
@@ -44,12 +44,20 @@ public class ManagerController {
 
     @FXML
     protected void initialize() {
-        menuList.setCellFactory(param -> new CustomerMenuItemCell());
+        menuList.setCellFactory(param -> new ManagerMenuItemCell());
         menuList.setItems(menuItems);
     }
 
     public ObservableList<MenuItem> getMenuItems() {
         return menuItems;
+    }
+
+    public void removeMenuItem(MenuItem item) {
+        menuItems.remove(item);
+    }
+
+    public void addMenuItem(MenuItem item) {
+        menuItems.add(item);
     }
 
     @FXML

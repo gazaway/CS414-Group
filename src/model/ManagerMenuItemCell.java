@@ -1,20 +1,22 @@
 package model;
 
 import controller.CustomerMenuItemController;
+import controller.ManagerMenuItemController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 
 import java.io.IOException;
 
 public class ManagerMenuItemCell extends ListCell<MenuItem> {
-    private CustomerMenuItemController customerMenuItemController;
+
+    private ManagerMenuItemController controller;
 
     public ManagerMenuItemCell() throws RuntimeException {
         super();
         try {
-            customerMenuItemController = new CustomerMenuItemController();
+            controller = new ManagerMenuItemController();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ManagerMenuItemView.fxml"));
-            loader.setController(customerMenuItemController);
+            loader.setController(controller);
             loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -26,14 +28,14 @@ public class ManagerMenuItemCell extends ListCell<MenuItem> {
         super.updateItem(item, empty);
 
         if(!empty && null != item) {
-            customerMenuItemController.setMenuItem(item);
+            controller.setMenuItem(item);
         }
 
         this.setText(null);
         if (empty) {
             this.setGraphic(null);
         } else {
-            this.setGraphic(customerMenuItemController.getRoot());
+            this.setGraphic(controller.getRoot());
         }
     }
 }
