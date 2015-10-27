@@ -8,7 +8,6 @@ public class PizzaSystem {
 	private OrderInterface orderInterface;
 	private ManagerInterface managerInterface;
 	private CustomerInterface customerInterface;
-	private Main orderMain;
 
 	private static PizzaSystem instance;
 	
@@ -17,8 +16,6 @@ public class PizzaSystem {
 		orderInterface = new OrderInterface(this);
 		managerInterface = new ManagerInterface(this);
 		customerInterface = new CustomerInterface(this);
-		orderMain = new Main();
-		orderMain.run(new String[0]);
 		this.getPizzaStore().getMenu().loadMenuFromFile();
 	}
 	
