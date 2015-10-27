@@ -27,42 +27,23 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws RuntimeException {
-
+        startStage(customerStage, CUST_STAGE_TITLE, "/view/CustomerView.fxml");
+        startStage(managerStage, MAN_STAGE_TITLE, "/view/ManagerView.fxml");
+        startStage(cookStage, COOK_STAGE_TITLE, "/view/CookView.fxml");
     }
 
-    private void startCustomerStage() {
-        customerStage = new Stage();
+    void startStage(Stage stage, String stageTitle, String viewFile) {
+        stage = new Stage();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/CustomerView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(viewFile));
             loader.setController(CustomerController.getInstance());
             Parent root = (Parent) loader.load();
             Scene scene = new Scene(root, 600.0, 600.0);
-            customerStage.setTitle(CUST_STAGE_TITLE);
+            customerStage.setTitle(stageTitle);
             customerStage.setScene(scene);
             customerStage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private void startManagerStage() {
-        managerStage = new Stage();
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ManagerView.fxml"));
-            loader.setController(ManagerController.getInstance());
-            Parent root = (Parent) loader.load();
-            Scene scene = new Scene(root, 600.0, 600.0);
-            managerStage.setTitle(MAN_STAGE_TITLE);
-            managerStage.setScene(scene);
-            managerStage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        managerStage.setScene(new Scene(new Group(), 260, 230, Color.LIGHTCYAN));
-        managerStage.show();
-    }
-
-    private void startCookStage() {
-
     }
 }
