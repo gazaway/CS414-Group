@@ -1,7 +1,16 @@
 package controller;
 
-/**
- * Created by falven on 10/26/15.
- */
 public class CookController {
+
+    private static CookController instance;
+
+    private CookController() {
+    }
+
+    public static CookController getInstance() {
+        if(null == instance) {
+            instance = new CookController();
+        }
+        return instance;
+    }
 }

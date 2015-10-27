@@ -1,7 +1,19 @@
 package controller;
 
-/**
- * Created by falven on 10/26/15.
- */
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+
 public class ManagerController {
+
+    private static ManagerController instance;
+
+    private ManagerController() {
+    }
+
+    public static ManagerController getInstance() {
+        if(null == instance) {
+            instance = new ManagerController();
+        }
+        return instance;
+    }
 }
