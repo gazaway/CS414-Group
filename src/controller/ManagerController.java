@@ -30,6 +30,10 @@ public class ManagerController {
     private static ManagerController instance;
 
     private ManagerController() {
+    	
+    	for(MenuItem temp : PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems()){
+    		menuItems.add(temp);
+    	}
     }
 
     public static ManagerController getInstance() {
