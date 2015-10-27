@@ -1,10 +1,11 @@
 package model;
 
 import java.text.NumberFormat;
+import javafx.beans.property.DoubleProperty;
 
 public class MenuItem {
 	
-	private double price;
+	private DoubleProperty price;
 	private String name;
 	private String description;
 	
@@ -30,13 +31,13 @@ public class MenuItem {
 		this.name = name;
 	}
 
-	public double getPrice() {
-		return price;
+	public final double getPrice() {
+		return price.get();
 	}
 
-	public void setPrice(double price) {
+	public final void setPrice(double price) {
 		if (price >= 0){
-			this.price = price;
+			this.price.set(price);
 		}
 	}
 
