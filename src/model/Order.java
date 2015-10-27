@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import controller.PizzaSystem;
+import javafx.beans.property.DoubleProperty;
 
 public class Order {
 	
@@ -10,7 +11,7 @@ public class Order {
 	private ArrayList<MenuItem> items;
 	private ArrayList<Pizza> pizzas;
 	private OrderStatus status;
-	private double totalCost;
+	private DoubleProperty totalCost;
 
 	public ArrayList<MenuItem> getItems() {
 		return items;
@@ -25,7 +26,7 @@ public class Order {
 	 * for logged in customers. Creates the association
 	 */
 	public Order(Customer customer, PizzaSystem parentSystem){
-		totalCost = 0;
+		totalCost.set(0);
 		this.customer = customer;
 		items = new ArrayList<MenuItem>();
 		status = OrderStatus.pending;
@@ -37,7 +38,7 @@ public class Order {
 	 * orders for non-logged in customers.
 	 */
 	public Order(){
-		totalCost = 0;
+		totalCost.set(0);
 		this.customer = new Customer();
 		items = new ArrayList<MenuItem>();
 		pizzas = new ArrayList<Pizza>();
@@ -133,7 +134,7 @@ public class Order {
 		for (Pizza pizza : this.getPizzas()){
 			sum += pizza.getPrice();
 		}
-		totalCost = sum;
+		totalCost.set(sum);
 	}
 
 	public void setOrderCustomer(Customer customer2) {
@@ -141,10 +142,10 @@ public class Order {
 	}
 
 	public double getPrice() {
-		return this.totalCost;
+		return totalCost.get();
 	}
 
 	public void setOrderPrice(double totalSum) {
-		this.totalCost = totalSum;
+		this.totalCost.set(totalSum);
 	}
 }
