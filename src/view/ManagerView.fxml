@@ -15,7 +15,7 @@
     <RowConstraints vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ListView />
+      <ListView fx:id="menuList" />
       <Button mnemonicParsing="false" onAction="#handleAdd" text="+" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
