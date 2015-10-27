@@ -9,7 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import model.MenuItem;
 import model.CustomerMenuItemCell;
-import model.OrderItemCell;
+import model.CustomerOrderItemCell;
 
 public class CustomerController {
 
@@ -51,7 +51,7 @@ public class CustomerController {
         menuList.setCellFactory(param -> new CustomerMenuItemCell());
         menuList.setItems(menuItems);
 
-        orderList.setCellFactory(param -> new OrderItemCell());
+        orderList.setCellFactory(param -> new CustomerOrderItemCell());
         orderList.setItems(orderItems);
 
         /*

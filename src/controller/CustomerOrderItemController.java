@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import model.MenuItem;
 
-public class OrderItemController {
+public class CustomerOrderItemController {
 
     private MenuItem item;
 
