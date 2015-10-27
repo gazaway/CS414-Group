@@ -10,7 +10,9 @@ public class PizzaSystem {
 	private CustomerInterface customerInterface;
 	private Main orderMain;
 	
-	public PizzaSystem(){
+	private static PizzaSystem instance;
+	
+	private PizzaSystem(){
 		pizzaStore = new PizzaStore(this);
 		orderInterface = new OrderInterface(this);
 		managerInterface = new ManagerInterface(this);
@@ -19,6 +21,13 @@ public class PizzaSystem {
 		orderMain.run(new String[0]);
 		this.getPizzaStore().getMenu().loadMenuFromFile();
 	}
+	
+	public static PizzaSystem getInstance() {
+        if(null == instance) {
+            instance = new PizzaSystem();
+        }
+        return instance;
+    }
 	
 	public PizzaStore getPizzaStore(){
 		return pizzaStore;
