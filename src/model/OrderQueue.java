@@ -9,22 +9,20 @@ import controller.PizzaSystem;
 
 public class OrderQueue {
 	
-	private ObservableList<Order> currentOrdersNotPrepped; // order that's been placed
-	private ObservableList<Order> ordersBeingMade; //orders being made by cooks at the moment
-	private ObservableList<Order> canceledOrders; // online orders for cash pick-up
-	private ObservableList<Order> pastOrders;
+	private List<Order> currentOrdersNotPrepped; // order that's been placed
+	private List<Order> ordersBeingMade; //orders being made by cooks at the moment
+	private List<Order> canceledOrders; // online orders for cash pick-up
+	private List<Order> pastOrders;
 	private PizzaSystem parentSystem;
 	
 	public OrderQueue(PizzaSystem system){
-//		currentOrdersNotPrepped = new ArrayList<Order>();
-//		canceledOrders = new ArrayList<Order>();
-//		ordersBeingMade = new ArrayList<Order>();
-//		pastOrders =  new ArrayList<Order>();
-		currentOrdersNotPrepped = FXCollections.observableArrayList();
-		canceledOrders = FXCollections.observableArrayList();
-		ordersBeingMade = FXCollections.observableArrayList();
-		pastOrders =  FXCollections.observableArrayList();
-		parentSystem = system;
+		currentOrdersNotPrepped = new ArrayList<Order>();
+		canceledOrders = new ArrayList<Order>();
+		ordersBeingMade = new ArrayList<Order>();
+		pastOrders =  new ArrayList<Order>();
+//		currentOrdersNotPrepped = FXCollections.observableArrayList();
+//		ordersBeingMade = FXCollections.observableArrayList();
+//		parentSystem = system;
 	}
 	
 	public List<Order> getCurrentOrders(){
