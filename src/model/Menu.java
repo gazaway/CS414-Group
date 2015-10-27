@@ -15,14 +15,14 @@ public class Menu {
 
 	private final String MENU_FILE_LOCATION;
 	private ObservableList<MenuItem> items;
-	private List<PizzaTopping> pizzaToppings;
-	private List<PizzaSize> pizzaSizes;
+	private ObservableList<PizzaTopping> pizzaToppings;
+	private ObservableList<PizzaSize> pizzaSizes;
 	
 	public Menu(){
 		MENU_FILE_LOCATION = "src/menu.txt";
 		this.items = FXCollections.observableArrayList();
-		this.pizzaToppings = new ArrayList<PizzaTopping>();
-		this.pizzaSizes = new ArrayList<PizzaSize>();
+		this.pizzaToppings = FXCollections.observableArrayList();
+		this.pizzaSizes = FXCollections.observableArrayList();
 	}
 	
 	public Menu loadMenuFromFile(){
@@ -84,7 +84,7 @@ public class Menu {
 		return this.items;
 	}
 	
-	public List<PizzaTopping> getPizzaToppings(){
+	public ObservableList<PizzaTopping> getPizzaToppings(){
 		return this.pizzaToppings;
 	}
 	
