@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import model.MenuItem;
+import model.MenuItemCell;
 
 import java.awt.*;
 
@@ -41,6 +42,12 @@ public class ManagerController {
             instance = new ManagerController();
         }
         return instance;
+    }
+
+    @FXML
+    protected void initialize() {
+        menuList.setCellFactory(param -> new MenuItemCell());
+        menuList.setItems(menuItems);
     }
 
     public ObservableList<MenuItem> getMenuItems() {

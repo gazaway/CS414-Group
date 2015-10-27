@@ -67,6 +67,10 @@ public class CustomerController {
          */
     }
 
+    public ObservableList<MenuItem> getOrderItems() {
+        return orderItems;
+    }
+
     public void addOrderItem(MenuItem orderItem) {
         orderItems.add(orderItem);
     }
