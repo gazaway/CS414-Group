@@ -49,5 +49,7 @@ public class CookController {
 
     @FXML
     protected void handleCancelOrder(ActionEvent event) {
+    	
+//    	PizzaSystem.getInstance().getOrderInterface().cancelCurrentOrder();
     }
 }
