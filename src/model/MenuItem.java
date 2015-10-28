@@ -1,7 +1,6 @@
 package model;
 
 import java.text.NumberFormat;
-import java.util.Locale;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -10,15 +9,14 @@ import javafx.beans.property.StringProperty;
 
 public class MenuItem {
 	
-	private DoubleProperty price = new SimpleDoubleProperty();
-	private StringProperty formattedPrice = new SimpleStringProperty();
-	private StringProperty name = new SimpleStringProperty();
-	private StringProperty description = new SimpleStringProperty();
-
-	private static final Locale currentLocale = new Locale.Builder().setLanguage("en").setRegion("US").build();
-	private static final NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(currentLocale);
+	private DoubleProperty price;
+	private StringProperty name;
+	private StringProperty description;
 	
 	public MenuItem(double price_, String name_, String desc_){
+		price = new SimpleDoubleProperty();
+		name = new SimpleStringProperty();
+		description = new SimpleStringProperty();
 		this.setPrice(price_);
 		this.setName(name_);
 		this.setDesc(desc_);
@@ -29,44 +27,39 @@ public class MenuItem {
 	}
 
 	public void setDesc(String description) {
-		this.description.setValue(description);
+//		this.description = description;
+		this.description.set(description);
 	}
-
-	public final StringProperty descProperty() { return this.description; }
+	
+	public StringProperty descProperty(){
+		return description;
+	}
 
 	public String getName() {
 		return name.get();
 	}
 
 	public void setName(String name) {
-		this.name.setValue(name);
+//		this.name = name;
+		this.name.set(name);
 	}
-
-	public final StringProperty nameProperty() { return name; }
+	
+	public StringProperty nameProperty(){
+		return name;
+	}
 
 	public final double getPrice() {
 		return price.get();
+	}
+	
+	public final DoubleProperty getPriceProperty(){
+		return price;
 	}
 
 	public final void setPrice(double price) {
 		if (price >= 0){
 			this.price.set(price);
-			this.formattedPrice.set(currencyFormatter.format(price));
 		}
-	}
-
-	public final DoubleProperty priceProperty() { return price; }
-
-	public final String getFormattedPrice() {
-		return this.formattedPrice.get();
-	}
-
-	public final void setFormattedPrice(String price) {
-		this.formattedPrice.set(price);
-	}
-
-	public final StringProperty formattedPriceProperty() {
-		return formattedPrice;
 	}
 
 	/*

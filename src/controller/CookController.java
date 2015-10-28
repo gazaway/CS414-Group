@@ -13,8 +13,8 @@ public class CookController {
     @FXML
     private ListView orderList;
 
-    private ObservableList<MenuItem> currentOrdersNotPrepped;
-    private ObservableList<MenuItem> ordersBeingMade;
+//    private ObservableList<MenuItem> currentOrdersNotPrepped;
+//    private ObservableList<MenuItem> ordersBeingMade;
 
     private static CookController instance;
 
@@ -34,8 +34,8 @@ public class CookController {
     @FXML
     protected void initialize() {
         orderList.setCellFactory(param -> new CookOrderItemCell());
-        orderList.setItems(currentOrdersNotPrepped);
-        orderList.setItems(ordersBeingMade);
+        orderList.setItems(PizzaSystem.getInstance().getPizzaStore().getOrderQueue().getCurrentOrders());
+        orderList.setItems(PizzaSystem.getInstance().getPizzaStore().getOrderQueue().getOrdersBeingMade());
     }
 
     @FXML
