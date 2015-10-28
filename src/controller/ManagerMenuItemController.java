@@ -29,8 +29,6 @@ public class ManagerMenuItemController {
     @FXML
     private TextField descriptionField;
 
-    private static Locale currentLocale = new Locale.Builder().setLanguage("en").setRegion("US").build();
-
     public Parent getRoot() {
         return root;
     }

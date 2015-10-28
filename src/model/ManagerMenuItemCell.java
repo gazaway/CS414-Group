@@ -26,15 +26,8 @@ public class ManagerMenuItemCell extends ListCell<MenuItem> {
     @Override
     protected void updateItem(MenuItem item, boolean empty) {
         super.updateItem(item, empty);
-
-        if(!empty && null != item) {
+        if(null != item && !empty) {
             controller.setMenuItem(item);
-        }
-
-        this.setText(null);
-        if (empty) {
-            this.setGraphic(null);
-        } else {
             this.setGraphic(controller.getRoot());
         }
     }
