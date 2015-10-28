@@ -1,12 +1,13 @@
 package model;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
 
 public class MenuItem {
 	
@@ -61,7 +62,8 @@ public class MenuItem {
 		return this.formattedPrice.get();
 	}
 
-	public final void setFormattedPrice(String price) {
+	public final void setFormattedPrice(String price) throws ParseException {
+		this.price.set(currencyFormatter.parse(price).doubleValue());
 		this.formattedPrice.set(price);
 	}
 

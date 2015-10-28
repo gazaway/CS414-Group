@@ -35,10 +35,9 @@ public class CustomerMenuItemController {
 
     public void setMenuItem(MenuItem item) {
         this.item = item;
-        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(currentLocale);
-        priceLabel.setText(currencyFormatter.format(item.getPrice()));
-        nameLabel.setText(item.getName());
-        descriptionLabel.setText(item.getDesc());
+        priceLabel.textProperty().bindBidirectional(item.formattedPriceProperty());
+        descriptionLabel.textProperty().bindBidirectional(item.descProperty());
+        nameLabel.textProperty().bindBidirectional(item.nameProperty());
     }
 
     @FXML

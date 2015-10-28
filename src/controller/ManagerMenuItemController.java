@@ -38,8 +38,8 @@ public class ManagerMenuItemController {
     public void setMenuItem(MenuItem item) {
         this.item = item;
         priceField.textProperty().bindBidirectional(item.formattedPriceProperty());
-        nameField.textProperty().bindBidirectional(item.nameProperty());
         descriptionField.textProperty().bindBidirectional(item.descProperty());
+        nameField.textProperty().bindBidirectional(item.nameProperty());
     }
 
     @FXML
