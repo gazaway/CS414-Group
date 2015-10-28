@@ -24,7 +24,7 @@ public class OrderQueue {
 		pastOrders =  new ArrayList<Order>();
 		currentOrdersNotPrepped = FXCollections.observableArrayList();
 		ordersBeingMade = FXCollections.observableArrayList();
-//		parentSystem = system;
+		parentSystem = system;
 	}
 	
 //	public OrderQueue(OrderQueue queue){
