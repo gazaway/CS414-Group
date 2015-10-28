@@ -19,8 +19,8 @@ public class CookController {
     private static CookController instance;
 
     private CookController() {
-    	PizzaSystem.getInstance().getPizzaStore().getOrderQueue().getCurrentOrders(); 
-    	PizzaSystem.getInstance().getPizzaStore().getOrderQueue().getOrdersBeingMade();
+//    	PizzaSystem.getInstance().getPizzaStore().getOrderQueue().getCurrentOrders(); 
+//    	PizzaSystem.getInstance().getPizzaStore().getOrderQueue().getOrdersBeingMade();
 //    	currentOrdersNotPrepped = CustomerController.getInstance().getOrderItems();
     }
 

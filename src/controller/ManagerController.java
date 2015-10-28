@@ -60,6 +60,10 @@ public class ManagerController {
     @FXML
     protected void handleAdd(ActionEvent event) {
         nameField.requestFocus();
+        if((nameField.getText() !=null && !nameField.getText().isEmpty()) && (priceField.getText() !=null && !priceField.getText().isEmpty())&& (descriptionField.getText() !=null && !descriptionField.getText().isEmpty())){
+//        	PizzaSystem.getInstance().getManagerInterface().addItemToMenu();
+        }
+
     }
 
     @FXML
