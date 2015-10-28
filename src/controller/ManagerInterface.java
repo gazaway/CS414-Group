@@ -151,10 +151,6 @@ public class ManagerInterface {
 			}
 		}
 	}
-	
-	public MenuItem addItemToMenu(MenuItem item) throws PizzaException{
-		return addItemToMenu(item.getPrice(),item.getDesc(),item.getName());
-	}
 
 	public void removeItemFromMenu(MenuItem item) throws PizzaException{
 		if (!(parentSystem.getPizzaStore().getMenu().getMenuItems().contains(item)) || (item == null)) {
