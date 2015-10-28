@@ -16,7 +16,6 @@ public class PizzaSystem {
 		orderInterface = new OrderInterface(this);
 		managerInterface = new ManagerInterface(this);
 		customerInterface = new CustomerInterface(this);
-		this.getPizzaStore().getMenu().loadMenuFromFile();
 	}
 	
 	public static PizzaSystem getInstance() {
