@@ -37,7 +37,7 @@ public class ManagerMenuItemController {
 
     public void setMenuItem(MenuItem item) {
         this.item = item;
-        priceField.textProperty().bindBidirectional(item.getPriceProperty());
+        priceField.textProperty().bindBidirectional(item.getPriceProperty(), new NumberStringConverter());
         nameField.textProperty().bindBidirectional(item.nameProperty());
         descriptionField.textProperty().bindBidirectional(item.descProperty());
     }
