@@ -24,13 +24,12 @@ public class ManagerController {
     @FXML
     private ListView<MenuItem> menuList;
 
-//    private ObservableList<MenuItem> menuItems;
+    private ObservableList<MenuItem> menuItems;
 
     private static ManagerController instance;
 
     private ManagerController() {
-//    	menuItems = PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems();
-//    	MENU HAS AN OBSERVABLE LIST CALLED ITEMS... USE MANAGER INTERFACE TO GET IT
+    	menuItems = PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems();
     }
 
     public static ManagerController getInstance() {
@@ -43,38 +42,26 @@ public class ManagerController {
     @FXML
     protected void initialize() {
         menuList.setCellFactory(param -> new ManagerMenuItemCell());
-        menuList.setItems(PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems());
+        menuList.setItems(menuItems);
     }
 
     public ObservableList<MenuItem> getMenuItems() {
-        return PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems();
+        return menuItems;
     }
 
     public void removeMenuItem(MenuItem item) {
-    	PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems().remove(item);
+    	menuItems.remove(item);
     }
 
     public void addMenuItem(MenuItem item) {
-    	PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems().add(item);
+    	menuItems.add(item);
     }
 
     @FXML
     protected void handleAdd(ActionEvent event) throws NumberFormatException, PizzaException {
         nameField.requestFocus();
         if((nameField.getText() !=null && !nameField.getText().isEmpty()) && (priceField.getText() !=null && !priceField.getText().isEmpty())&& (descriptionField.getText() !=null && !descriptionField.getText().isEmpty())){
-        	PizzaSystem.getInstance().getManagerInterface().addItemToMenu(Double.parseDouble(priceField.getText()),nameField.getText(), descriptionField.getText());
+        	PizzaSystem.getInstance().getManagerInterface().addItemToMenu(Double.parseDouble(priceField.getText()), nameField.getText(), descriptionField.getText());
         }
-
-    }
-
-    @FXML
-    protected void handleSave(ActionEvent event) {
-    }
-
-    @FXML
-    protected void handleCancel(ActionEvent event) {
-        nameField.setText("");
-        priceField.setText("");
-        descriptionField.setText("");
     }
 }
