@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import controller.*;
 
 public class PizzaStore {
@@ -10,7 +12,7 @@ public class PizzaStore {
 	private ArrayList<Manager> managers;
 	private ArrayList<Cook> cooks;
 	private ArrayList<Customer> customers;
-	private ArrayList<Special> specials;
+	private ObservableList<Special> specials;
 	private PizzaSystem parentSystem;
 	private Menu menu;
 	private OrderQueue orderQueue;
@@ -20,10 +22,11 @@ public class PizzaStore {
 		managers = new ArrayList<Manager>();
 		cooks = new ArrayList<Cook>();
 		customers = new ArrayList<Customer>();
-		specials = new ArrayList<Special>();
-		parentSystem = system;
+//		specials = new ArrayList<Special>();
+		specials = FXCollections.observableArrayList();
+//		parentSystem = system;
 		menu = new Menu();
-		orderQueue = new OrderQueue(parentSystem);
+		orderQueue = new OrderQueue(PizzaSystem.getInstance().getPizzaStore().getOrderQueue());
 	}
 	
 	public Menu getMenu(){
@@ -34,7 +37,7 @@ public class PizzaStore {
 		return this.orderQueue;
 	}
 
-	public ArrayList<Special> getSpecials() {
+	public ObservableList<Special> getSpecials() {
 		return specials;
 	}
 

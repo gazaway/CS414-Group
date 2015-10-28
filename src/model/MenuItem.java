@@ -1,38 +1,59 @@
 package model;
 
 import java.text.NumberFormat;
+
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class MenuItem {
 	
 	private DoubleProperty price;
-	private String name;
-	private String description;
+	private StringProperty name;
+	private StringProperty description;
 	
 	public MenuItem(double price_, String name_, String desc_){
+		price = new SimpleDoubleProperty();
+		name = new SimpleStringProperty();
+		description = new SimpleStringProperty();
 		this.setPrice(price_);
 		this.setName(name_);
 		this.setDesc(desc_);
 	}
 
 	public String getDesc() {
-		return description;
+		return description.get();
 	}
 
 	public void setDesc(String description) {
-		this.description = description;
+//		this.description = description;
+		this.description.set(description);
+	}
+	
+	public StringProperty descProperty(){
+		return description;
 	}
 
 	public String getName() {
-		return name;
+		return name.get();
 	}
 
 	public void setName(String name) {
-		this.name = name;
+//		this.name = name;
+		this.name.set(name);
+	}
+	
+	public StringProperty nameProperty(){
+		return name;
 	}
 
 	public final double getPrice() {
 		return price.get();
+	}
+	
+	public final DoubleProperty getPriceProperty(){
+		return price;
 	}
 
 	public final void setPrice(double price) {

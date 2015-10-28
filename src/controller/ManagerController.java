@@ -22,13 +22,15 @@ public class ManagerController {
 
     @FXML
     private ListView<MenuItem> menuList;
+    
 
-    private ObservableList<MenuItem> menuItems;
+//    private ObservableList<MenuItem> menuItems;
 
     private static ManagerController instance;
 
     private ManagerController() {
-    	menuItems = PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems();
+//    	menuItems = PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems();
+//    	MENU HAS AN OBSERVABLE LIST CALLED ITEMS... USE MANAGER INTERFACE TO GET IT
     }
 
     public static ManagerController getInstance() {
@@ -41,19 +43,19 @@ public class ManagerController {
     @FXML
     protected void initialize() {
         menuList.setCellFactory(param -> new ManagerMenuItemCell());
-        menuList.setItems(menuItems);
+        menuList.setItems(PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems());
     }
 
     public ObservableList<MenuItem> getMenuItems() {
-        return menuItems;
+        return PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems();
     }
 
     public void removeMenuItem(MenuItem item) {
-        menuItems.remove(item);
+    	PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems().remove(item);
     }
 
-    public void addMenuItem(MenuItem item) {
-        menuItems.add(item);
+    public void addMenuItem(MenuItem item){
+    	PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems().add(item);
     }
 
     @FXML
