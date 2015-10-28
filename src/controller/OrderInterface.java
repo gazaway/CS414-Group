@@ -25,6 +25,12 @@ public class OrderInterface {
 		return temp;
 	}
 	
+	public Order createNewOrder(List<MenuItem> items){
+		Order temp = new Order(items);
+		addNewOrderToNotPreppedQueue(temp);
+		return temp;
+	}
+	
 	public Order createNewOrder(Customer customer, ArrayList<MenuItem> items, ArrayList<Pizza> pizzas) throws PizzaException{
 		Order temp = new Order(customer, items, pizzas);
 		if (!(parentSystem.getPizzaStore().getCustomers().contains(customer)) || (customer == null) || (items == null) || (pizzas == null) || !(checkOrderValidity(temp))){

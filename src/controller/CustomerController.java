@@ -86,12 +86,9 @@ public class CustomerController {
         }
     }
     
-    public void createOrder(){
-    	Order order = new Order();
-        for(MenuItem temp : orderItems){
-        	order.getItems().add(temp);
-        }
-        PizzaSystem.getInstance().getPizzaStore().getOrderQueue().getCurrentOrders().add(order);
+    public void submitOrder(){
+    	PizzaSystem.getInstance().getOrderInterface().createNewOrder(orderItems);
+       
     }
     
 }

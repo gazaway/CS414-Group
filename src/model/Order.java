@@ -46,7 +46,14 @@ public class Order {
 		status = OrderStatus.pending;
 	}
 
-	public Order(ArrayList<MenuItem> items, ArrayList<Pizza> pizzas) {
+	public Order(List<MenuItem> items) {
+		this.customer = new Customer();
+		this.items = items;
+		status = OrderStatus.pending;
+		tallyTotalPrice();
+	}
+	
+	public Order(List<MenuItem> items, List<Pizza> pizzas) {
 		this.customer = new Customer();
 		this.items = items;
 		this.pizzas = pizzas;
@@ -54,7 +61,7 @@ public class Order {
 		tallyTotalPrice();
 	}
 
-	public Order(Customer customer, ArrayList<MenuItem> items, ArrayList<Pizza> pizzas) {
+	public Order(Customer customer, List<MenuItem> items, List<Pizza> pizzas) {
 		this.customer = customer;
 		this.items = items;
 		this.pizzas = pizzas;
