@@ -12,7 +12,7 @@ public class PizzaStore {
 	private ArrayList<Manager> managers;
 	private ArrayList<Cook> cooks;
 	private ArrayList<Customer> customers;
-	private ObservableList<Special> specials;
+	private ArrayList<Special> specials;
 	private PizzaSystem parentSystem;
 	private Menu menu;
 	private OrderQueue orderQueue;
@@ -22,8 +22,8 @@ public class PizzaStore {
 		managers = new ArrayList<Manager>();
 		cooks = new ArrayList<Cook>();
 		customers = new ArrayList<Customer>();
-//		specials = new ArrayList<Special>();
-		specials = FXCollections.observableArrayList();
+		specials = new ArrayList<Special>();
+//		specials = FXCollections.observableArrayList();
 //		parentSystem = system;
 		menu = new Menu();
 		orderQueue = new OrderQueue(PizzaSystem.getInstance().getPizzaStore().getOrderQueue());
@@ -37,7 +37,7 @@ public class PizzaStore {
 		return this.orderQueue;
 	}
 
-	public ObservableList<Special> getSpecials() {
+	public ArrayList<Special> getSpecials() {
 		return specials;
 	}
 
