@@ -2,6 +2,7 @@ package model;
 
 import java.text.NumberFormat;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 
 public class MenuItem {
 	
@@ -10,6 +11,7 @@ public class MenuItem {
 	private String description;
 	
 	public MenuItem(double price_, String name_, String desc_){
+		price = new SimpleDoubleProperty();
 		this.setPrice(price_);
 		this.setName(name_);
 		this.setDesc(desc_);
