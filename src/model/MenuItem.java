@@ -36,6 +36,10 @@ public class MenuItem {
 	public final double getPrice() {
 		return price.get();
 	}
+	
+	public final DoubleProperty getPriceProperty(){
+		return price;
+	}
 
 	public final void setPrice(double price) {
 		if (price >= 0){
