@@ -22,6 +22,7 @@ public class ManagerController {
 
     @FXML
     private ListView<MenuItem> menuList;
+    
 
 //    private ObservableList<MenuItem> menuItems;
 
