@@ -66,11 +66,4 @@ public class ManagerController {
     @FXML
     protected void handleSave(ActionEvent event) {
     }
-
-    @FXML
-    protected void handleCancel(ActionEvent event) {
-        nameField.setText("");
-        priceField.setText("");
-        descriptionField.setText("");
-    }
 }
