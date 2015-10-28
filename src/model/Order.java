@@ -6,12 +6,14 @@ import java.util.List;
 import controller.PizzaSystem;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Order {
 	
 	private Customer customer;	
-	private List<MenuItem> items;
-	private List<Pizza> pizzas;
+	private ObservableList<MenuItem> items;
+	private ObservableList<Pizza> pizzas;
 	private OrderStatus status;
 	private DoubleProperty totalCost;
 
@@ -31,9 +33,11 @@ public class Order {
 		totalCost = new SimpleDoubleProperty();
 		totalCost.set(0);
 		this.customer = customer;
-		items = new ArrayList<MenuItem>();
+//		items = new ArrayList<MenuItem>();
+		items  = FXCollections.observableArrayList();
 		status = OrderStatus.pending;
-		pizzas = new ArrayList<Pizza>();
+//		pizzas = new ArrayList<Pizza>();
+		pizzas = FXCollections.observableArrayList();
 	}
 	
 	/*
@@ -44,30 +48,37 @@ public class Order {
 		totalCost = new SimpleDoubleProperty();
 		totalCost.set(0);
 		this.customer = new Customer();
-		items = new ArrayList<MenuItem>();
-		pizzas = new ArrayList<Pizza>();
+//		items = new ArrayList<MenuItem>();
+//		pizzas = new ArrayList<Pizza>();
+		items = FXCollections.observableArrayList();
+		pizzas = FXCollections.observableArrayList();
 		status = OrderStatus.pending;
 	}
 
 	public Order(List<MenuItem> items) {
 		this.customer = new Customer();
-		this.items = items;
+//		this.items = items;
+		this.items.setAll(items);
 		status = OrderStatus.pending;
 		tallyTotalPrice();
 	}
 	
 	public Order(List<MenuItem> items, List<Pizza> pizzas) {
 		this.customer = new Customer();
-		this.items = items;
-		this.pizzas = pizzas;
+//		this.items = items;
+//		this.pizzas = pizzas;
+		this.items.setAll(items);
+		this.pizzas.setAll(pizzas);
 		status = OrderStatus.pending;
 		tallyTotalPrice();
 	}
 
 	public Order(Customer customer, List<MenuItem> items, List<Pizza> pizzas) {
 		this.customer = customer;
-		this.items = items;
-		this.pizzas = pizzas;
+//		this.items = items;
+//		this.pizzas = pizzas;
+		this.items.setAll(items);
+		this.pizzas.setAll(pizzas);
 		status = OrderStatus.pending;
 		tallyTotalPrice();
 	}
