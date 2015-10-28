@@ -2,12 +2,13 @@ package model;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.StringProperty;
 
 public class Special {
 	
 	private MenuItem item;
 	private PizzaSize size;
-	private String specialName;
+	private StringProperty specialName;
 	private DoubleProperty price;
 	
 	public Special(String name){
@@ -15,7 +16,8 @@ public class Special {
 		price.set(0);
 		this.item = null;
 		this.size = null;
-		specialName = name;
+//		specialName = name;
+		specialName.set(name);
 	}
 	
 	public void addItemToSpecial(MenuItem item, double price){
@@ -31,11 +33,16 @@ public class Special {
 	}
 	
 	public String getSpecialName(){
-		return this.specialName;
+		return this.specialName.get();
 	}
 	
 	public void setSpecialName(String name){
-		this.specialName = name;
+//		this.specialName = name;
+		this.specialName.set(name);
+	}
+	
+	public StringProperty specialNameProperty(){
+		return specialName;
 	}
 	
 	public PizzaSize getSize(){
