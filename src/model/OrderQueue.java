@@ -27,6 +27,18 @@ public class OrderQueue {
 //		parentSystem = system;
 	}
 	
+	public OrderQueue(OrderQueue queue){
+//		currentOrdersNotPrepped = new ArrayList<Order>();
+		canceledOrders = new ArrayList<Order>(queue.getCanceledOrders());
+//		ordersBeingMade = new ArrayList<Order>();
+		pastOrders =  new ArrayList<Order>(queue.getPastOrders());
+		currentOrdersNotPrepped = FXCollections.observableArrayList();
+		currentOrdersNotPrepped.setAll(queue.getCurrentOrders());
+		ordersBeingMade = FXCollections.observableArrayList();
+		ordersBeingMade.setAll(queue.getOrdersBeingMade());
+//		parentSystem = system;
+	}
+	
 	public ObservableList<Order> getCurrentOrders(){
 		return currentOrdersNotPrepped;
 	}
