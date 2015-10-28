@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import model.ManagerMenuItemCell;
 import model.MenuItem;
+import model.PizzaException;
 
 import java.awt.*;
 
@@ -58,10 +59,10 @@ public class ManagerController {
     }
 
     @FXML
-    protected void handleAdd(ActionEvent event) {
+    protected void handleAdd(ActionEvent event) throws NumberFormatException, PizzaException {
         nameField.requestFocus();
         if((nameField.getText() !=null && !nameField.getText().isEmpty()) && (priceField.getText() !=null && !priceField.getText().isEmpty())&& (descriptionField.getText() !=null && !descriptionField.getText().isEmpty())){
-//        	PizzaSystem.getInstance().getManagerInterface().addItemToMenu();
+        	PizzaSystem.getInstance().getManagerInterface().addItemToMenu(Double.parseDouble(priceField.getText()),nameField.getText(), descriptionField.getText());
         }
 
     }
