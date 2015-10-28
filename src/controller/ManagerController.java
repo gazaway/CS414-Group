@@ -24,12 +24,12 @@ public class ManagerController {
     private ListView<MenuItem> menuList;
     
 
-//    private ObservableList<MenuItem> menuItems;
+    private ObservableList<MenuItem> menuItems;
 
     private static ManagerController instance;
 
     private ManagerController() {
-//    	menuItems = PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems();
+    	menuItems = PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems();
 //    	MENU HAS AN OBSERVABLE LIST CALLED ITEMS... USE MANAGER INTERFACE TO GET IT
     }
 
@@ -55,7 +55,8 @@ public class ManagerController {
     }
 
     public void addMenuItem(MenuItem item){
-    	PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems().add(item);
+//    	PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems().add(item);
+    	menuItems.add(item);
     }
 
     @FXML

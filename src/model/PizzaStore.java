@@ -24,9 +24,9 @@ public class PizzaStore {
 		customers = new ArrayList<Customer>();
 		specials = new ArrayList<Special>();
 //		specials = FXCollections.observableArrayList();
-//		parentSystem = system;
+		parentSystem = system;
 		menu = new Menu();
-		orderQueue = new OrderQueue(PizzaSystem.getInstance().getPizzaStore().getOrderQueue());
+		orderQueue = new OrderQueue(parentSystem);
 	}
 	
 	public Menu getMenu(){

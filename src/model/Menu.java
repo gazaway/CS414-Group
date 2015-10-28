@@ -20,6 +20,7 @@ public class Menu {
 	
 	public Menu(){
 		MENU_FILE_LOCATION = "src/menu.txt";
+//		this.items = new ArrayList<MenuItem>();
 		this.items = FXCollections.observableArrayList();
 		this.pizzaToppings = FXCollections.observableArrayList();
 		this.pizzaSizes = FXCollections.observableArrayList();
