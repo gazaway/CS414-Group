@@ -6,19 +6,22 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import model.CookOrderItemCell;
 import model.MenuItem;
+import model.PizzaException;
 
 public class CookController {
 
     @FXML
     private ListView orderList;
 
-    private ObservableList<MenuItem> currentOrdersNotPrepped;
-    private ObservableList<MenuItem> ordersBeingMade;
+//    private ObservableList<MenuItem> currentOrdersNotPrepped;
+//    private ObservableList<MenuItem> ordersBeingMade;
 
     private static CookController instance;
 
     private CookController() {
-    	currentOrdersNotPrepped = CustomerController.getInstance().getOrderItems();
+    	PizzaSystem.getInstance().getPizzaStore().getOrderQueue().getCurrentOrders(); 
+    	PizzaSystem.getInstance().getPizzaStore().getOrderQueue().getOrdersBeingMade();
+//    	currentOrdersNotPrepped = CustomerController.getInstance().getOrderItems();
     }
 
     public static CookController getInstance() {
@@ -31,11 +34,17 @@ public class CookController {
     @FXML
     protected void initialize() {
         orderList.setCellFactory(param -> new CookOrderItemCell());
-        orderList.setItems(currentOrdersNotPrepped);
+        orderList.setItems(PizzaSystem.getInstance().getPizzaStore().getOrderQueue().getCurrentOrders());
+        orderList.setItems(PizzaSystem.getInstance().getPizzaStore().getOrderQueue().getOrdersBeingMade());
     }
 
     @FXML
     protected void handlePrepareOrder(ActionEvent event) {
+    	try {
+			PizzaSystem.getInstance().getOrderInterface().grabNextOrder();
+		} catch (PizzaException e) {
+			System.out.println("No more items");
+		}
     }
 
     @FXML
