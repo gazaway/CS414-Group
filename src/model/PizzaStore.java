@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import controller.*;
 
 public class PizzaStore {
@@ -23,10 +21,9 @@ public class PizzaStore {
 		cooks = new ArrayList<Cook>();
 		customers = new ArrayList<Customer>();
 		specials = new ArrayList<Special>();
-//		specials = FXCollections.observableArrayList();
-//		parentSystem = system;
+		parentSystem = system;
 		menu = new Menu();
-		orderQueue = new OrderQueue(PizzaSystem.getInstance().getPizzaStore().getOrderQueue());
+		orderQueue = new OrderQueue(parentSystem);
 	}
 	
 	public Menu getMenu(){

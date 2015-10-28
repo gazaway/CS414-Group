@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import model.ManagerMenuItemCell;
 import model.MenuItem;
+import model.PizzaException;
 
 import java.awt.*;
 
@@ -22,7 +23,6 @@ public class ManagerController {
 
     @FXML
     private ListView<MenuItem> menuList;
-    
 
 //    private ObservableList<MenuItem> menuItems;
 
@@ -54,16 +54,27 @@ public class ManagerController {
     	PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems().remove(item);
     }
 
-    public void addMenuItem(MenuItem item){
+    public void addMenuItem(MenuItem item) {
     	PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems().add(item);
     }
 
     @FXML
-    protected void handleAdd(ActionEvent event) {
+    protected void handleAdd(ActionEvent event) throws NumberFormatException, PizzaException {
         nameField.requestFocus();
+        if((nameField.getText() !=null && !nameField.getText().isEmpty()) && (priceField.getText() !=null && !priceField.getText().isEmpty())&& (descriptionField.getText() !=null && !descriptionField.getText().isEmpty())){
+        	PizzaSystem.getInstance().getManagerInterface().addItemToMenu(Double.parseDouble(priceField.getText()),nameField.getText(), descriptionField.getText());
+        }
+
     }
 
     @FXML
     protected void handleSave(ActionEvent event) {
+    }
+
+    @FXML
+    protected void handleCancel(ActionEvent event) {
+        nameField.setText("");
+        priceField.setText("");
+        descriptionField.setText("");
     }
 }
