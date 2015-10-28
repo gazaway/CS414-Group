@@ -20,7 +20,7 @@
     <RowConstraints vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleRemove" text="-" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
+      <Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleRemove" text="-" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>

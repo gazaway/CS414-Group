@@ -10,13 +10,16 @@
     <ColumnConstraints hgrow="SOMETIMES" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
     <RowConstraints vgrow="SOMETIMES" />
     <RowConstraints vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <ListView fx:id="orderList" GridPane.rowIndex="1" />
-      <Label text="Manage orders" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Label text="Manage orders" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding></Label>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
          <children>
             <Button mnemonicParsing="false" onAction="#handlePrepareOrder" text="Prepare Order">

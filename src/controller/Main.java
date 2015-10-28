@@ -20,8 +20,8 @@ public class Main extends Application {
     private Scene managerScene;
     private Scene cookScene;
 
-    private static final double SCENE_WIDTH = 500.0;
-    private static final double SCENE_HEIGHT = 500.0;
+    private static final double SCENE_WIDTH = 400.0;
+    private static final double SCENE_HEIGHT = 400.0;
 
     private static final String CUST_STAGE_TITLE = "Mario Brother's Pizza.";
     private static final String MAN_STAGE_TITLE = "Mario Brothers Pizza (Manager Interface).";
