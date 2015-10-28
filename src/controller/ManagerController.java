@@ -59,9 +59,11 @@ public class ManagerController {
 
     @FXML
     protected void handleAdd(ActionEvent event) throws NumberFormatException, PizzaException {
-        nameField.requestFocus();
-        if((nameField.getText() !=null && !nameField.getText().isEmpty()) && (priceField.getText() !=null && !priceField.getText().isEmpty())&& (descriptionField.getText() !=null && !descriptionField.getText().isEmpty())){
-        	PizzaSystem.getInstance().getManagerInterface().addItemToMenu(Double.parseDouble(priceField.getText()), nameField.getText(), descriptionField.getText());
+        String name = nameField.getText();
+        String price = priceField.getText();
+        String descr = descriptionField.getText();
+        if((name != null && name.isEmpty()) && (price !=null && !price.isEmpty()) && (descr !=null && !descr.isEmpty())) {
+        	PizzaSystem.getInstance().getManagerInterface().addItemToMenu(Double.parseDouble(price), name, descr);
         }
     }
 }
