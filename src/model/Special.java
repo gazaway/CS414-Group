@@ -1,6 +1,7 @@
 package model;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 
 public class Special {
 	
@@ -10,7 +11,8 @@ public class Special {
 	private DoubleProperty price;
 	
 	public Special(String name){
-		price.set(0  );
+		price = new SimpleDoubleProperty();
+		price.set(0);
 		this.item = null;
 		this.size = null;
 		specialName = name;
@@ -46,6 +48,10 @@ public class Special {
 	
 	public double getSpecialPrice(){
 		return price.get();
+	}
+	
+	public DoubleProperty getSpecialPriceProperty(){
+		return price;
 	}
 	
 	public void setSpecialPrice(double price){

@@ -5,6 +5,7 @@ import java.util.List;
 
 import controller.PizzaSystem;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 
 public class Order {
 	
@@ -27,6 +28,7 @@ public class Order {
 	 * for logged in customers. Creates the association
 	 */
 	public Order(Customer customer, PizzaSystem parentSystem){
+		totalCost = new SimpleDoubleProperty();
 		totalCost.set(0);
 		this.customer = customer;
 		items = new ArrayList<MenuItem>();
@@ -39,6 +41,7 @@ public class Order {
 	 * orders for non-logged in customers.
 	 */
 	public Order(){
+		totalCost = new SimpleDoubleProperty();
 		totalCost.set(0);
 		this.customer = new Customer();
 		items = new ArrayList<MenuItem>();
@@ -151,6 +154,10 @@ public class Order {
 
 	public double getPrice() {
 		return totalCost.get();
+	}
+	
+	public DoubleProperty getPriceProperty() {
+		return totalCost;
 	}
 
 	public void setOrderPrice(double totalSum) {
