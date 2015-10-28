@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import model.ManagerMenuItemCell;
 import model.MenuItem;
+import model.PizzaException;
 
 import java.awt.*;
 
@@ -53,8 +54,9 @@ public class ManagerController {
     	PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems().remove(item);
     }
 
-    public void addMenuItem(MenuItem item) {
-    	PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems().add(item);
+    public void addMenuItem(MenuItem item) throws PizzaException {
+//    	PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems().add(item);
+    	PizzaSystem.getInstance().getManagerInterface().addItemToMenu(item);
     }
 
     @FXML
