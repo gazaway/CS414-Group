@@ -43,7 +43,7 @@ public class ManagerController {
     @FXML
     protected void initialize() {
         menuList.setCellFactory(param -> new ManagerMenuItemCell());
-        menuList.setItems(PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems());
+        menuList.setItems(menuItems);
     }
 
     public ObservableList<MenuItem> getMenuItems() {
