@@ -22,9 +22,8 @@ public class ManagerController {
 
     @FXML
     private ListView<MenuItem> menuList;
-    
 
-    private ObservableList<MenuItem> menuItems;
+//    private ObservableList<MenuItem> menuItems;
 
     private static ManagerController instance;
 
@@ -54,9 +53,8 @@ public class ManagerController {
     	PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems().remove(item);
     }
 
-    public void addMenuItem(MenuItem item){
+    public void addMenuItem(MenuItem item) {
     	PizzaSystem.getInstance().getPizzaStore().getMenu().getMenuItems().add(item);
-//    	menuItems.add(item);
     }
 
     @FXML
@@ -66,5 +64,12 @@ public class ManagerController {
 
     @FXML
     protected void handleSave(ActionEvent event) {
+    }
+
+    @FXML
+    protected void handleCancel(ActionEvent event) {
+        nameField.setText("");
+        priceField.setText("");
+        descriptionField.setText("");
     }
 }
