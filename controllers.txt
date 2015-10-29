@@ -1,2 +1,0 @@
-system administrator    (do last)
-	- hire, promote, fire (can you change from an employee to a cook?)
