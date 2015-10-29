@@ -1,6 +1,5 @@
 package model;
 
-import controller.CustomerMenuItemController;
 import controller.ManagerMenuItemController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
@@ -27,6 +26,7 @@ public class ManagerMenuItemCell extends ListCell<MenuItem> {
     protected void updateItem(MenuItem item, boolean empty) {
         super.updateItem(item, empty);
         if(null != item && !empty) {
+            String desc = item.getDesc();
             controller.setMenuItem(item);
             this.setGraphic(controller.getRoot());
         }
